@@ -1,0 +1,26 @@
+.cartModal {
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    width: 340px;
+    background-color: #1F1F1F;
+    color: #FEFEFE;
+    z-index: 99999;
+    animation: slide 250ms normal
+}
+
+.itemsList {
+    width: 90%;
+    margin: 0 auto;
+}
+
+@keyframes slide {
+    from {
+        opacity: 1;
+        transform: translateX(340px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Navbar, PageLayout } from "components/common/index";
 
-function App() {
+import "./App.css";
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <PageLayout
+        CSSProps={{
+          root: {
+            backgroundColor: "#F9F9F9",
+          },
+          container: {
+            width: "80%",
+            margin: "0 auto",
+          },
+        }}
+      >
+        <div>Hello, world!</div>
+      </PageLayout>
     </div>
   );
-}
+};
 
 export default App;
