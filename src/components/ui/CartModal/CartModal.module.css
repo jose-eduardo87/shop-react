@@ -1,17 +1,24 @@
 .cartModal {
+    border: 1px solid red;
     position: fixed;
     right: 0;
     height: 100vh;
     width: 340px;
     background-color: #1F1F1F;
     color: #FEFEFE;
-    z-index: 99999;
-    animation: slide 250ms normal
+    animation: slide 250ms alternate;
 }
 
 .itemsList {
     width: 90%;
+    height: 80%;
     margin: 0 auto;
+    border: 1px solid red;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @keyframes slide {

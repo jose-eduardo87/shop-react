@@ -1,6 +1,8 @@
 import { FC, useState, useEffect } from "react";
+import { CartCard } from "components/ui/index";
 import { createPortal } from "react-dom";
 import { Backdrop, ModalOverlay } from "components/ui/index";
+import { CART } from "helpers/constants";
 
 import styles from "./CartModal.module.css";
 
@@ -13,9 +15,11 @@ const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
   const cartModalRender = (
     <ModalOverlay>
       <div className={styles.cartModal}>
+        <p>Your items:</p>
         <div className={styles.itemsList}>
-          <h1>Your items:</h1>
-          <p>Empty cart.</p>
+          {CART.map(({ id, ...rest }) => (
+            <CartCard key={id} {...rest} />
+          ))}
         </div>
       </div>
     </ModalOverlay>
