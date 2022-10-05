@@ -2,12 +2,16 @@ import { FC, useState, useEffect } from "react";
 import { CartCard } from "components/ui/index";
 import { createPortal } from "react-dom";
 import { Backdrop, ModalOverlay } from "components/ui/index";
+import { useCart } from "store/index";
 import { CART } from "helpers/constants";
 
 import styles from "./CartModal.module.css";
 
 const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const { cart, onIncrementItem, onDecrementItem, onAddItem, onRemoveItem } =
+    useCart();
+  console.log(cart);
   const backdropElement = document.getElementById(
     "backdrop-root"
   ) as HTMLElement;

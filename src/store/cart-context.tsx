@@ -1,64 +1,48 @@
-import { createContext, FC, useContext, useReducer } from "react";
+import { createContext, FC, ReactNode, useContext, useReducer } from "react";
+import { cartReducer, ActionKind, CartInterface } from "reducers/index";
 
-enum ActionKind {
-  ADD = "ADD_ITEM",
-  REMOVE = "REMOVE_ITEM",
-  INCREMENT = "INCREMENT_ITEM",
-  DECREMENT = "DECREMENT_ITEM",
+interface CartProviderInterface {
+  cart: Partial<CartInterface>[];
+  onIncrementItem: (id: string) => void;
+  onDecrementItem: (id: string) => void;
+  onAddItem: (product: CartInterface) => void;
+  onRemoveItem: (id: string) => void;
 }
 
-export interface CartInterface {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  additionalInfo: {
-    size?: string[];
-    colors?: string[];
-  };
-}
-
-interface CartAction {
-  type: ActionKind;
-  payload: {
-    id?: string;
-    product?: CartInterface;
-  };
-}
-
-const cartReducer = (state: CartInterface[], action: CartAction) => {
-  const { type, payload } = action;
-  const updateItem = (incrementor: number) =>
-    state.map((item) => {
-      if (item.id === payload.id) {
-        return { ...item, quantity: item.quantity + incrementor };
-      }
-
-      return item;
-    });
-
-  switch (type) {
-    case ActionKind.ADD:
-      return [...state, payload.product];
-    case ActionKind.REMOVE:
-      const filteredCart = state.filter((item) => item.id !== payload.id);
-
-      return [...filteredCart];
-    case ActionKind.INCREMENT:
-      return { ...updateItem(1) };
-    case ActionKind.DECREMENT:
-      return { ...updateItem(-1) };
-    default:
-      return state;
-  }
+const initialState = {
+  cart: [],
+  onIncrementItem: (id: string) => {},
+  onDecrementItem: (id: string) => {},
+  onAddItem: (product: CartInterface) => {},
+  onRemoveItem: (id: string) => {},
 };
 
-const CartContext = createContext<Partial<CartInterface[]>>([]);
+const CartContext = createContext<CartProviderInterface>(initialState);
 
-const CartProvider: FC = () => {
+const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, []);
+  const incrementItemHandler = (id: string) =>
+    dispatch({ type: ActionKind.INCREMENT, payload: { id } });
+  const decrementItemHandler = (id: string) =>
+    dispatch({ type: ActionKind.DECREMENT, payload: { id } });
+  const addItemHandler = (product: CartInterface) =>
+    dispatch({ type: ActionKind.ADD, payload: { product } });
+  const removeItemHandler = (id: string) =>
+    dispatch({ type: ActionKind.REMOVE, payload: { id } });
 
-  return <CartContext.Provider value={cart} />;
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        onIncrementItem: incrementItemHandler,
+        onDecrementItem: decrementItemHandler,
+        onAddItem: addItemHandler,
+        onRemoveItem: removeItemHandler,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 };
 
 export default CartProvider;

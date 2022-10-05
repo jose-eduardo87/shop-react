@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { CartInterface } from "store/cart-context";
+import { CartInterface } from "reducers/index";
 
 import styles from "./CartCard.module.css";
 
