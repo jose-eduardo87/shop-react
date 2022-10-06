@@ -1,3 +1,9 @@
+export const iconStyles = {
+  width: 24,
+  height: 24,
+  fill: "#FEFEFE",
+};
+
 export const ITEMS = [
   {
     id: "item01",

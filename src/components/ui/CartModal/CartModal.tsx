@@ -1,12 +1,14 @@
 import { FC } from "react";
 import { createPortal } from "react-dom";
 import { CartCard, Backdrop, ModalOverlay } from "components/ui/index";
+import { EmptyCart } from "components/icons/index";
 import { useCart } from "store/index";
+import { iconStyles } from "helpers/constants";
 
 import styles from "./CartModal.module.css";
 
 const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
-  const { cart } = useCart();
+  const { cart, totalValue } = useCart();
   const backdropElement = document.getElementById(
     "backdrop-root"
   ) as HTMLElement;
@@ -14,13 +16,16 @@ const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
   const cartModalRender = (
     <ModalOverlay>
       <div className={styles.cartModal}>
-        <p>Your items:</p>
+        <h1>Your items:</h1>
         <div className={styles.itemsList}>
           {cart.length ? (
             cart.map(({ id, ...rest }) => <CartCard key={id} {...rest} />)
           ) : (
-            <p>No items added.</p>
+            <p className={styles.emptyCart}>
+              <EmptyCart {...iconStyles} fill="#818181" /> No items added.
+            </p>
           )}
+          {JSON.stringify(totalValue)}
         </div>
       </div>
     </ModalOverlay>
