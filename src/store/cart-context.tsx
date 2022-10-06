@@ -3,6 +3,7 @@ import { cartReducer, ActionKind, CartInterface } from "reducers/index";
 
 interface CartProviderInterface {
   cart: CartInterface[];
+  totalItemsOnCart: number;
   onIncrementItem: (id: string) => void;
   onDecrementItem: (id: string) => void;
   onAddItem: (product: CartInterface) => void;
@@ -11,6 +12,7 @@ interface CartProviderInterface {
 
 const initialState = {
   cart: [],
+  totalItemsOnCart: 0,
   onIncrementItem: (id: string) => {},
   onDecrementItem: (id: string) => {},
   onAddItem: (product: CartInterface) => {},
@@ -21,6 +23,10 @@ const CartContext = createContext<CartProviderInterface>(initialState);
 
 const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, []);
+  const totalItemsOnCart = cart.reduce(
+    (prev, { quantity }) => prev + quantity,
+    0
+  );
   const incrementItemHandler = (id: string) =>
     dispatch({ type: ActionKind.INCREMENT, payload: { id } });
   const decrementItemHandler = (id: string) =>
@@ -34,6 +40,7 @@ const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
+        totalItemsOnCart,
         onIncrementItem: incrementItemHandler,
         onDecrementItem: decrementItemHandler,
         onAddItem: addItemHandler,

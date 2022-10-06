@@ -30,20 +30,36 @@ const cartReducer = (
 ): CartInterface[] => {
   const { type, payload } = action;
 
-  const getUpdatedItem = (incrementor: number) =>
-    state.map((item) => {
-      if (item.id! === payload.id) {
-        return { ...item, quantity: item.quantity! + incrementor };
-      }
+  const filterRemovedItem = () =>
+    state.filter((item) => item.id !== payload.id);
+  const getUpdatedItem = (incrementor: number) => {
+    const selectedItem = state.find((item) => item.id === payload.id);
 
-      return item;
-    });
+    if (incrementor === -1 && selectedItem!.quantity === 1) {
+      return filterRemovedItem();
+    }
+
+    selectedItem!.quantity += incrementor;
+
+    return state;
+  };
 
   switch (type) {
     case ActionKind.ADD:
+      const itemIndex = state.findIndex(
+        (item) => item.id === payload.product!.id
+      );
+
+      // in case item added is already in cart, quantity will be added by 1.
+      if (itemIndex !== -1) {
+        state[itemIndex].quantity++;
+
+        return state;
+      }
+
       return [...state, payload.product!]; // returns original state including newly-added item in payload.
     case ActionKind.REMOVE:
-      return [...state.filter((item) => item!.id !== payload.id)]; // filters item by id, excluding it from the returned values.
+      return filterRemovedItem(); // filters item by id, excluding it from the returned values.
     case ActionKind.INCREMENT:
       return getUpdatedItem(1); // increments item quantity by one.
     case ActionKind.DECREMENT:

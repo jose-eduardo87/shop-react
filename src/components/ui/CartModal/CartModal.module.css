@@ -1,5 +1,5 @@
 .cartModal {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     position: fixed;
     right: 0;
     height: 100vh;
@@ -13,7 +13,7 @@
     width: 90%;
     height: 80%;
     margin: 0 auto;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     overflow: auto;
     display: flex;
     flex-direction: column;

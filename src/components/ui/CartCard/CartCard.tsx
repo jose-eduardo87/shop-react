@@ -14,6 +14,7 @@ const CartCard: FC<Omit<CartInterface, "id">> = ({
       <p>{name}</p>
       <p>{price}</p>
       <input type={"number"} min={1} max={quantity} />
+      {JSON.stringify(quantity)}
     </div>
   );
 };

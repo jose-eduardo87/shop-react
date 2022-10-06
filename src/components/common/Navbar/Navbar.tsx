@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Cart, Favourite } from "components/icons/index";
 import { CartModal } from "components/ui/index";
 import { CSSProperties } from "react";
+import { useCart } from "store";
 
 import styles from "./Navbar.module.css";
 
@@ -13,7 +14,9 @@ const iconStyles: CSSProperties = {
 
 const Navbar = () => {
   const [isCartOpened, setIsCartOpened] = useState(false);
+  const { totalItemsOnCart } = useCart();
   const clickCartHandler = () => setIsCartOpened((prevState) => !prevState);
+  console.log(`Total Items on Cart: ${totalItemsOnCart}`);
 
   return (
     <header className={styles.root}>
