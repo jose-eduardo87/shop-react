@@ -29,6 +29,7 @@ const cartReducer = (
   action: CartAction
 ): CartInterface[] => {
   const { type, payload } = action;
+
   const getUpdatedItem = (incrementor: number) =>
     state.map((item) => {
       if (item.id! === payload.id) {
@@ -40,7 +41,7 @@ const cartReducer = (
 
   switch (type) {
     case ActionKind.ADD:
-      return [...state, payload.product!]; // returns original state including newly added item in payload.
+      return [...state, payload.product!]; // returns original state including newly-added item in payload.
     case ActionKind.REMOVE:
       return [...state.filter((item) => item!.id !== payload.id)]; // filters item by id, excluding it from the returned values.
     case ActionKind.INCREMENT:

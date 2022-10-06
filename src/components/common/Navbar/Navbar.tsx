@@ -14,6 +14,7 @@ const iconStyles: CSSProperties = {
 const Navbar = () => {
   const [isCartOpened, setIsCartOpened] = useState(false);
   const clickCartHandler = () => setIsCartOpened((prevState) => !prevState);
+
   return (
     <header className={styles.root}>
       <div className={styles.headerContainer}>

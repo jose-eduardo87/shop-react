@@ -2,7 +2,7 @@ import { createContext, FC, ReactNode, useContext, useReducer } from "react";
 import { cartReducer, ActionKind, CartInterface } from "reducers/index";
 
 interface CartProviderInterface {
-  cart: Partial<CartInterface>[];
+  cart: CartInterface[];
   onIncrementItem: (id: string) => void;
   onDecrementItem: (id: string) => void;
   onAddItem: (product: CartInterface) => void;
