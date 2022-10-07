@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { CartInterface } from "reducers/index";
+import { ItemInterface } from "reducers/index";
 
 import styles from "./CartCard.module.css";
 
-const CartCard: FC<Omit<CartInterface, "id">> = ({
+const CartCard: FC<Omit<ItemInterface, "id">> = ({
   name,
   price,
   quantity,

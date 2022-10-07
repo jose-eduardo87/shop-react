@@ -8,7 +8,8 @@ import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const [isCartOpened, setIsCartOpened] = useState(false);
-  const { totalItemsOnCart, onIncrementItem } = useCart();
+  const { cart, onIncrementItem, onAddItem, onDecrementItem, onRemoveItem } =
+    useCart();
   const clickCartHandler = () => setIsCartOpened((prevState) => !prevState);
 
   return (
@@ -16,16 +17,28 @@ const Navbar = () => {
       <div className={styles.headerContainer}>
         <h1>React Shop!</h1>
         <ul className={styles.links}>
-          <li onClick={() => onIncrementItem("p01")}>Link 1</li>
-          <li>Link 2</li>
-          <li>Link 3</li>
-          <li>Link 4</li>
+          <button
+            onClick={() =>
+              onAddItem({
+                id: "p02",
+                name: "Clock",
+                price: 124,
+                quantity: 1,
+                additionalInfo: { size: ["S", "M"] },
+              })
+            }
+          >
+            Link 1
+          </button>
+          <button onClick={() => onIncrementItem("p02")}>Link 2</button>
+          <button onClick={() => onDecrementItem("p02")}>Link 3</button>
+          <button onClick={() => onRemoveItem("p02")}>Link 4</button>
         </ul>
         <div className={styles.iconsBox}>
           <Cart clickCartHandler={clickCartHandler} {...iconStyles} />
-          {totalItemsOnCart > 0 && (
+          {cart.totalItemsInCart > 0 && (
             <div className={styles.iconBadge}>
-              <span>{totalItemsOnCart}</span>
+              <span>{cart.totalItemsInCart}</span>
             </div>
           )}
           <Favourite {...iconStyles} />
