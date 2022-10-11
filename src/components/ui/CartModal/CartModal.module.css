@@ -1,12 +1,12 @@
 .cartModal {
     position: fixed;
     right: 0;
-    height: 100vh;
+    height: 100%;
     width: 430px;
     padding: 1rem;
     background-color: #1F1F1F;
     color: #FEFEFE;
-    animation: slide 250ms alternate;
+    animation: slide 300ms ease-out alternate;
 }
 
 .cartModal h1 {
@@ -15,7 +15,7 @@
 }
 
 .itemsList {
-    height: 80%;
+    height: 70%;
     margin: 0 auto;
     overflow: auto;
     display: flex;
@@ -30,10 +30,16 @@
     color: #818181
 }
 
+.checkoutInfo {
+    height: 20%;
+    border-radius: 12.5px;
+    border: 1px solid #818181;
+}
+
 @keyframes slide {
     from {
         opacity: 1;
-        transform: translateX(340px);
+        transform: translateX(430px);
     }
     to {
         opacity: 1;

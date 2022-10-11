@@ -1,4 +1,6 @@
-import { Navbar, PageLayout } from "components/common/index";
+import { Navbar } from "components/common/index";
+import { Highlights, PaymentInfo } from "components/sections/index";
+import { Hero } from "components/ui/index";
 import { CartProvider } from "store/index";
 
 import "./App.css";
@@ -8,19 +10,9 @@ const App = () => {
     <div className="App">
       <CartProvider>
         <Navbar />
-        <PageLayout
-          CSSProps={{
-            root: {
-              backgroundColor: "#F9F9F9",
-            },
-            container: {
-              width: "80%",
-              margin: "0 auto",
-            },
-          }}
-        >
-          <div>Hello, world!</div>
-        </PageLayout>
+        <Hero />
+        <PaymentInfo />
+        <Highlights />
       </CartProvider>
     </div>
   );

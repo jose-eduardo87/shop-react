@@ -4,9 +4,12 @@
     background-color: #1F1F1F;
     color: #fefefe;
     margin: 0 auto;
+    position: fixed;
+    top: 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    z-index: 9999
 }
 
 .headerContainer {
@@ -16,6 +19,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.headerContainer h1 {
+    font-size: 1rem;
+    letter-spacing: 1px;
 }
 
 .links {
@@ -28,6 +36,8 @@
 
 .links li {
     cursor: pointer;
+    font-size: .8rem;
+    
 }
 
 .iconsBox {
@@ -48,9 +58,16 @@
     top: 50%;
     right: 55%;
     border-radius: 50%;
-    background-color: #379C33;
+    background-color: #4E46C0;
     font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: pulse 200ms normal;
 }
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); } 
+ } 

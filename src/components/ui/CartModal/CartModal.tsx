@@ -25,7 +25,9 @@ const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
               <EmptyCart {...iconStyles} fill="#818181" /> No items added.
             </p>
           )}
-          {JSON.stringify(cart.totalValue)}
+        </div>
+        <div className={styles.checkoutInfo}>
+          <p>Total: $ {cart.totalValue.toFixed(2)}</p>
         </div>
       </div>
     </ModalOverlay>

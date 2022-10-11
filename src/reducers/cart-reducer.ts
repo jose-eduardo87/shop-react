@@ -9,7 +9,9 @@ export interface ItemInterface {
   id: string;
   name: string;
   price: number;
+  qtyAvailable: number;
   quantity: number;
+  imageSrc: string;
   additionalInfo: {
     size?: string[];
     colors?: string[];
