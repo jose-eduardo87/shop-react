@@ -16,12 +16,7 @@ const contentStyles: CSSProperties = {
 
 const Hero = () => {
   return (
-    <Parallax
-      bgImage={heroImage}
-      bgImageSizes="100"
-      bgImageAlt="hero-image"
-      strength={300}
-    >
+    <Parallax bgImage={heroImage} bgImageAlt="hero-image" strength={400}>
       <div style={{ height: 1000 }}>
         <div style={contentStyles}>
           <p>YOUR ONLINE SHOPPING.</p>

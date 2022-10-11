@@ -11,13 +11,14 @@
 
 .title {
     color: #333;
-    font-size: 1.4rem;
+    font-size: 1rem;
     text-align: start;
 }
 
 .additionalInfo {
     color: #999;
     margin-top: -1rem;
+    font-size: .8rem;
 }
 
 .informationBox {

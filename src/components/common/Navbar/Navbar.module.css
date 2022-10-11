@@ -7,17 +7,20 @@
     position: fixed;
     top: 0;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    z-index: 9999
+    z-index: 9;
+}
+
+.root svg:hover {
+    fill: #FFEF00;
 }
 
 .headerContainer {
-    width: 70%;
+    width: 65%;
     height: 100px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -36,8 +39,11 @@
 
 .links li {
     cursor: pointer;
-    font-size: .8rem;
-    
+    font-size: .8rem;   
+}
+
+.links li:hover {
+    color: #FFEF00;
 }
 
 .iconsBox {
@@ -58,7 +64,7 @@
     top: 50%;
     right: 55%;
     border-radius: 50%;
-    background-color: #4E46C0;
+    background-color: #FFEF00;
     font-size: 1rem;
     display: flex;
     align-items: center;

@@ -1,7 +1,7 @@
 import { PageLayout } from "components/common/index";
 import {
   CreditCard,
-  QuestionMark,
+  ExclamationMark,
   Secure,
   Truck,
 } from "components/icons/index";
@@ -49,11 +49,13 @@ const PaymentInfo = () => {
           <Secure {...iconStyles} />
           <div>
             <p className={styles.title}>Secure.</p>
-            <p className={styles.additionalInfo}></p>
+            <p className={styles.additionalInfo}>
+              Your data is taken seriously. Don't worry.
+            </p>
           </div>
         </div>
         <div className={styles.informationBox}>
-          <QuestionMark {...iconStyles} />
+          <ExclamationMark {...iconStyles} />
           <div>
             <p className={styles.title}>Got any questions?</p>
             <p className={styles.additionalInfo}>

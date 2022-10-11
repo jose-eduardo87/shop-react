@@ -1,8 +1,9 @@
 .title {
     display: inline-block;
     margin-bottom: 3rem;
-    font-weight: 200;
+    font-weight: 300;
+    color: #555;
     letter-spacing: 1px;
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     line-height: 1.2;
 }

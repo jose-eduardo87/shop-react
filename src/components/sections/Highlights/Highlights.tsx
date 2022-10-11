@@ -11,7 +11,7 @@ const sectionStyles = {
   container: {
     width: "65%",
     margin: "0 auto",
-    padding: "4rem",
+    paddingBottom: "2rem",
   },
 };
 
