@@ -1,4 +1,5 @@
 export { default as AddToCart } from "./AddToCart";
+export { default as AddToFavourites } from "./AddToFavourites";
 export { default as Cart } from "./Cart";
 export { default as CreditCard } from "./CreditCard";
 export { default as EmptyCart } from "./EmptyCart";

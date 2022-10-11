@@ -32,8 +32,7 @@
 
 .checkoutInfo {
     height: 20%;
-    border-radius: 12.5px;
-    border: 1px solid #818181;
+    border-top: 1px solid #E7E7E7;
 }
 
 @keyframes slide {

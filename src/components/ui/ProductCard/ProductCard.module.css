@@ -21,7 +21,14 @@
     justify-content: space-around;
     align-items: center;
     border-top: 1px solid #E7E7E7;
+}
+
+.innerBox {
     margin-top: .6rem;
+}
+
+.innerBox p {
+    margin-top: .4rem;
 }
 
 .productImage {
@@ -49,4 +56,13 @@
 
 .interactiveBox {
     display: none;
+}
+
+@keyframes fade {
+    to {
+        opacity: 0;
+    }
+    from {
+        opacity: 1;
+    }
 }

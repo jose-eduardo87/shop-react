@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { AddToCart, Favourite } from "components/icons/index";
-import { ItemInterface } from "reducers";
+import { AddToCart, AddToFavourites } from "components/icons/index";
+import { ItemInterface } from "reducers/index";
 
 import styles from "./ProductCard.module.css";
 
@@ -27,11 +27,11 @@ const ProductCard: FC<ProductCardInterface> = ({ item, onAddItem }) => {
       </div>
       <div className={styles.interactiveBox}>
         <div className={styles.innerBox}>
-          {/* <AddToCart addToCartHandler={() => onAddItem(item)} {...iconStyles} /> */}
+          <AddToCart addToCartHandler={() => onAddItem(item)} {...iconStyles} />
           <p>Cart</p>
         </div>
         <div className={styles.innerBox}>
-          <Favourite {...iconStyles} />
+          {/* <AddToFavourites {...iconStyles} /> */}
           <p>Favourite</p>
         </div>
       </div>

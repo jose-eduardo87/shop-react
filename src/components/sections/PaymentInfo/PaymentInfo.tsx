@@ -50,7 +50,7 @@ const PaymentInfo = () => {
           <div>
             <p className={styles.title}>Secure.</p>
             <p className={styles.additionalInfo}>
-              Your data is taken seriously. Don't worry.
+              Your data is taken seriously.
             </p>
           </div>
         </div>
