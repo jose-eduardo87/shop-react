@@ -10,24 +10,33 @@
 
 .root div {
     cursor: pointer;
+    transition: 50ms ease;
+}
+
+.root div:hover {
+    filter: opacity(.6);
+}
+
+.textBox {
+    background-color: #000;
+    padding: 5px;
+    position: absolute;
+    color: #FFEF00;
+    text-transform: uppercase;
 }
 
 #clothing {
     grid-area: clothing;
-    background-color: blueviolet;
 }
 
 #accessories {
     grid-area: accessories;
-    background-color: aliceblue;
 }
 
 #shoes {
     grid-area: shoes;
-    background-color: chocolate;
 }
 
 #hats {
     grid-area: hats;
-    background-color: burlywood;
 }
