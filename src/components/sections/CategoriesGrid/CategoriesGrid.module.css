@@ -1,0 +1,33 @@
+.root {
+    height: 700px;
+    width: 100%;
+    display: grid;
+    gap: 25px;
+    grid-template-areas:
+    "clothing accessories accessories"
+    "clothing shoes hats"
+}
+
+.root div {
+    cursor: pointer;
+}
+
+#clothing {
+    grid-area: clothing;
+    background-color: blueviolet;
+}
+
+#accessories {
+    grid-area: accessories;
+    background-color: aliceblue;
+}
+
+#shoes {
+    grid-area: shoes;
+    background-color: chocolate;
+}
+
+#hats {
+    grid-area: hats;
+    background-color: burlywood;
+}

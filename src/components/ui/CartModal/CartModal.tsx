@@ -8,7 +8,7 @@ import { iconStyles } from "helpers/constants";
 import styles from "./CartModal.module.css";
 
 const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
-  const { cart, onRemoveItem, onIncrementItem, onDecrementItem } = useCart();
+  const { cart } = useCart();
   const backdropElement = document.getElementById(
     "backdrop-root"
   ) as HTMLElement;
@@ -20,13 +20,7 @@ const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
         <div className={styles.itemsList}>
           {cart.items.length ? (
             cart.items.map((product) => (
-              <CartCard
-                key={product.id}
-                onRemoveItem={onRemoveItem}
-                onIncrementItem={onIncrementItem}
-                onDecrementItem={onDecrementItem}
-                item={{ ...product }}
-              />
+              <CartCard key={product.id} item={{ ...product }} />
             ))
           ) : (
             <p className={styles.emptyCart}>
@@ -36,6 +30,7 @@ const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
         </div>
         <div className={styles.checkoutInfo}>
           <p>Total: $ {cart.totalValue.toFixed(2)}</p>
+          <button>checkout</button>
         </div>
       </div>
     </ModalOverlay>

@@ -2,6 +2,16 @@
     width: 100%;
 }
 
+.root h2 {
+    display: inline-block;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    color: #555;
+    letter-spacing: 1px;
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
 .sectionContainer {
     margin: 0 auto;
 }

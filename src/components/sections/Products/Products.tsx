@@ -1,8 +1,7 @@
+import { FC } from "react";
 import { PageLayout } from "components/common/index";
 import { ProductsGrid } from "components/ui/index";
-import { ITEMS } from "helpers/constants";
-
-import styles from "./Highlights.module.css";
+import { ItemInterface } from "reducers";
 
 const sectionStyles = {
   root: {
@@ -15,13 +14,18 @@ const sectionStyles = {
   },
 };
 
-const Highlights = () => {
+interface ProductsSectionInterface {
+  title: string;
+  products: ItemInterface[];
+}
+
+const Products: FC<ProductsSectionInterface> = ({ title, products }) => {
   return (
     <PageLayout CSSProps={{ ...sectionStyles }}>
-      <h2 className={styles.title}>Highlights</h2>
-      <ProductsGrid products={ITEMS.slice(0, 5)} />
+      <h2>{title}</h2>
+      <ProductsGrid products={products} />
     </PageLayout>
   );
 };
 
-export default Highlights;
+export default Products;

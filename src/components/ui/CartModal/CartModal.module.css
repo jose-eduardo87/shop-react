@@ -11,6 +11,8 @@
 
 .cartModal h1 {
     font-size: 1.5rem;
+    letter-spacing: 1px;
+    font-weight: 500;
     color: #FAFAFA;
 }
 
@@ -18,10 +20,23 @@
     height: 70%;
     margin: 0 auto;
     overflow: auto;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center; */
+    border-top: 1px solid #818181;
+}
+
+.itemsList::-webkit-scrollbar-track
+{
+	background-color: #1F1F1F;
+}
+
+.itemsList::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+.itemsList::-webkit-scrollbar-thumb
+{
+	background-color: #818181;
 }
  
 .emptyCart {
@@ -29,12 +44,30 @@
     top: 20%;
     left: 50%;
     transform: translate(-50%,-50%);
-    color: #818181
+    color: #818181;
 }
 
 .checkoutInfo {
     height: 20%;
-    border-top: 1px solid #E7E7E7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid #818181;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+}
+
+.checkoutInfo button {
+    width: 100%;
+    height: 60px;
+    background-color: transparent;
+    font-size: 1rem;
+    color: #FEFEFE;
+    border: 1px solid #FFEF00;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
 }
 
 @keyframes slide {

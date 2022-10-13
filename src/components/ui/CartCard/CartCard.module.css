@@ -3,7 +3,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid #7c7c7c;
+    border-bottom: 1px solid #7C7C7C;
+}
+
+.card:last-of-type {
+    border-bottom: none;
 }
 
 .card input {
@@ -57,12 +61,13 @@
 }
 
 .button {
-    background-color: transparent;
-    color: #9C9C9C;
     width: 30px;
     height: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #9C9C9C;
     border-radius: 50%;
-    border: 1px solid blueviolet;
+    border: 1px solid #FFEF00;
     font-size: 1.25rem;
     line-height: 1.25rem;
     font-weight: 600;
