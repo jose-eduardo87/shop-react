@@ -1,4 +1,12 @@
-import { createContext, FC, ReactNode, useContext, useReducer } from "react";
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useReducer,
+  useCallback,
+  useMemo,
+} from "react";
 import {
   cartReducer,
   ActionKind,
@@ -47,11 +55,11 @@ const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        cart,
-        onIncrementItem: incrementItemHandler,
-        onDecrementItem: decrementItemHandler,
-        onAddItem: addItemHandler,
-        onRemoveItem: removeItemHandler,
+        cart: useMemo(() => cart, [cart]),
+        onIncrementItem: useCallback((id) => incrementItemHandler(id), []),
+        onDecrementItem: useCallback((id) => decrementItemHandler(id), []),
+        onAddItem: useCallback((item) => addItemHandler(item), []),
+        onRemoveItem: useCallback((id) => removeItemHandler(id), []),
       }}
     >
       {children}

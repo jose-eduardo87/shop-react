@@ -1,4 +1,6 @@
-const ExclamationMark = ({ ...props }) => (
+import { SVGProps } from "react";
+
+const ExclamationMark = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 301.691 301.691"

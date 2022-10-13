@@ -1,4 +1,6 @@
-const Favourite = ({ ...props }) => {
+import { SVGProps } from "react";
+
+const Favourite = (props: SVGProps<SVGSVGElement>) => {
   const onClickFavouriteHandler = () => {
     alert("Clicked on Favourite.");
   };

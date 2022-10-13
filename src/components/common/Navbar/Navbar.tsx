@@ -3,6 +3,7 @@ import { Cart, Favourite } from "components/icons/index";
 import { CartModal } from "components/ui/index";
 import { useCart } from "store/index";
 import { iconStyles } from "helpers/constants";
+import logo from "./logo.png";
 
 import styles from "./Navbar.module.css";
 
@@ -14,7 +15,7 @@ const Navbar = () => {
   return (
     <header className={styles.root}>
       <div className={styles.headerContainer}>
-        <h1>React Shop!</h1>
+        <img src={logo} alt="Company logo" height={"80%"} />
         <ul className={styles.links}>
           <li>Link 1</li>
           <li>Link 2</li>

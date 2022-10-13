@@ -8,7 +8,7 @@ import { iconStyles } from "helpers/constants";
 import styles from "./CartModal.module.css";
 
 const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
-  const { cart } = useCart();
+  const { cart, onRemoveItem, onIncrementItem, onDecrementItem } = useCart();
   const backdropElement = document.getElementById(
     "backdrop-root"
   ) as HTMLElement;
@@ -19,7 +19,15 @@ const CartModal: FC<{ onClose: () => void }> = ({ onClose }) => {
         <h1>Your items:</h1>
         <div className={styles.itemsList}>
           {cart.items.length ? (
-            cart.items.map(({ id, ...rest }) => <CartCard key={id} {...rest} />)
+            cart.items.map((product) => (
+              <CartCard
+                key={product.id}
+                onRemoveItem={onRemoveItem}
+                onIncrementItem={onIncrementItem}
+                onDecrementItem={onDecrementItem}
+                item={{ ...product }}
+              />
+            ))
           ) : (
             <p className={styles.emptyCart}>
               <EmptyCart {...iconStyles} fill="#818181" /> No items added.

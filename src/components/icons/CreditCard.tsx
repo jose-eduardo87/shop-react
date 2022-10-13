@@ -1,4 +1,6 @@
-const CreditCard = ({ ...props }) => (
+import { SVGProps } from "react";
+
+const CreditCard = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 69.571 69.571"

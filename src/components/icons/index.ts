@@ -1,9 +1,12 @@
 export { default as AddToCart } from "./AddToCart";
 export { default as AddToFavourites } from "./AddToFavourites";
 export { default as Cart } from "./Cart";
+export { default as CloseButton } from "./CloseButton";
 export { default as CreditCard } from "./CreditCard";
 export { default as EmptyCart } from "./EmptyCart";
-export { default as Favourite } from "./Favourite";
 export { default as ExclamationMark } from "./ExclamationMark";
+export { default as Favourite } from "./Favourite";
+export { default as Minus } from "./Minus";
+export { default as Plus } from "./Plus";
 export { default as Secure } from "./Secure";
 export { default as Truck } from "./Truck";
