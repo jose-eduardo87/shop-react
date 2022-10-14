@@ -9,10 +9,11 @@ interface CSSPropsInterface {
 
 const PageLayout: FC<{
   children: ReactNode;
+  id?: string;
   CSSProps?: CSSPropsInterface;
-}> = ({ children, CSSProps }) => {
+}> = ({ children, id, CSSProps }) => {
   return (
-    <section className={styles.root} style={CSSProps?.root}>
+    <section id={id ? id : ""} className={styles.root} style={CSSProps?.root}>
       <div style={CSSProps?.container}>{children}</div>
     </section>
   );

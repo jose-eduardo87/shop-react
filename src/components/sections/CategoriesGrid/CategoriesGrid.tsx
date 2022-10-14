@@ -1,9 +1,6 @@
 import { FC } from "react";
 import { PageLayout } from "components/common/index";
-import clothingImage from "./clothing.webp";
-import accessoriesImage from "./accessories.jpg";
-import shoesImage from "./shoes.webp";
-import hatsImage from "./hats.webp";
+import { accessoriesImage, clothingImage, hatsImage, shoesImage } from "./imgs";
 
 import styles from "./CategoriesGrid.module.css";
 
@@ -28,7 +25,7 @@ const getBackgroundStyle = (url: string, position?: string) => {
 
 const CategoriesGrid: FC = () => {
   return (
-    <PageLayout CSSProps={{ ...sectionStyles }}>
+    <PageLayout id="categories" CSSProps={{ ...sectionStyles }}>
       <h2>Categories</h2>
       <div className={styles.root}>
         <div

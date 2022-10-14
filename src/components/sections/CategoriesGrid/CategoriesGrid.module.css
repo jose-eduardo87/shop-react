@@ -21,8 +21,10 @@
     background-color: #000;
     padding: 5px;
     position: absolute;
-    color: #FFEF00;
     text-transform: uppercase;
+    color: #FFEF00;
+    font-weight: 600;
+    letter-spacing: 3px;
 }
 
 #clothing {

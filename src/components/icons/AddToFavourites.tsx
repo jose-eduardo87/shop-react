@@ -1,8 +1,7 @@
 import { SVGProps, FC } from "react";
-import { ItemInterface } from "reducers";
 
 interface AddToFavouritesInterface extends SVGProps<SVGSVGElement> {
-  addToFavouritesHandler: (item: ItemInterface) => void;
+  addToFavouritesHandler: () => void;
 }
 
 const AddToFavourites: FC<AddToFavouritesInterface> = ({
@@ -14,6 +13,7 @@ const AddToFavourites: FC<AddToFavouritesInterface> = ({
     viewBox="0 0 611.997 611.997"
     style={{ cursor: "pointer" }}
     xmlSpace="preserve"
+    onClick={() => addToFavouritesHandler()}
     {...properties}
   >
     <path d="M549.255 384.017h-50.692v-50.694c0-21.132-17.134-38.264-38.262-38.264-21.138 0-38.266 17.132-38.266 38.264v50.694h-50.697c-21.13 0-38.262 17.132-38.262 38.264 0 21.134 17.134 38.264 38.262 38.264h50.697v50.697c0 21.13 17.13 38.264 38.266 38.264 21.13 0 38.262-17.134 38.262-38.264v-50.697h50.692c21.138 0 38.262-17.13 38.262-38.264.002-21.13-17.123-38.264-38.262-38.264z" />

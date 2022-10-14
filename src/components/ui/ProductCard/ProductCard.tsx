@@ -6,7 +6,8 @@ import styles from "./ProductCard.module.css";
 
 interface ProductCardInterface {
   item: ItemInterface;
-  onAddItem: (item: ItemInterface) => void;
+  onAddItemToCart: (item: ItemInterface) => void;
+  onAddItemToFavourite: (item: ItemInterface) => void;
 }
 
 const iconStyles = {
@@ -15,7 +16,11 @@ const iconStyles = {
   fill: "#000",
 };
 
-const ProductCard: FC<ProductCardInterface> = ({ item, onAddItem }) => {
+const ProductCard: FC<ProductCardInterface> = ({
+  item,
+  onAddItemToCart,
+  onAddItemToFavourite,
+}) => {
   const { name, price } = item;
 
   return (
@@ -27,11 +32,17 @@ const ProductCard: FC<ProductCardInterface> = ({ item, onAddItem }) => {
       </div>
       <div className={styles.interactiveBox}>
         <div className={styles.innerBox}>
-          <AddToCart addToCartHandler={() => onAddItem(item)} {...iconStyles} />
+          <AddToCart
+            addToCartHandler={() => onAddItemToCart(item)}
+            {...iconStyles}
+          />
           <p>Cart</p>
         </div>
         <div className={styles.innerBox}>
-          {/* <AddToFavourites {...iconStyles} /> */}
+          <AddToFavourites
+            addToFavouritesHandler={() => onAddItemToFavourite(item)}
+            {...iconStyles}
+          />
           <p>Favourite</p>
         </div>
       </div>

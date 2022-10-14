@@ -1,3 +1,5 @@
+import { FavouriteInterface } from "./index";
+
 export enum ActionKind {
   ADD = "ADD_ITEM",
   REMOVE = "REMOVE_ITEM",
@@ -32,22 +34,29 @@ interface CartAction {
   };
 }
 
-const cartReducer = (
-  state: CartInterface,
-  action: CartAction
-): CartInterface => {
+// utility function also used in favourite-reducer.ts
+export const filterRemovedItem = (
+  state: CartInterface | FavouriteInterface,
+  id: string
+) => {
+  state.items = state.items.filter((item) => item.id !== id);
+
+  return { items: state.items };
+};
+
+const cartReducer = (state: CartInterface, action: CartAction) => {
   const { type, payload } = action;
 
-  const filterRemovedItem = () => {
-    state.items = state.items.filter((item) => item.id !== payload.id);
+  // const filterRemovedItem = () => {
+  //   state.items = state.items.filter((item) => item.id !== payload.id);
 
-    return { items: state.items };
-  };
+  //   return { items: state.items };
+  // };
   const getUpdatedItem = (incrementor: number) => {
     const selectedItem = state.items.find((item) => item.id === payload.id);
 
     if (incrementor === -1 && selectedItem!.quantity === 1) {
-      return filterRemovedItem();
+      return filterRemovedItem(state, payload.id!);
     }
 
     selectedItem!.quantity += incrementor;
@@ -89,7 +98,7 @@ const cartReducer = (
       };
     case ActionKind.REMOVE:
       return {
-        ...filterRemovedItem(),
+        ...filterRemovedItem(state, payload.id!),
         ...getUpdatedValueAndQuantity(),
       };
     case ActionKind.INCREMENT:

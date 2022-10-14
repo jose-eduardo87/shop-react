@@ -18,7 +18,8 @@ const buttonIconStyles = {
 
 const CartCard: FC<CartCardInterface> = ({ item }) => {
   const { id, name, price, quantity, qtyAvailable } = item;
-  const { onRemoveItem, onIncrementItem, onDecrementItem } = useCart();
+  const { onRemoveItemFromCart, onIncrementItemInCart, onDecrementItemInCart } =
+    useCart();
   const isPlusButtonDisabled = !(quantity < qtyAvailable);
   const isMinusButtonDisabled = quantity === 1;
   const disableButtonStyle = {
@@ -30,7 +31,7 @@ const CartCard: FC<CartCardInterface> = ({ item }) => {
   return (
     <div className={styles.card}>
       <CloseButton
-        removeItemFromCartHandler={() => onRemoveItem(id)}
+        removeItemFromCartHandler={() => onRemoveItemFromCart(id)}
         {...iconStyles}
       />
       <div className={styles.productImage}></div>
@@ -47,7 +48,7 @@ const CartCard: FC<CartCardInterface> = ({ item }) => {
             disabled={isPlusButtonDisabled}
             style={isPlusButtonDisabled ? disableButtonStyle : {}}
             className={styles.button}
-            onClick={() => onIncrementItem(id)}
+            onClick={() => onIncrementItemInCart(id)}
           >
             <Plus {...buttonIconStyles} />
           </button>
@@ -55,7 +56,7 @@ const CartCard: FC<CartCardInterface> = ({ item }) => {
             disabled={isMinusButtonDisabled}
             style={isMinusButtonDisabled ? disableButtonStyle : {}}
             className={styles.button}
-            onClick={() => onDecrementItem(id)}
+            onClick={() => onDecrementItemInCart(id)}
           >
             <Minus {...buttonIconStyles} />
           </button>

@@ -16,10 +16,10 @@ import {
 
 interface CartProviderInterface {
   cart: CartInterface;
-  onIncrementItem: (id: string) => void;
-  onDecrementItem: (id: string) => void;
-  onAddItem: (item: ItemInterface) => void;
-  onRemoveItem: (id: string) => void;
+  onIncrementItemInCart: (id: string) => void;
+  onDecrementItemInCart: (id: string) => void;
+  onAddItemToCart: (item: ItemInterface) => void;
+  onRemoveItemFromCart: (id: string) => void;
 }
 
 const initialState = {
@@ -28,10 +28,10 @@ const initialState = {
     totalItemsInCart: 0,
     totalValue: 0,
   },
-  onIncrementItem: (id: string) => {},
-  onDecrementItem: (id: string) => {},
-  onAddItem: (item: ItemInterface) => {},
-  onRemoveItem: (id: string) => {},
+  onIncrementItemInCart: (id: string) => {},
+  onDecrementItemInCart: (id: string) => {},
+  onAddItemToCart: (item: ItemInterface) => {},
+  onRemoveItemFromCart: (id: string) => {},
 };
 
 const CartContext = createContext<CartProviderInterface>(initialState);
@@ -56,10 +56,16 @@ const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
     <CartContext.Provider
       value={{
         cart: useMemo(() => cart, [cart]),
-        onIncrementItem: useCallback((id) => incrementItemHandler(id), []),
-        onDecrementItem: useCallback((id) => decrementItemHandler(id), []),
-        onAddItem: useCallback((item) => addItemHandler(item), []),
-        onRemoveItem: useCallback((id) => removeItemHandler(id), []),
+        onIncrementItemInCart: useCallback(
+          (id) => incrementItemHandler(id),
+          []
+        ),
+        onDecrementItemInCart: useCallback(
+          (id) => decrementItemHandler(id),
+          []
+        ),
+        onAddItemToCart: useCallback((item) => addItemHandler(item), []),
+        onRemoveItemFromCart: useCallback((id) => removeItemHandler(id), []),
       }}
     >
       {children}
