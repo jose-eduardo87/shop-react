@@ -76,6 +76,14 @@
     animation: pulse 200ms normal;
 }
 
+.badgeCart {
+    right: 55%;
+}
+
+.badgeFavourite {
+    left: 70%;
+}
+
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.3); }

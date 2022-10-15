@@ -11,8 +11,8 @@ const Navbar = () => {
   const [isCartOpened, setIsCartOpened] = useState(false);
   const { cart } = useCart();
   const { favourites } = useFavourite();
+  const { totalItemsInFavourites } = favourites;
   const clickCartHandler = () => setIsCartOpened((prevState) => !prevState);
-  console.log("favourites: ", favourites);
 
   return (
     <header className={styles.root}>
@@ -28,16 +28,23 @@ const Navbar = () => {
           <li>
             <a href="/#contact">Contact</a>
           </li>
-          {/* <li><a href="/"></a></li> */}
         </ul>
         <div className={styles.iconsBox}>
           <Cart clickCartHandler={clickCartHandler} {...iconStyles} />
           {cart.totalItemsInCart > 0 && (
-            <div key={Math.random()} className={styles.iconBadge}>
+            <div
+              key={Math.random()}
+              className={`${styles.iconBadge} ${styles.badgeCart}`}
+            >
               <span>{cart.totalItemsInCart}</span>
             </div>
           )}
           <Favourite {...iconStyles} />
+          {totalItemsInFavourites > 0 && (
+            <div className={`${styles.iconBadge} ${styles.badgeFavourite}`}>
+              <span>{totalItemsInFavourites}</span>
+            </div>
+          )}
         </div>
       </div>
       {isCartOpened && <CartModal onClose={clickCartHandler} />}

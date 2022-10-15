@@ -25,6 +25,7 @@ interface CartProviderInterface {
 const initialState = {
   cart: {
     items: [],
+    hash: {},
     totalItemsInCart: 0,
     totalValue: 0,
   },
@@ -39,6 +40,7 @@ const CartContext = createContext<CartProviderInterface>(initialState);
 const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const state = {
     items: [],
+    hash: {},
     totalItemsInCart: 0,
     totalValue: 0,
   };

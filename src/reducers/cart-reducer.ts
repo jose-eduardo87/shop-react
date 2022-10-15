@@ -22,6 +22,7 @@ export interface ItemInterface {
 
 export interface CartInterface {
   items: ItemInterface[];
+  hash: { [key: string]: boolean };
   totalItemsInCart: number;
   totalValue: number;
 }
@@ -47,11 +48,6 @@ export const filterRemovedItem = (
 const cartReducer = (state: CartInterface, action: CartAction) => {
   const { type, payload } = action;
 
-  // const filterRemovedItem = () => {
-  //   state.items = state.items.filter((item) => item.id !== payload.id);
-
-  //   return { items: state.items };
-  // };
   const getUpdatedItem = (incrementor: number) => {
     const selectedItem = state.items.find((item) => item.id === payload.id);
 
@@ -62,6 +58,13 @@ const cartReducer = (state: CartInterface, action: CartAction) => {
     selectedItem!.quantity += incrementor;
 
     return { items: state.items };
+  };
+  const getHash = () => {
+    // generates hash table with product's IDs as properties. Useful for disabling favourite button when product is already in cart.
+    const hash: { [key: string]: boolean } = {};
+    state.items.forEach(({ id }) => (hash[id] = true));
+
+    return { hash };
   };
   const getUpdatedValueAndQuantity = () => {
     const totalItemsInCart = state.items.reduce(
@@ -86,7 +89,7 @@ const cartReducer = (state: CartInterface, action: CartAction) => {
       if (itemIndex !== -1) {
         state.items[itemIndex].quantity++;
 
-        return { ...state, ...getUpdatedValueAndQuantity() };
+        return { ...state, ...getUpdatedValueAndQuantity(), ...getHash() };
       }
 
       state.items = [...state.items, payload.item!];
@@ -95,16 +98,26 @@ const cartReducer = (state: CartInterface, action: CartAction) => {
       return {
         ...state,
         ...getUpdatedValueAndQuantity(),
+        ...getHash(),
       };
     case ActionKind.REMOVE:
       return {
         ...filterRemovedItem(state, payload.id!),
         ...getUpdatedValueAndQuantity(),
+        ...getHash(),
       };
     case ActionKind.INCREMENT:
-      return { ...getUpdatedItem(1), ...getUpdatedValueAndQuantity() };
+      return {
+        ...getUpdatedItem(1),
+        ...getUpdatedValueAndQuantity(),
+        ...getHash(),
+      };
     case ActionKind.DECREMENT:
-      return { ...getUpdatedItem(-1), ...getUpdatedValueAndQuantity() };
+      return {
+        ...getUpdatedItem(-1),
+        ...getUpdatedValueAndQuantity(),
+        ...getHash(),
+      };
     default:
       return state;
   }

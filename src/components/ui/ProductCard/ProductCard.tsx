@@ -8,20 +8,22 @@ interface ProductCardInterface {
   item: ItemInterface;
   onAddItemToCart: (item: ItemInterface) => void;
   onAddItemToFavourite: (item: ItemInterface) => void;
+  isFavouriteDisabled: boolean;
 }
-
-const iconStyles = {
-  width: 24,
-  height: 24,
-  fill: "#000",
-};
 
 const ProductCard: FC<ProductCardInterface> = ({
   item,
   onAddItemToCart,
   onAddItemToFavourite,
+  isFavouriteDisabled,
 }) => {
   const { name, price } = item;
+  const iconStyles = {
+    width: 24,
+    height: 24,
+    fill: "#000",
+    cursor: isFavouriteDisabled ? "not-allowed" : "pointer",
+  };
 
   return (
     <div className={styles.card}>
