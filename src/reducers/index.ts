@@ -4,6 +4,7 @@ export {
   type ItemInterface,
   type CartInterface,
   filterRemovedItem,
+  getHash,
 } from "./cart-reducer";
 export {
   default as favouriteReducer,

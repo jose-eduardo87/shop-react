@@ -1,7 +1,8 @@
-import { ItemInterface, ActionKind, filterRemovedItem } from "./index";
+import { ItemInterface, ActionKind, filterRemovedItem, getHash } from "./index";
 
 export interface FavouriteInterface {
   items: ItemInterface[];
+  hash: { [key: string]: boolean };
   totalItemsInFavourites: number;
 }
 
@@ -45,11 +46,13 @@ const favouriteReducer = (
       return {
         ...state,
         ...getTotalItemsInFavourites(),
+        ...getHash(state),
       };
     case ActionKind.REMOVE:
       return {
         ...filterRemovedItem(state, payload.id!),
         ...getTotalItemsInFavourites(),
+        ...getHash(state),
       };
     default:
       return state;

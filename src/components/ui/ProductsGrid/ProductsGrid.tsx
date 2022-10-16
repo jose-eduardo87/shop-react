@@ -7,7 +7,9 @@ import styles from "./ProductsGrid.module.css";
 
 const ProductsGrid: FC<{ products: ItemInterface[] }> = ({ products }) => {
   const { onAddItemToCart, cart } = useCart();
-  const { onAddItemToFavourite } = useFavourite();
+  const { onAddItemToFavourite, favourites } = useFavourite();
+  console.log("hash fav.: ", favourites.hash);
+
   const renderProducts = products.map((product) => (
     <ProductCard
       key={product.id}

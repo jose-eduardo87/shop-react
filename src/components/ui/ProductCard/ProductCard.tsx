@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Tooltip } from "components/ui/index";
 import { AddToCart, AddToFavourites } from "components/icons/index";
 import { ItemInterface } from "reducers/index";
 
@@ -24,6 +25,12 @@ const ProductCard: FC<ProductCardInterface> = ({
     fill: "#000",
     cursor: isFavouriteDisabled ? "not-allowed" : "pointer",
   };
+  // let Tooltip = {};
+  // if (!isFavouriteDisabled) {
+  //   Tooltip = require("components/ui/Tooltip/Tooltip");
+  // } else {
+  //   Tooltip = import("components/icons/Truck");
+  // }
 
   return (
     <div className={styles.card}>
@@ -40,13 +47,15 @@ const ProductCard: FC<ProductCardInterface> = ({
           />
           <p>Cart</p>
         </div>
-        <div className={styles.innerBox}>
-          <AddToFavourites
-            addToFavouritesHandler={() => onAddItemToFavourite(item)}
-            {...iconStyles}
-          />
-          <p>Favourite</p>
-        </div>
+        <Tooltip message={"This item is in your cart!"}>
+          <div className={styles.innerBox}>
+            <AddToFavourites
+              addToFavouritesHandler={() => onAddItemToFavourite(item)}
+              {...iconStyles}
+            />
+            <p>Favourite</p>
+          </div>
+        </Tooltip>
       </div>
     </div>
   );

@@ -35,7 +35,7 @@ interface CartAction {
   };
 }
 
-// utility function also used in favourite-reducer.ts
+// utility function used in favourite-reducer.ts.
 export const filterRemovedItem = (
   state: CartInterface | FavouriteInterface,
   id: string
@@ -43,6 +43,14 @@ export const filterRemovedItem = (
   state.items = state.items.filter((item) => item.id !== id);
 
   return { items: state.items };
+};
+// utility function also used in favourite-context.ts to hash creation.
+export const getHash = (state: CartInterface | FavouriteInterface) => {
+  // generates hash table with product's IDs as properties.
+  const hash: { [key: string]: boolean } = {};
+  state.items.forEach(({ id }) => (hash[id] = true));
+
+  return { hash };
 };
 
 const cartReducer = (state: CartInterface, action: CartAction) => {
@@ -58,13 +66,6 @@ const cartReducer = (state: CartInterface, action: CartAction) => {
     selectedItem!.quantity += incrementor;
 
     return { items: state.items };
-  };
-  const getHash = () => {
-    // generates hash table with product's IDs as properties. Useful for disabling favourite button when product is already in cart.
-    const hash: { [key: string]: boolean } = {};
-    state.items.forEach(({ id }) => (hash[id] = true));
-
-    return { hash };
   };
   const getUpdatedValueAndQuantity = () => {
     const totalItemsInCart = state.items.reduce(
@@ -89,7 +90,7 @@ const cartReducer = (state: CartInterface, action: CartAction) => {
       if (itemIndex !== -1) {
         state.items[itemIndex].quantity++;
 
-        return { ...state, ...getUpdatedValueAndQuantity(), ...getHash() };
+        return { ...state, ...getUpdatedValueAndQuantity(), ...getHash(state) };
       }
 
       state.items = [...state.items, payload.item!];
@@ -98,25 +99,25 @@ const cartReducer = (state: CartInterface, action: CartAction) => {
       return {
         ...state,
         ...getUpdatedValueAndQuantity(),
-        ...getHash(),
+        ...getHash(state),
       };
     case ActionKind.REMOVE:
       return {
         ...filterRemovedItem(state, payload.id!),
         ...getUpdatedValueAndQuantity(),
-        ...getHash(),
+        ...getHash(state),
       };
     case ActionKind.INCREMENT:
       return {
         ...getUpdatedItem(1),
         ...getUpdatedValueAndQuantity(),
-        ...getHash(),
+        ...getHash(state),
       };
     case ActionKind.DECREMENT:
       return {
         ...getUpdatedItem(-1),
         ...getUpdatedValueAndQuantity(),
-        ...getHash(),
+        ...getHash(state),
       };
     default:
       return state;

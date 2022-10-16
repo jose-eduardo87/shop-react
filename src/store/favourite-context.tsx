@@ -23,6 +23,7 @@ interface FavouriteProviderInterface {
 const initialState = {
   favourites: {
     items: [],
+    hash: {},
     totalItemsInFavourites: 0,
   },
   onAddItemToFavourite: (item: ItemInterface) => {},
@@ -35,6 +36,7 @@ const FavouriteContext =
 const FavouriteProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const state = {
     items: [],
+    hash: {},
     totalItemsInFavourites: 0,
   };
   const [favourites, dispatch] = useReducer(favouriteReducer, state);
