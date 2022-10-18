@@ -16,8 +16,8 @@ import { mergeRefs } from "react-merge-refs";
 
 export interface TooltipInterface {
   message: string;
-  placement?: Placement;
   children: JSX.Element;
+  placement?: Placement;
 }
 
 const Tooltip: FC<TooltipInterface> = ({

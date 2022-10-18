@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Tooltip } from "components/ui/index";
 import { AddToCart, AddToFavourites } from "components/icons/index";
 import { ItemInterface } from "reducers/index";
+import { TooltipInterface } from "../Tooltip/Tooltip";
 
 import styles from "./ProductCard.module.css";
 
@@ -23,14 +23,30 @@ const ProductCard: FC<ProductCardInterface> = ({
     width: 24,
     height: 24,
     fill: "#000",
-    cursor: isFavouriteDisabled ? "not-allowed" : "pointer",
   };
-  // let Tooltip = {};
-  // if (!isFavouriteDisabled) {
-  //   Tooltip = require("components/ui/Tooltip/Tooltip");
-  // } else {
-  //   Tooltip = import("components/icons/Truck");
-  // }
+  const children = (
+    <div className={styles.innerBox}>
+      <button
+        disabled={isFavouriteDisabled}
+        onClick={() => onAddItemToFavourite(item)}
+      >
+        <AddToFavourites {...iconStyles} />
+        <p>Favourite</p>
+      </button>
+    </div>
+  );
+  let Tooltip: FC<TooltipInterface>,
+    renderFavouriteIcon: typeof Tooltip | JSX.Element;
+
+  if (isFavouriteDisabled) {
+    Tooltip = require("components/ui/Tooltip/Tooltip").default;
+
+    renderFavouriteIcon = (
+      <Tooltip message="This item is already in your cart!">{children}</Tooltip>
+    );
+  } else {
+    renderFavouriteIcon = children;
+  }
 
   return (
     <div className={styles.card}>
@@ -41,21 +57,12 @@ const ProductCard: FC<ProductCardInterface> = ({
       </div>
       <div className={styles.interactiveBox}>
         <div className={styles.innerBox}>
-          <AddToCart
-            addToCartHandler={() => onAddItemToCart(item)}
-            {...iconStyles}
-          />
-          <p>Cart</p>
+          <button onClick={() => onAddItemToCart(item)}>
+            <AddToCart {...iconStyles} />
+            <p>Cart</p>
+          </button>
         </div>
-        <Tooltip message={"This item is in your cart!"}>
-          <div className={styles.innerBox}>
-            <AddToFavourites
-              addToFavouritesHandler={() => onAddItemToFavourite(item)}
-              {...iconStyles}
-            />
-            <p>Favourite</p>
-          </div>
-        </Tooltip>
+        {renderFavouriteIcon}
       </div>
     </div>
   );
