@@ -21,10 +21,7 @@ const favouriteReducer = (
   const { type, payload } = action;
 
   const getTotalItemsInFavourites = () => {
-    const totalItemsInFavourites = state.items.reduce(
-      (prev, { quantity }) => prev + quantity,
-      0
-    );
+    const totalItemsInFavourites = state.items.length;
 
     return { totalItemsInFavourites };
   };

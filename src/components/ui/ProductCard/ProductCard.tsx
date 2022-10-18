@@ -1,22 +1,22 @@
 import { FC } from "react";
 import { AddToCart, AddToFavourites } from "components/icons/index";
 import { ItemInterface } from "reducers/index";
-import { TooltipInterface } from "../Tooltip/Tooltip";
+import { TooltipInterface } from "components/ui/index";
 
 import styles from "./ProductCard.module.css";
 
 interface ProductCardInterface {
   item: ItemInterface;
-  onAddItemToCart: (item: ItemInterface) => void;
-  onAddItemToFavourite: (item: ItemInterface) => void;
-  isFavouriteDisabled: boolean;
+  addItemToCartHandler: () => void;
+  addItemToFavouritesHandler: (item: ItemInterface) => void;
+  favouriteIsDisabled: boolean;
 }
 
 const ProductCard: FC<ProductCardInterface> = ({
   item,
-  onAddItemToCart,
-  onAddItemToFavourite,
-  isFavouriteDisabled,
+  addItemToCartHandler,
+  addItemToFavouritesHandler,
+  favouriteIsDisabled,
 }) => {
   const { name, price } = item;
   const iconStyles = {
@@ -27,8 +27,8 @@ const ProductCard: FC<ProductCardInterface> = ({
   const children = (
     <div className={styles.innerBox}>
       <button
-        disabled={isFavouriteDisabled}
-        onClick={() => onAddItemToFavourite(item)}
+        disabled={favouriteIsDisabled}
+        onClick={() => addItemToFavouritesHandler(item)}
       >
         <AddToFavourites {...iconStyles} />
         <p>Favourite</p>
@@ -38,7 +38,7 @@ const ProductCard: FC<ProductCardInterface> = ({
   let Tooltip: FC<TooltipInterface>,
     renderFavouriteIcon: typeof Tooltip | JSX.Element;
 
-  if (isFavouriteDisabled) {
+  if (favouriteIsDisabled) {
     Tooltip = require("components/ui/Tooltip/Tooltip").default;
 
     renderFavouriteIcon = (
@@ -50,14 +50,14 @@ const ProductCard: FC<ProductCardInterface> = ({
 
   return (
     <div className={styles.card}>
-      <div className={styles.productImage}></div>
+      <div className={styles.productImage}>1</div>
       <div className={styles.productInfo}>
         <p className={styles.productPrice}>$ {price.toFixed(2)}</p>
         <p className={styles.productName}>{name}</p>
       </div>
       <div className={styles.interactiveBox}>
         <div className={styles.innerBox}>
-          <button onClick={() => onAddItemToCart(item)}>
+          <button onClick={addItemToCartHandler}>
             <AddToCart {...iconStyles} />
             <p>Cart</p>
           </button>

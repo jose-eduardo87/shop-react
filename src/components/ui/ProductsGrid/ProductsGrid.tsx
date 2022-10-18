@@ -7,18 +7,31 @@ import styles from "./ProductsGrid.module.css";
 
 const ProductsGrid: FC<{ products: ItemInterface[] }> = ({ products }) => {
   const { onAddItemToCart, cart } = useCart();
-  const { onAddItemToFavourite, favourites } = useFavourite();
-  console.log("hash fav.: ", favourites.hash);
+  const { onAddItemToFavourite, onRemoveItemFromFavourite, favourites } =
+    useFavourite();
+  const renderProducts = products.map((product) => {
+    const itemIsInFavourites = favourites.hash[product.id] ? true : false;
+    let addItemToCartHandler: () => void;
 
-  const renderProducts = products.map((product) => (
-    <ProductCard
-      key={product.id}
-      onAddItemToCart={onAddItemToCart}
-      onAddItemToFavourite={onAddItemToFavourite}
-      isFavouriteDisabled={cart.hash[product.id] ? true : false}
-      item={{ ...product }}
-    />
-  ));
+    if (itemIsInFavourites) {
+      addItemToCartHandler = () => {
+        onRemoveItemFromFavourite(product.id);
+
+        onAddItemToCart(product);
+      };
+    } else {
+      addItemToCartHandler = () => onAddItemToCart(product);
+    }
+    return (
+      <ProductCard
+        key={product.id}
+        addItemToCartHandler={addItemToCartHandler}
+        addItemToFavouritesHandler={onAddItemToFavourite}
+        favouriteIsDisabled={cart.hash[product.id] ? true : false}
+        item={{ ...product }}
+      />
+    );
+  });
 
   return <div className={styles.productsGrid}>{renderProducts}</div>;
 };
