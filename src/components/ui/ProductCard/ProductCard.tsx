@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { AddToCart, AddToFavourites } from "components/icons/index";
 import { ItemInterface } from "reducers/index";
 import { TooltipInterface } from "components/ui/index";
@@ -68,4 +68,4 @@ const ProductCard: FC<ProductCardInterface> = ({
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

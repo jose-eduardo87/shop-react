@@ -41,12 +41,14 @@ export const filterRemovedItem = (
   id: string
 ) => {
   state.items = state.items.filter((item) => item.id !== id);
+  console.log("FILTERED: ", state.items);
 
   return { items: state.items };
 };
-// utility function also used in favourite-context.ts to hash creation.
+
+// utility function also used in favourite-context.ts for hash creation.
 export const getHash = (state: CartInterface | FavouriteInterface) => {
-  // generates hash table with product's IDs as properties.
+  // generates hash table with product's IDs as properties. Using a hash is a much better approach than using some array method to save the IDs as it has lookup access of O(1).
   const hash: { [key: string]: boolean } = {};
   state.items.forEach(({ id }) => (hash[id] = true));
 
@@ -94,8 +96,9 @@ const cartReducer = (state: CartInterface, action: CartAction) => {
       }
 
       state.items = [...state.items, payload.item!];
+      console.log("STATE: ", state.items);
+      console.log("PAYLOAD: ", payload.item);
 
-      // returns original state including newly-added item in payload.
       return {
         ...state,
         ...getUpdatedValueAndQuantity(),
@@ -103,18 +106,21 @@ const cartReducer = (state: CartInterface, action: CartAction) => {
       };
     case ActionKind.REMOVE:
       return {
+        ...state,
         ...filterRemovedItem(state, payload.id!),
         ...getUpdatedValueAndQuantity(),
         ...getHash(state),
       };
     case ActionKind.INCREMENT:
       return {
+        ...state,
         ...getUpdatedItem(1),
         ...getUpdatedValueAndQuantity(),
         ...getHash(state),
       };
     case ActionKind.DECREMENT:
       return {
+        ...state,
         ...getUpdatedItem(-1),
         ...getUpdatedValueAndQuantity(),
         ...getHash(state),

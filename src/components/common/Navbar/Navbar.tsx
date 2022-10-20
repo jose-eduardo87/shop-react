@@ -30,21 +30,25 @@ const Navbar = () => {
           </li>
         </ul>
         <div className={styles.iconsBox}>
-          <Cart clickCartHandler={clickCartHandler} {...iconStyles} />
-          {cart.totalItemsInCart > 0 && (
-            <div
-              key={Math.random()}
-              className={`${styles.iconBadge} ${styles.badgeCart}`}
-            >
-              <span>{cart.totalItemsInCart}</span>
-            </div>
-          )}
-          <Favourite {...iconStyles} />
-          {totalItemsInFavourites > 0 && (
-            <div className={`${styles.iconBadge} ${styles.badgeFavourite}`}>
-              <span>{totalItemsInFavourites}</span>
-            </div>
-          )}
+          <button onClick={clickCartHandler}>
+            <Cart {...iconStyles} />
+            {cart.totalItemsInCart > 0 && (
+              <div
+                key={Math.random()}
+                className={`${styles.iconBadge} ${styles.badgeCart}`}
+              >
+                <span>{cart.totalItemsInCart}</span>
+              </div>
+            )}
+          </button>
+          <button onClick={() => alert(JSON.stringify(favourites.hash))}>
+            <Favourite {...iconStyles} />
+            {totalItemsInFavourites > 0 && (
+              <div className={`${styles.iconBadge} ${styles.badgeFavourite}`}>
+                <span>{totalItemsInFavourites}</span>
+              </div>
+            )}
+          </button>
         </div>
       </div>
       {isCartOpened && <CartModal onClose={clickCartHandler} />}

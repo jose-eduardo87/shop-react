@@ -52,10 +52,16 @@
 .iconsBox {
     position: relative;
     width: 10%;
+    display: flex;
 }
 
 .iconsBox svg {
     margin: 0 1rem 0 1rem;
+}
+
+.iconsBox button {
+    background-color: transparent;
+    border: none;
 }
 
 .iconBadge {

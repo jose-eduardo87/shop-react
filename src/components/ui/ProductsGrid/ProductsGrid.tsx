@@ -10,7 +10,7 @@ const ProductsGrid: FC<{ products: ItemInterface[] }> = ({ products }) => {
   const { onAddItemToFavourite, onRemoveItemFromFavourite, favourites } =
     useFavourite();
   const renderProducts = products.map((product) => {
-    const itemIsInFavourites = favourites.hash[product.id] ? true : false;
+    const itemIsInFavourites = favourites.hash[product.id];
     let addItemToCartHandler: () => void;
 
     if (itemIsInFavourites) {
@@ -20,14 +20,15 @@ const ProductsGrid: FC<{ products: ItemInterface[] }> = ({ products }) => {
         onAddItemToCart(product);
       };
     } else {
-      addItemToCartHandler = () => onAddItemToCart(product);
+      addItemToCartHandler = () => onAddItemToCart({ ...product }); // it makes necessary to destructure the object as it was updating the original array ITEMS in helpers.
     }
+
     return (
       <ProductCard
         key={product.id}
         addItemToCartHandler={addItemToCartHandler}
         addItemToFavouritesHandler={onAddItemToFavourite}
-        favouriteIsDisabled={cart.hash[product.id] ? true : false}
+        favouriteIsDisabled={cart.hash[product.id]}
         item={{ ...product }}
       />
     );
