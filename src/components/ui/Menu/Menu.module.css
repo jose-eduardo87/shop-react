@@ -1,6 +1,7 @@
 .rootMenu {
+    display: flex;
+    flex-direction: column;
     padding: 6px 14px;
-    border: none;
     font-size: 16px;
     color: #FEFEFE;
     background: #1F1F1F;

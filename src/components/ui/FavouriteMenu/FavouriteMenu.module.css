@@ -1,0 +1,33 @@
+.itemsList {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #818181;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.itemsList::-webkit-scrollbar-track
+{
+	background-color: #1F1F1F;
+}
+
+.itemsList::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+.itemsList::-webkit-scrollbar-thumb
+{
+	background-color: #818181;
+}
+
+.emptyFavourites {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #818181;
+}

@@ -5,19 +5,21 @@ import { EmptyFavourite } from "components/icons/index";
 import { useFavourite } from "store/index";
 import { iconStyles } from "helpers/constants";
 
+import styles from "./FavouriteMenu.module.css";
+
 const FavouriteMenu: FC = () => {
   const { favourites } = useFavourite();
 
   return (
     <Menu label={<Favourite {...iconStyles} />}>
       <h1>Your favourites:</h1>
-      <div>
+      <div className={styles.itemsList}>
         {favourites.totalItemsInFavourites ? (
           favourites.items.map((item) => (
             <FavouriteItem key={item.id} item={item} />
           ))
         ) : (
-          <p>
+          <p className={styles.emptyFavourites}>
             <EmptyFavourite {...iconStyles} fill="#818181" /> No items added.
           </p>
         )}
