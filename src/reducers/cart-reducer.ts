@@ -41,7 +41,6 @@ export const filterRemovedItem = (
   id: string
 ) => {
   state.items = state.items.filter((item) => item.id !== id);
-  console.log("FILTERED: ", state.items);
 
   return { items: state.items };
 };
@@ -88,16 +87,13 @@ const cartReducer = (state: CartInterface, action: CartAction) => {
         (item) => item.id === payload.item!.id
       );
 
-      // in case item added is already in cart, quantity will be added by 1.
       if (itemIndex !== -1) {
         state.items[itemIndex].quantity++;
 
         return { ...state, ...getUpdatedValueAndQuantity(), ...getHash(state) };
       }
 
-      state.items = [...state.items, payload.item!];
-      console.log("STATE: ", state.items);
-      console.log("PAYLOAD: ", payload.item);
+      state.items = [...state.items, { ...payload.item! }]; // payload must be destructured otherwise original ITEMS array will be changed.
 
       return {
         ...state,

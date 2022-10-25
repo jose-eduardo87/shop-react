@@ -7,7 +7,7 @@ import styles from "./ProductCard.module.css";
 
 interface ProductCardInterface {
   item: ItemInterface;
-  addItemToCartHandler: () => void;
+  addItemToCartHandler: (item: ItemInterface) => void;
   addItemToFavouritesHandler: (item: ItemInterface) => void;
   favouriteIsDisabled: boolean;
 }
@@ -18,7 +18,6 @@ const ProductCard: FC<ProductCardInterface> = ({
   addItemToFavouritesHandler,
   favouriteIsDisabled,
 }) => {
-  const { name, price } = item;
   const iconStyles = {
     width: 24,
     height: 24,
@@ -47,17 +46,18 @@ const ProductCard: FC<ProductCardInterface> = ({
   } else {
     renderFavouriteIcon = children;
   }
+  // console.log("Render.");
 
   return (
     <div className={styles.card}>
-      <div className={styles.productImage}>1</div>
+      <div className={styles.productImage}></div>
       <div className={styles.productInfo}>
-        <p className={styles.productPrice}>$ {price.toFixed(2)}</p>
-        <p className={styles.productName}>{name}</p>
+        <p className={styles.productPrice}>$ {item.price.toFixed(2)}</p>
+        <p className={styles.productName}>{item.name}</p>
       </div>
       <div className={styles.interactiveBox}>
         <div className={styles.innerBox}>
-          <button onClick={addItemToCartHandler}>
+          <button onClick={() => addItemToCartHandler(item)}>
             <AddToCart {...iconStyles} />
             <p>Cart</p>
           </button>

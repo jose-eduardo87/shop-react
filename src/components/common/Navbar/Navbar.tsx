@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Cart, Favourite } from "components/icons/index";
-import { CartModal } from "components/ui/index";
+import { CartModal, FavouriteMenu } from "components/ui/index";
+import { Cart } from "components/icons/index";
 import { useCart, useFavourite } from "store/index";
 import { iconStyles } from "helpers/constants";
 import logo from "./logo.png";
@@ -37,18 +37,24 @@ const Navbar = () => {
                 key={Math.random()}
                 className={`${styles.iconBadge} ${styles.badgeCart}`}
               >
-                <span>{cart.totalItemsInCart}</span>
+                <span>
+                  {cart.totalItemsInCart > 99 ? "+99" : cart.totalItemsInCart}
+                </span>
               </div>
             )}
           </button>
-          <button onClick={() => alert(JSON.stringify(favourites.hash))}>
+          <FavouriteMenu />
+          {/* <button onClick={clickFavouriteHandler}>
             <Favourite {...iconStyles} />
             {totalItemsInFavourites > 0 && (
               <div className={`${styles.iconBadge} ${styles.badgeFavourite}`}>
-                <span>{totalItemsInFavourites}</span>
+                <span>
+                  {totalItemsInFavourites > 99 ? "+99" : totalItemsInFavourites}
+                </span>
               </div>
             )}
-          </button>
+            {isFavouritesOpened && <FavouriteMenu />}
+          </button> */}
         </div>
       </div>
       {isCartOpened && <CartModal onClose={clickCartHandler} />}

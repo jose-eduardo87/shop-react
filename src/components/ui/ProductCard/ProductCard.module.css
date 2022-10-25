@@ -15,6 +15,7 @@
 
 .card:hover > .productImage {
     filter: opacity(1);
+    cursor: pointer;
 }
 
 .card:hover > .productInfo {
@@ -23,8 +24,9 @@
 
 .card:hover > .interactiveBox {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 1rem;
     background-color: #FFF;
     border-top: 1px solid #E7E7E7;
 }

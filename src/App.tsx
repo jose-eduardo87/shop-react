@@ -24,11 +24,10 @@ const App = () => {
           <Hero />
           <PaymentInfo />
           <CategoriesGrid />
-          <Products title="Featured" products={ITEMS} />
+          <Products title="Featured" products={ITEMS.slice(0, 5)} />
           <Products
             title="Cheapest"
-            // products={ITEMS.sort((a, b) => a.price - b.price).slice(0, 5)}
-            products={ITEMS}
+            products={ITEMS.sort((a, b) => a.price - b.price).slice(0, 5)}
           />
         </FavouriteProvider>
       </CartProvider>

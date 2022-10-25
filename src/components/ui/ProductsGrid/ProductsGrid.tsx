@@ -20,7 +20,7 @@ const ProductsGrid: FC<{ products: ItemInterface[] }> = ({ products }) => {
         onAddItemToCart(product);
       };
     } else {
-      addItemToCartHandler = () => onAddItemToCart({ ...product }); // it makes necessary to destructure the object as it was updating the original array ITEMS in helpers.
+      addItemToCartHandler = () => onAddItemToCart(product);
     }
 
     return (

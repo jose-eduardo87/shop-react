@@ -14,6 +14,8 @@ import {
 } from "@floating-ui/react-dom-interactions";
 import { mergeRefs } from "react-merge-refs";
 
+import styles from "./Tooltip.module.css";
+
 export interface TooltipInterface {
   message: string;
   children: JSX.Element;
@@ -49,7 +51,7 @@ const Tooltip: FC<TooltipInterface> = ({
       {isOpen && (
         <div
           ref={floating}
-          className="Tooltip"
+          className={styles.root}
           style={{
             position: strategy,
             top: y ?? 0,
