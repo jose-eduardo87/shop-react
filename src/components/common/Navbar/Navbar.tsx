@@ -11,7 +11,6 @@ const Navbar = () => {
   const [isCartOpened, setIsCartOpened] = useState(false);
   const { cart } = useCart();
   const { favourites } = useFavourite();
-  const { totalItemsInFavourites } = favourites;
   const clickCartHandler = () => setIsCartOpened((prevState) => !prevState);
 
   return (
@@ -44,17 +43,15 @@ const Navbar = () => {
             )}
           </button>
           <FavouriteMenu />
-          {/* <button onClick={clickFavouriteHandler}>
-            <Favourite {...iconStyles} />
-            {totalItemsInFavourites > 0 && (
-              <div className={`${styles.iconBadge} ${styles.badgeFavourite}`}>
-                <span>
-                  {totalItemsInFavourites > 99 ? "+99" : totalItemsInFavourites}
-                </span>
-              </div>
-            )}
-            {isFavouritesOpened && <FavouriteMenu />}
-          </button> */}
+          {favourites.totalItemsInFavourites > 0 && (
+            <div className={`${styles.iconBadge} ${styles.badgeFavourite}`}>
+              <span>
+                {favourites.totalItemsInFavourites > 99
+                  ? "+99"
+                  : favourites.totalItemsInFavourites}
+              </span>
+            </div>
+          )}
         </div>
       </div>
       {isCartOpened && <CartModal onClose={clickCartHandler} />}

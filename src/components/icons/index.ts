@@ -4,6 +4,7 @@ export { default as Cart } from "./Cart";
 export { default as CloseButton } from "./CloseButton";
 export { default as CreditCard } from "./CreditCard";
 export { default as EmptyCart } from "./EmptyCart";
+export { default as EmptyFavourite } from "./EmptyFavourite";
 export { default as ExclamationMark } from "./ExclamationMark";
 export { default as Favourite } from "./Favourite";
 export { default as Minus } from "./Minus";
