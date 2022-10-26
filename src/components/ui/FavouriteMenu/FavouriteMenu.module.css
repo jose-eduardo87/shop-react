@@ -1,10 +1,18 @@
+.heading {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: #FAFAFA;
+}
+
 .itemsList {
     display: flex;
     flex-direction: column;
     border-top: 1px solid #818181;
+    border-bottom: 1px solid #818181;
     width: 300px;
-    height: 300px;
-    margin: 0 auto;
+    height: 370px;
+    margin: 1rem 0;
     overflow: auto;
 }
 
@@ -25,6 +33,9 @@
 }
 
 .emptyFavourites {
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
     position: absolute;
     top: 30%;
     left: 50%;

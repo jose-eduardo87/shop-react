@@ -12,7 +12,7 @@ const FavouriteMenu: FC = () => {
 
   return (
     <Menu label={<Favourite {...iconStyles} />}>
-      <h1>Your favourites:</h1>
+      <h1 className={styles.heading}>Your favourites:</h1>
       <div className={styles.itemsList}>
         {favourites.totalItemsInFavourites ? (
           favourites.items.map((item) => (

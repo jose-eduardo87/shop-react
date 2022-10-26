@@ -10,4 +10,5 @@ export { default as Favourite } from "./Favourite";
 export { default as Minus } from "./Minus";
 export { default as Plus } from "./Plus";
 export { default as Secure } from "./Secure";
+export { default as Trash } from "./Trash";
 export { default as Truck } from "./Truck";

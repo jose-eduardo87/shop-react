@@ -2,4 +2,51 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 0.5rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid #818181;
+}
+
+.card:last-of-type {
+    border-bottom: none;
+}
+
+.productImage {
+    width: 90px;
+    height: 90px;
+    background-color: blueviolet;
+}
+
+.productInfo {
+    width: 40%;
+}
+
+.productInfo h1 {
+    font-size: .8rem;
+    letter-spacing: 1px;
+}
+
+.productInfo p {
+    font-size: .75rem;
+    color: #9C9C9C;
+    font-weight: bold;
+}
+
+.buttonsBox {
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttonsBox button {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #9C9C9C;
+    border-radius: 50%;
+    border: 1px solid #FFEF00;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    font-weight: 600;
 }
