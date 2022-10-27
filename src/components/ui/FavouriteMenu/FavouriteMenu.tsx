@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Menu, FavouriteItem } from "components/ui/index";
+import { Menu, FavouriteCard } from "components/ui/index";
 import { Favourite } from "components/icons";
 import { EmptyFavourite } from "components/icons/index";
 import { useFavourite } from "store/index";
@@ -16,7 +16,7 @@ const FavouriteMenu: FC = () => {
       <div className={styles.itemsList}>
         {favourites.totalItemsInFavourites ? (
           favourites.items.map((item) => (
-            <FavouriteItem key={item.id} item={item} />
+            <FavouriteCard key={item.id} item={item} />
           ))
         ) : (
           <p className={styles.emptyFavourites}>

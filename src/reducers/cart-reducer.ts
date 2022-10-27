@@ -47,7 +47,7 @@ export const filterRemovedItem = (
 
 // utility function also used in favourite-context.ts for hash creation.
 export const getHash = (state: CartInterface | FavouriteInterface) => {
-  // generates hash table with product's IDs as properties. Using a hash is a much better approach than using some array method to save the IDs as it has lookup access of O(1).
+  // generates hash table with product's IDs as properties. Using a hash is a much better approach to save the IDs than using some array method as it has lookup access of O(1).
   const hash: { [key: string]: boolean } = {};
   state.items.forEach(({ id }) => (hash[id] = true));
 

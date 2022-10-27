@@ -1,6 +1,6 @@
 export { default as CartModal } from "./CartModal/CartModal";
 export { default as Hero } from "./Hero/Hero";
-export { default as FavouriteItem } from "./FavouriteItem/FavouriteItem";
+export { default as FavouriteCard } from "./FavouriteCard/FavouriteCard";
 export { default as FavouriteMenu } from "./FavouriteMenu/FavouriteMenu";
 export { default as Menu } from "./Menu/Menu";
 export { Backdrop, ModalOverlay } from "./Modal/Modal";

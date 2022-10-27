@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { CartModal, FavouriteMenu } from "components/ui/index";
 import { Cart } from "components/icons/index";
 import { useCart, useFavourite } from "store/index";
@@ -16,16 +17,18 @@ const Navbar = () => {
   return (
     <header className={styles.root}>
       <div className={styles.headerContainer}>
-        <img src={logo} alt="Company logo" height={"80%"} />
+        <NavLink to="/">
+          <img src={logo} alt="Company logo" />
+        </NavLink>
         <ul className={styles.links}>
           <li>
-            <a href="/#categories">Categories</a>
+            <NavLink to="#categories">Categories</NavLink>
           </li>
           <li>
-            <a href="/#products">Products</a>
+            <NavLink to="#products">Products</NavLink>
           </li>
           <li>
-            <a href="/#contact">Contact</a>
+            <NavLink to="#contact">Contact</NavLink>
           </li>
         </ul>
         <div className={styles.iconsBox}>

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { PageLayout } from "components/common/index";
+import { SectionLayout } from "components/common/index";
 import { ProductsGrid } from "components/ui/index";
 import { ItemInterface } from "reducers";
 
@@ -21,10 +21,10 @@ interface ProductsSectionInterface {
 
 const Products: FC<ProductsSectionInterface> = ({ title, products }) => {
   return (
-    <PageLayout CSSProps={{ ...sectionStyles }}>
+    <SectionLayout CSSProps={{ ...sectionStyles }}>
       <h2>{title}</h2>
       <ProductsGrid products={products} />
-    </PageLayout>
+    </SectionLayout>
   );
 };
 

@@ -46,7 +46,6 @@ const ProductCard: FC<ProductCardInterface> = ({
   } else {
     renderFavouriteIcon = children;
   }
-  // console.log("Render.");
 
   return (
     <div className={styles.card}>

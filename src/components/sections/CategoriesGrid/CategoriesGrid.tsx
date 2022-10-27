@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { PageLayout } from "components/common/index";
+import { SectionLayout } from "components/common/index";
 import { accessoriesImage, clothingImage, hatsImage, shoesImage } from "./imgs";
 
 import styles from "./CategoriesGrid.module.css";
@@ -25,7 +25,7 @@ const getBackgroundStyle = (url: string, position?: string) => {
 
 const CategoriesGrid: FC = () => {
   return (
-    <PageLayout id="categories" CSSProps={{ ...sectionStyles }}>
+    <SectionLayout id="categories" CSSProps={{ ...sectionStyles }}>
       <h2>Categories</h2>
       <div className={styles.root}>
         <div
@@ -47,7 +47,7 @@ const CategoriesGrid: FC = () => {
           <div className={styles.textBox}>hats</div>
         </div>
       </div>
-    </PageLayout>
+    </SectionLayout>
   );
 };
 

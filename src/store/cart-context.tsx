@@ -34,7 +34,6 @@ const initialState = {
   onAddItemToCart: (item: ItemInterface) => {},
   onRemoveItemFromCart: (id: string) => {},
 };
-
 const CartContext = createContext<CartProviderInterface>(initialState);
 
 const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -45,7 +44,6 @@ const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
     totalValue: 0,
   };
   const [cart, dispatch] = useReducer(cartReducer, state);
-  // const { items, hash, totalItemsInCart, totalValue } = cart;
   const incrementItemHandler = (id: string) =>
     dispatch({ type: ActionKind.INCREMENT, payload: { id } });
   const decrementItemHandler = (id: string) =>
@@ -54,18 +52,11 @@ const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
     dispatch({ type: ActionKind.ADD, payload: { item } });
   const removeItemHandler = (id: string) =>
     dispatch({ type: ActionKind.REMOVE, payload: { id } });
-  const { items, hash, totalItemsInCart, totalValue } = cart;
 
   return (
     <CartContext.Provider
       value={{
-        // cart: useMemo(() => cart, [cart]),
-        cart: {
-          items: useMemo(() => items, [items]),
-          hash: useMemo(() => hash, [hash]),
-          totalItemsInCart: useMemo(() => totalItemsInCart, [totalItemsInCart]),
-          totalValue: useMemo(() => totalValue, [totalValue]),
-        },
+        cart: useMemo(() => cart, [cart]),
         onIncrementItemInCart: useCallback(
           (id) => incrementItemHandler(id),
           []

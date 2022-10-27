@@ -1,13 +1,8 @@
 import { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Home, Categories, Error } from "pages/index";
 import { Navbar, Footer } from "components/common/index";
-import {
-  CategoriesGrid,
-  Products,
-  PaymentInfo,
-} from "components/sections/index";
-import { Hero } from "components/ui/index";
 import { CartProvider, FavouriteProvider } from "store/index";
-import { ITEMS } from "helpers/constants";
 
 import "./App.css";
 
@@ -21,14 +16,12 @@ const App = () => {
       <CartProvider>
         <FavouriteProvider>
           <Navbar />
-          <Hero />
-          <PaymentInfo />
-          <CategoriesGrid />
-          <Products title="Featured" products={ITEMS.slice(0, 5)} />
-          <Products
-            title="Cheapest"
-            products={ITEMS.sort((a, b) => a.price - b.price).slice(0, 5)}
-          />
+          <Routes>
+            <Route path="/" element={<Navigate replace to="/home" />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
         </FavouriteProvider>
       </CartProvider>
       <Footer />

@@ -33,6 +33,7 @@ const CartCard: FC<CartCardInterface> = ({ item }) => {
       <CloseButton
         removeItemFromCartHandler={() => onRemoveItemFromCart(id)}
         {...iconStyles}
+        fill="#AA4A44"
       />
       <div className={styles.productImage}></div>
       <div className={styles.productInfo}>

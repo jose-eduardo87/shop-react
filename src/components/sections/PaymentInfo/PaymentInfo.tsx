@@ -1,4 +1,4 @@
-import { PageLayout } from "components/common/index";
+import { SectionLayout } from "components/common/index";
 import {
   CreditCard,
   ExclamationMark,
@@ -27,7 +27,7 @@ const iconStyles = {
 
 const PaymentInfo = () => {
   return (
-    <PageLayout CSSProps={{ ...sectionStyles }}>
+    <SectionLayout CSSProps={{ ...sectionStyles }}>
       <div className={styles.paymentContainer}>
         <div className={styles.informationBox}>
           <Truck {...iconStyles} />
@@ -64,7 +64,7 @@ const PaymentInfo = () => {
           </div>
         </div>
       </div>
-    </PageLayout>
+    </SectionLayout>
   );
 };
 

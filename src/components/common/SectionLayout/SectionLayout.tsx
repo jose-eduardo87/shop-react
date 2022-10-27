@@ -1,13 +1,13 @@
 import { FC, ReactNode, CSSProperties } from "react";
 
-import styles from "./PageLayout.module.css";
+import styles from "./SectionLayout.module.css";
 
 interface CSSPropsInterface {
   root?: CSSProperties;
   container?: CSSProperties;
 }
 
-const PageLayout: FC<{
+const SectionLayout: FC<{
   children: ReactNode;
   id?: string;
   CSSProps?: CSSPropsInterface;
@@ -19,4 +19,4 @@ const PageLayout: FC<{
   );
 };
 
-export default PageLayout;
+export default SectionLayout;
