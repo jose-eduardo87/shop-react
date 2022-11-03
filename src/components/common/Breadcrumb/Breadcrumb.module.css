@@ -1,0 +1,30 @@
+.breadcrumb {
+    padding: 0;
+    margin: 4rem 0 1rem 0;
+    list-style: none;
+    font-size: .9rem;
+}
+
+.breadcrumb span {
+    margin: 0 .5rem 0 .5rem;
+}
+
+.pathName {
+    display: inline-block;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
+
+.activeLink {
+    color: #A1A1A1;
+    font-weight: 400;
+}
+
+.activeLink:hover {
+    color: #4682B4;
+    text-decoration: underline;
+}
+
+.inactiveLink {
+    font-weight: 600;
+}

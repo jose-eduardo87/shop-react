@@ -5,8 +5,8 @@ import styles from "./SidebarFilterInput.module.css";
 const SidebarFilterInput: FC<{
   inputType: string;
   value: string | number;
-  onChangeRange?: Dispatch<SetStateAction<number[]>>;
-}> = ({ inputType, value, onChangeRange }) => {
+  onChange?: Dispatch<SetStateAction<number[]>>;
+}> = ({ inputType, value, onChange }) => {
   if (inputType === "checkbox") {
     return (
       <li className={styles.list}>
@@ -18,6 +18,7 @@ const SidebarFilterInput: FC<{
   if (inputType === "option") {
     return <option>{value}</option>;
   }
+
   const Slider = require("rc-slider").default;
   require("rc-slider/assets/index.css");
 
@@ -26,9 +27,8 @@ const SidebarFilterInput: FC<{
       range
       min={0}
       max={999}
-      defaultValue={[1, 99]}
-      // step={1}
-      onChange={(value: number[]) => onChangeRange!(value)}
+      defaultValue={[160, 640]}
+      onChange={(value: number[]) => onChange!(value)}
     />
   );
 };

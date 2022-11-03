@@ -1,4 +1,5 @@
 import { FC } from "react";
+// import { Link } from "react-router-dom";
 import { SectionLayout } from "components/common/index";
 import { accessoriesImage, clothingImage, hatsImage, shoesImage } from "./imgs";
 

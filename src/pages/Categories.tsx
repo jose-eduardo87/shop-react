@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { PageLayout } from "components/common/index";
+import { Breadcrumb, PageLayout } from "components/common/index";
 import { SidebarFilter } from "components/ui/index";
 
 const Categories = () => {
@@ -7,6 +7,12 @@ const Categories = () => {
 
   return (
     <PageLayout>
+      <Breadcrumb
+        breadcrumb={[
+          { name: "Home", path: "/home" },
+          { name: categoriesId!, path: "" },
+        ]}
+      />
       <SidebarFilter category={categoriesId} />
     </PageLayout>
   );

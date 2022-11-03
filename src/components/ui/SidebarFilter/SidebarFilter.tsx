@@ -4,29 +4,26 @@ import { SidebarFilterInput } from "components/ui/index";
 
 import styles from "./SidebarFilter.module.css";
 
-const inputSize = {
-  clothing: ["X-Small", "Small", "Medium", "Large", "X-Large"],
-  shoes: [38, 39, 40, 41, 42],
-};
-
 const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
-  const [inputValue, setInputValue] = useState([1, 15]);
+  const [inputValue, setInputValue] = useState([160, 640]);
   const renderCategoriesLinks = (
     <>
       <h3>Categories</h3>
       <ul className={styles.list}>
-        <Link to="/categories/clothing">
-          <li className={styles.link}>Clothing</li>
-        </Link>
-        <Link to="/categories/accessories">
-          <li className={styles.link}>Accessories</li>
-        </Link>
-        <Link to="/categories/shoes">
-          <li className={styles.link}>Shoes</li>
-        </Link>
-        <Link to="/categories/hats">
-          <li className={styles.link}>Hats</li>
-        </Link>
+        {["clothing", "accessories", "shoes", "hats"].map((categoryId, i) => (
+          <Link
+            key={i}
+            style={{
+              textDecoration: "none",
+              color: category === categoryId ? "#4682B4" : "",
+              fontWeight: category === categoryId ? 600 : 100,
+              letterSpacing: category === categoryId ? "2px" : "1px",
+            }}
+            to={`/categories/${categoryId}`}
+          >
+            <li className={styles.link}>{categoryId}</li>
+          </Link>
+        ))}
       </ul>
     </>
   );
@@ -36,9 +33,15 @@ const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
         <>
           <h3>Size</h3>
           <ul className={styles.list}>
-            {inputSize["clothing"].map((input, i) => (
-              <SidebarFilterInput key={i} inputType="checkbox" value={input} />
-            ))}
+            {["X-Small", "Small", "Medium", "Large", "X-Large"].map(
+              (input, i) => (
+                <SidebarFilterInput
+                  key={i}
+                  inputType="checkbox"
+                  value={input}
+                />
+              )
+            )}
           </ul>
         </>
       )}
@@ -46,7 +49,7 @@ const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
         <>
           <h3>Size</h3>
           <select className={styles.shoeSizes}>
-            {inputSize["shoes"].map((input, i) => (
+            {[38, 39, 40, 41, 42].map((input, i) => (
               <SidebarFilterInput key={i} inputType="option" value={input} />
             ))}
           </select>
@@ -70,7 +73,7 @@ const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
       <SidebarFilterInput
         inputType="range"
         value={1}
-        onChangeRange={setInputValue}
+        onChange={setInputValue}
       />
       <p>
         Range: $ {inputValue[0]} - $ {inputValue[1]}
