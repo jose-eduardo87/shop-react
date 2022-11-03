@@ -71,32 +71,31 @@ export const MenuComponent = forwardRef<any, MenuInterface>(
         whileElementsMounted: autoUpdate,
       });
 
-    const { getReferenceProps, getFloatingProps, getItemProps } =
-      useInteractions([
-        useHover(context, {
-          handleClose: safePolygon({ restMs: 25 }),
-          enabled: nested && allowHover,
-          delay: { open: 75 },
-        }),
-        useClick(context, {
-          toggle: !nested,
-          event: "mousedown",
-          ignoreMouse: nested,
-        }),
-        useRole(context, { role: "menu" }),
-        useDismiss(context),
-        useListNavigation(context, {
-          listRef: listItemsRef,
-          activeIndex,
-          nested,
-          onNavigate: setActiveIndex,
-        }),
-        useTypeahead(context, {
-          listRef: listContentRef,
-          onMatch: open ? setActiveIndex : undefined,
-          activeIndex,
-        }),
-      ]);
+    const { getReferenceProps, getFloatingProps } = useInteractions([
+      useHover(context, {
+        handleClose: safePolygon({ restMs: 25 }),
+        enabled: nested && allowHover,
+        delay: { open: 75 },
+      }),
+      useClick(context, {
+        toggle: !nested,
+        event: "mousedown",
+        ignoreMouse: nested,
+      }),
+      useRole(context, { role: "menu" }),
+      useDismiss(context),
+      useListNavigation(context, {
+        listRef: listItemsRef,
+        activeIndex,
+        nested,
+        onNavigate: setActiveIndex,
+      }),
+      useTypeahead(context, {
+        listRef: listContentRef,
+        onMatch: open ? setActiveIndex : undefined,
+        activeIndex,
+      }),
+    ]);
 
     // Event emitter allows you to communicate across tree components.
     // This effect closes all menus when an item gets clicked anywhere

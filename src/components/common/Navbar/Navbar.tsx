@@ -17,12 +17,12 @@ const Navbar = () => {
   return (
     <header className={styles.root}>
       <div className={styles.headerContainer}>
-        <NavLink to="/">
+        <NavLink to="/home">
           <img src={logo} alt="Company logo" />
         </NavLink>
         <ul className={styles.links}>
           <li>
-            <NavLink to="#categories">Categories</NavLink>
+            <NavLink to="/categories">Categories</NavLink>
           </li>
           <li>
             <NavLink to="#products">Products</NavLink>

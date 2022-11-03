@@ -1,10 +1,14 @@
-import { SectionLayout } from "components/common";
+import { useParams } from "react-router-dom";
+import { PageLayout } from "components/common/index";
+import { SidebarFilter } from "components/ui/index";
 
 const Categories = () => {
+  const { categoriesId } = useParams<{ categoriesId: string }>();
+
   return (
-    <SectionLayout>
-      <h1>CATEGORIES PAGE</h1>
-    </SectionLayout>
+    <PageLayout>
+      <SidebarFilter category={categoriesId} />
+    </PageLayout>
   );
 };
 

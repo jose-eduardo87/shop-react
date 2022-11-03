@@ -1,0 +1,42 @@
+.sidebar {
+    width: 20%;
+    margin-bottom: 1rem;
+}
+
+.sidebar h3 {
+    letter-spacing: .09rem;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.filterBox {
+    width: 90%;
+    padding: 1rem 0;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+.list {
+    padding: 0;
+}
+
+.list li {
+    list-style-type: none;
+    letter-spacing: 1.5px;
+    font-weight: 300;   
+}
+
+.shoeSizes {
+    height: 30px;
+    border: 1px solid #DADADA;
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    font-weight: 100;
+}
+
+.priceBox {
+    border-bottom: 1px solid #DADADA;
+}

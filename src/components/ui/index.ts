@@ -7,4 +7,6 @@ export { Backdrop, ModalOverlay } from "./Modal/Modal";
 export { default as CartCard } from "./CartCard/CartCard";
 export { default as ProductCard } from "./ProductCard/ProductCard";
 export { default as ProductsGrid } from "./ProductsGrid/ProductsGrid";
+export { default as SidebarFilter } from "./SidebarFilter/SidebarFilter";
+export { default as SidebarFilterInput } from "./SidebarFilterInput/SidebarFilterInput";
 export { default as Tooltip, type TooltipInterface } from "./Tooltip/Tooltip";

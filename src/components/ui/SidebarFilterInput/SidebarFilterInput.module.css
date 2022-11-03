@@ -1,0 +1,12 @@
+.list {
+    padding-top: .4rem;
+}
+
+.list input {
+    margin-right: .5rem;
+}
+
+.list label {
+    letter-spacing: 1px;
+    font-weight: 100;
+}
