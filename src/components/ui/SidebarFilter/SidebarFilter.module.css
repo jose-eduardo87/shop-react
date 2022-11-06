@@ -18,6 +18,14 @@
     border-bottom: 1px solid #E1E1E1;
 }
 
+.filterBox:first-of-type {
+    padding-top: 0;
+}
+
+.filterBox h3:first-of-type {
+    margin-top: 0;
+}
+
 .list {
     padding: 0;
 }

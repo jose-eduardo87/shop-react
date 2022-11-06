@@ -1,12 +1,13 @@
 .breadcrumb {
     padding: 0;
-    margin: 4rem 0 1rem 0;
+    margin: 4rem 0 2.25rem 0;
     list-style: none;
     font-size: .9rem;
 }
 
 .breadcrumb span {
     margin: 0 .5rem 0 .5rem;
+    color: #A1A1A1;
 }
 
 .pathName {

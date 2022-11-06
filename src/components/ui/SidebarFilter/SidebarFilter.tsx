@@ -7,59 +7,39 @@ import styles from "./SidebarFilter.module.css";
 const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
   const [inputValue, setInputValue] = useState([160, 640]);
   const renderCategoriesLinks = (
-    <>
-      <h3>Categories</h3>
-      <ul className={styles.list}>
-        {["clothing", "accessories", "shoes", "hats"].map((categoryId, i) => (
-          <Link
-            key={i}
-            style={{
-              textDecoration: "none",
-              color: category === categoryId ? "#4682B4" : "",
-              fontWeight: category === categoryId ? 600 : 100,
-              letterSpacing: category === categoryId ? "2px" : "1px",
-            }}
-            to={`/categories/${categoryId}`}
-          >
-            <li className={styles.link}>{categoryId}</li>
-          </Link>
-        ))}
-      </ul>
-    </>
+    <ul className={styles.list}>
+      {["clothing", "accessories", "shoes", "hats"].map((categoryId, i) => (
+        <Link
+          key={i}
+          style={{
+            textDecoration: "none",
+            color: category === categoryId ? "#4682B4" : "",
+            fontWeight: category === categoryId ? 600 : 100,
+            letterSpacing: category === categoryId ? "2px" : "1px",
+          }}
+          to={`/categories/${categoryId}`}
+        >
+          <li className={styles.link}>{categoryId}</li>
+        </Link>
+      ))}
+    </ul>
   );
-  const renderSizeInput = (
-    <>
-      {(category === "clothing" || category === "hats") && (
-        <>
-          <h3>Size</h3>
-          <ul className={styles.list}>
-            {["X-Small", "Small", "Medium", "Large", "X-Large"].map(
-              (input, i) => (
-                <SidebarFilterInput
-                  key={i}
-                  inputType="checkbox"
-                  value={input}
-                />
-              )
-            )}
-          </ul>
-        </>
-      )}
-      {category === "shoes" && (
-        <>
-          <h3>Size</h3>
-          <select className={styles.shoeSizes}>
-            {[38, 39, 40, 41, 42].map((input, i) => (
-              <SidebarFilterInput key={i} inputType="option" value={input} />
-            ))}
-          </select>
-        </>
-      )}
-    </>
+  const renderClothingSizeInput = (
+    <ul className={styles.list}>
+      {["X-Small", "Small", "Medium", "Large", "X-Large"].map((input, i) => (
+        <SidebarFilterInput key={i} inputType="checkbox" value={input} />
+      ))}
+    </ul>
+  );
+  const renderShoeSizeInput = (
+    <select className={styles.shoeSizes}>
+      {[38, 39, 40, 41, 42].map((input, i) => (
+        <SidebarFilterInput key={i} inputType="option" value={input} />
+      ))}
+    </select>
   );
   const renderColorInput = (
     <>
-      <h3>Color</h3>
       <ul className={styles.list}>
         {["Green", "Red", "Blue", "White", "Black"].map((color, i) => (
           <SidebarFilterInput key={i} inputType="checkbox" value={color} />
@@ -69,7 +49,6 @@ const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
   );
   const renderPriceRangeInput = (
     <>
-      <h3>Price Filter</h3>
       <SidebarFilterInput
         inputType="range"
         value={1}
@@ -83,12 +62,30 @@ const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
 
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.filterBox}>{renderCategoriesLinks}</div>
-      {category !== "accessories" && (
-        <div className={styles.filterBox}>{renderSizeInput}</div>
+      <div className={styles.filterBox}>
+        <h3>Categories</h3>
+        {renderCategoriesLinks}
+      </div>
+      {(category === "clothing" || category === "hats" || !category) && (
+        <div className={styles.filterBox}>
+          <h3>Clothing Size</h3>
+          {renderClothingSizeInput}
+        </div>
       )}
-      <div className={styles.filterBox}>{renderColorInput}</div>
-      <div className={styles.priceBox}>{renderPriceRangeInput}</div>
+      {(category === "shoes" || !category) && (
+        <div className={styles.filterBox}>
+          <h3>Shoes Size</h3>
+          {renderShoeSizeInput}
+        </div>
+      )}
+      <div className={styles.filterBox}>
+        <h3>Color</h3>
+        {renderColorInput}
+      </div>
+      <div className={styles.priceBox}>
+        <h3>Price Filter</h3>
+        {renderPriceRangeInput}
+      </div>
     </aside>
   );
 };
