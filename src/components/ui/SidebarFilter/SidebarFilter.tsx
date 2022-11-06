@@ -55,7 +55,10 @@ const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
         onChange={setInputValue}
       />
       <p>
-        Range: $ {inputValue[0]} - $ {inputValue[1]}
+        Range:{" "}
+        <span className={styles.priceRange}>
+          $ {inputValue[0]} - $ {inputValue[1]}
+        </span>
       </p>
     </>
   );
@@ -66,15 +69,15 @@ const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
         <h3>Categories</h3>
         {renderCategoriesLinks}
       </div>
-      {(category === "clothing" || category === "hats" || !category) && (
+      {category !== "accessories" && category !== "shoes" && (
         <div className={styles.filterBox}>
-          <h3>Clothing Size</h3>
+          <h3>Clothing & Hat Sizing</h3>
           {renderClothingSizeInput}
         </div>
       )}
       {(category === "shoes" || !category) && (
         <div className={styles.filterBox}>
-          <h3>Shoes Size</h3>
+          <h3>Shoe Size</h3>
           {renderShoeSizeInput}
         </div>
       )}

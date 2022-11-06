@@ -41,6 +41,12 @@
     margin-bottom: .5rem;
 }
 
+.link:hover,
+.link:active {
+    color: #4682B4;
+    text-decoration: underline;
+}
+
 .shoeSizes {
     height: 30px;
     border: 1px solid #DADADA;
@@ -57,4 +63,10 @@
 
 .priceBox p {
     font-size: .9rem;
+}
+
+.priceRange {
+    color: #4e4e4e;
+    font-size: 1rem;
+    font-weight: 700;
 }

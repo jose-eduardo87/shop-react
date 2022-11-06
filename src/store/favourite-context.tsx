@@ -1,12 +1,4 @@
-import {
-  createContext,
-  FC,
-  ReactNode,
-  useCallback,
-  useContext,
-  useMemo,
-  useReducer,
-} from "react";
+import { createContext, FC, ReactNode, useContext, useReducer } from "react";
 import {
   ActionKind,
   ItemInterface,
@@ -48,12 +40,9 @@ const FavouriteProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <FavouriteContext.Provider
       value={{
-        favourites: useMemo(() => favourites, [favourites]),
-        onAddItemToFavourite: useCallback((item) => addItemHandler(item), []),
-        onRemoveItemFromFavourite: useCallback(
-          (id) => removeItemHandler(id),
-          []
-        ),
+        favourites,
+        onAddItemToFavourite: (item) => addItemHandler(item),
+        onRemoveItemFromFavourite: (id) => removeItemHandler(id),
       }}
     >
       {children}

@@ -19,7 +19,7 @@ interface ProductsSectionInterface {
   products: ItemInterface[];
 }
 
-const Products: FC<ProductsSectionInterface> = ({ title, products }) => {
+const ProductsOnHome: FC<ProductsSectionInterface> = ({ title, products }) => {
   return (
     <SectionLayout CSSProps={{ ...sectionStyles }}>
       <h2>{title}</h2>
@@ -28,4 +28,4 @@ const Products: FC<ProductsSectionInterface> = ({ title, products }) => {
   );
 };
 
-export default Products;
+export default ProductsOnHome;

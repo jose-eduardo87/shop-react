@@ -3,3 +3,7 @@ export {
   default as FavouriteProvider,
   useFavourite,
 } from "./favourite-context";
+export {
+  default as PaginationProvider,
+  usePagination,
+} from "./pagination-context";
