@@ -16,12 +16,11 @@ interface PaginationProviderInterface {
 
 const getPagination = (currentPage: number, totalResults: number) => {
   const lastPage = Math.ceil(totalResults / 12);
+  const pages: number[] = [];
 
   if (currentPage > lastPage) {
     return [];
   }
-
-  const pages: number[] = [];
 
   if (lastPage <= 5) {
     for (let i = 1; i <= lastPage; i++) {
@@ -33,7 +32,7 @@ const getPagination = (currentPage: number, totalResults: number) => {
 
   if (currentPage > 3) {
     let start = currentPage - 3 + 1;
-    const end = start + 5 > lastPage ? lastPage : start + 5;
+    const end = start + 4 > lastPage ? lastPage : start + 4;
 
     if (end - start < 4) {
       start = end - 4;

@@ -1,0 +1,21 @@
+.root {
+    text-align: right;
+    margin: 1rem 1rem 1rem 0;
+}
+
+.linkButton {
+    margin-right: .5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.linkButton:disabled {
+    cursor: not-allowed;
+}
+
+.currentButton {
+    font-size: 1rem;
+    font-weight: 700;
+    color: blueviolet;
+}

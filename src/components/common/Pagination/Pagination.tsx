@@ -6,17 +6,19 @@ const Pagination = () => {
   const { currentPage, setCurrentPage, getPagination } = usePagination();
 
   return (
-    <div style={{ textAlign: "right" }}>
+    <div className={styles.root}>
       <button
         disabled={currentPage === 1}
+        className={styles.linkButton}
         onClick={() => setCurrentPage((prevState) => prevState - 1)}
       >
-        BACK
+        Previous
       </button>
-      {getPagination(currentPage, 72).map((page) => {
+      {getPagination(currentPage, 72).map((page, i) => {
         if (page === currentPage) {
           return (
             <button
+              key={i}
               className={`${styles.linkButton} ${styles.currentButton}`}
               onClick={() => setCurrentPage(page)}
             >
@@ -27,6 +29,7 @@ const Pagination = () => {
 
         return (
           <button
+            key={i}
             className={styles.linkButton}
             onClick={() => setCurrentPage(page)}
           >
@@ -34,7 +37,13 @@ const Pagination = () => {
           </button>
         );
       })}
-      <button>FORWARD</button>
+      <button
+        disabled={currentPage === 72 / 12}
+        className={styles.linkButton}
+        onClick={() => setCurrentPage((prevState) => prevState + 1)}
+      >
+        Next
+      </button>
     </div>
   );
 };
