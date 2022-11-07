@@ -6,7 +6,8 @@
     margin-bottom: 1rem;
     /* background-color: rgb(191, 240, 255); */
     border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    border: 1px solid #F1F1F1;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; */
     transition: 50ms ease;
 }
 
