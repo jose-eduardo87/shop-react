@@ -27,7 +27,7 @@ const Breadcrumb: FC<BreadcrumbInterface> = ({ breadcrumb }) => {
                   {name}
                 </li>
               </Link>
-              <span> | </span>
+              <span> &#x2192; </span>
             </span>
           );
         }

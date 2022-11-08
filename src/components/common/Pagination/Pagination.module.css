@@ -6,16 +6,25 @@
 .linkButton {
     margin-right: .5rem;
     background-color: transparent;
+    color: #505050;
     border: none;
     cursor: pointer;
 }
 
 .linkButton:disabled {
-    cursor: not-allowed;
+    cursor: auto;
+}
+
+.linkButton:hover {
+    text-decoration: underline;
 }
 
 .currentButton {
-    font-size: 1rem;
     font-weight: 700;
-    color: blueviolet;
+    color: #4682B4;
+    cursor: auto;
+}
+
+.currentButton:hover {
+    text-decoration: none;
 }

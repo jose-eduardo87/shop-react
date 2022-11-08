@@ -33,7 +33,6 @@ const getPagination = (currentPage: number, totalResults: number) => {
   if (currentPage > 3) {
     let start = currentPage - 3 + 1;
     const end = start + 4 > lastPage ? lastPage : start + 4;
-
     if (end - start < 4) {
       start = end - 4;
     }

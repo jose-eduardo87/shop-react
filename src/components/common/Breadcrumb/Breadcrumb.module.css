@@ -2,12 +2,13 @@
     padding: 0;
     margin: 4rem 0 2.25rem 0;
     list-style: none;
-    font-size: .9rem;
+    font-size: .8rem;
 }
 
 .breadcrumb span {
-    margin: 0 .5rem 0 .5rem;
+    margin: 0 .3rem 0 .3rem;
     color: #A1A1A1;
+    font-weight: 900;
 }
 
 .pathName {
