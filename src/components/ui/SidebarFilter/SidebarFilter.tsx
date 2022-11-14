@@ -75,7 +75,7 @@ const SidebarFilter: FC<{ category: string | undefined }> = ({ category }) => {
           {renderClothingSizeInput}
         </div>
       )}
-      {(category === "shoes" || !category) && (
+      {(!category || category === "shoes") && (
         <div className={styles.filterBox}>
           <h3>Shoe Size</h3>
           {renderShoeSizeInput}

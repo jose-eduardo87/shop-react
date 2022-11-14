@@ -5,7 +5,7 @@ import { ItemInterface } from "reducers/index";
 
 import styles from "./ProductsGrid.module.css";
 
-const ProductsGrid: FC<{ products: ItemInterface[] }> = ({ products }) => {
+const ProductsGrid: FC<{ products: ItemInterface[] | [] }> = ({ products }) => {
   const { onAddItemToCart, cart } = useCart();
   const { onAddItemToFavourite, onRemoveItemFromFavourite, favourites } =
     useFavourite();

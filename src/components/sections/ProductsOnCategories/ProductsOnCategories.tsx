@@ -1,6 +1,6 @@
-import { SectionLayout, Pagination } from "components/common";
+import { ItemsFilter, Pagination, SectionLayout } from "components/common";
 import { ProductsGrid } from "components/ui";
-import { ITEMS } from "helpers/constants";
+import { usePagination } from "store";
 
 const sectionStyles = {
   container: {
@@ -9,9 +9,12 @@ const sectionStyles = {
 };
 
 const ProductsOnCategories = () => {
+  const { paginated } = usePagination();
+
   return (
     <SectionLayout CSSProps={sectionStyles}>
-      <ProductsGrid products={ITEMS.slice(0, 12)} />
+      <ItemsFilter />
+      <ProductsGrid products={paginated} />
       <Pagination />
     </SectionLayout>
   );
