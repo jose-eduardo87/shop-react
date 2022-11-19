@@ -20,39 +20,6 @@ interface PaginationProviderInterface {
   setCurrentPage: Dispatch<SetStateAction<number>>;
 }
 
-const getPagination = (currentPage: number, totalResults: number) => {
-  const lastPage = Math.ceil(totalResults / 12);
-  const pages: number[] = [];
-
-  if (currentPage > lastPage) {
-    return [];
-  }
-
-  if (lastPage <= 5) {
-    for (let i = 1; i <= lastPage; i++) {
-      pages.push(i);
-    }
-
-    return pages;
-  }
-
-  if (currentPage > 3) {
-    let start = currentPage - 3 + 1;
-    const end = start + 4 > lastPage ? lastPage : start + 4;
-    if (end - start < 4) {
-      start = end - 4;
-    }
-
-    for (let i = start; i <= end; i++) {
-      pages.push(i);
-    }
-
-    return pages;
-  }
-
-  return [1, 2, 3, 4, 5];
-};
-
 const initialState = {
   currentPage: 1,
   paginated: [],
@@ -75,14 +42,57 @@ const PaginationProvider: FC<{
   const [itemsPerPage, setItemsPerPage] = useState([0, 0]); // stores the first and last items of the current page
   const [pages, setPages] = useState([1]); // stores all the pages available
 
+  // useEffect responsible for updating the current items shown on page (paginated) and the first and last items indexes
+  // for the current page (itemsPerPage).
   useEffect(() => {
-    const start = (currentPage - 1) * 12,
-      end = start + 12 < paginate.length ? start + 12 : paginate.length;
+    // console.log("render 1st useEffect.");
+    const start = (currentPage - 1) * 12;
+    const end = start + 12 < paginate.length ? start + 12 : paginate.length;
+    console.log({ currentPage });
 
     setPaginated(paginate.slice(start, end));
     setItemsPerPage([start + 1, end]);
-    setPages(getPagination(currentPage, paginate.length));
   }, [currentPage, paginate]);
+
+  // useEffect responsible for updating pages array used in the Pagination component for displaying available pages.
+  useEffect(() => {
+    const getPagination = (currentPage: number, totalResults: number) => {
+      const lastPage = Math.ceil(totalResults / 12);
+      const pages: number[] = [];
+
+      if (currentPage > lastPage) {
+        return [];
+      }
+
+      if (lastPage <= 5) {
+        for (let i = 1; i <= lastPage; i++) {
+          pages.push(i);
+        }
+
+        return pages;
+      }
+
+      if (currentPage > 3) {
+        let start = currentPage - 3 + 1;
+        const end = start + 4 > lastPage ? lastPage : start + 4;
+        if (end - start < 4) {
+          start = end - 4;
+        }
+
+        for (let i = start; i <= end; i++) {
+          pages.push(i);
+        }
+
+        return pages;
+      }
+
+      return [1, 2, 3, 4, 5];
+    };
+
+    // console.log("render 2nd useEffect.");
+    setPages(getPagination(currentPage, paginate.length));
+  }, [currentPage, paginate.length]);
+  console.log("Render.");
 
   return (
     <PaginationContext.Provider

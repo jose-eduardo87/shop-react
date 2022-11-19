@@ -6,8 +6,8 @@ const shouldHideButton = (booleanExp: boolean) =>
   booleanExp ? { opacity: 0 } : { opacity: 1 };
 
 const Pagination = () => {
-  const { currentPage, setCurrentPage, pages } = usePagination();
-  const renderPagination = pages.map((page, i) => {
+  const { currentPage, setCurrentPage, pages, totalItems } = usePagination();
+  const renderListOfPages = pages.map((page, i) => {
     return (
       <button
         key={i}
@@ -33,10 +33,10 @@ const Pagination = () => {
       >
         Previous
       </button>
-      {renderPagination}
+      {renderListOfPages}
       <button
-        disabled={currentPage === Math.ceil(31 / 12)}
-        style={shouldHideButton(currentPage === Math.ceil(31 / 12))}
+        disabled={currentPage === Math.ceil(totalItems / 12)}
+        style={shouldHideButton(currentPage === Math.ceil(totalItems / 12))}
         className={styles.linkButton}
         onClick={() => setCurrentPage((prevState) => prevState + 1)}
       >

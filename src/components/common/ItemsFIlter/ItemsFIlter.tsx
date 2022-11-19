@@ -4,6 +4,7 @@ import styles from "./ItemsFilter.module.css";
 
 const ItemsFIlter = () => {
   const { firstIdx, lastIdx, totalItems } = usePagination();
+
   return (
     <div className={styles.root}>
       <p>

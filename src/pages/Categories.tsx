@@ -9,8 +9,10 @@ import { ITEMS } from "helpers/constants";
 const Categories = () => {
   const { categoriesId } = useParams<{ categoriesId: string }>();
   const [productsByCategory, setProductsByCategory] = useState(ITEMS);
+  const [hasChangedCategory, setHasChangedCategory] = useState(false);
 
   useEffect(() => {
+    setHasChangedCategory(true);
     setProductsByCategory(
       categoriesId
         ? ITEMS.filter((item) => item.category === categoriesId)
@@ -47,10 +49,13 @@ const Categories = () => {
   return (
     <PageLayout>
       <Breadcrumb breadcrumb={breadcrumb} />
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <SidebarFilter category={categoriesId} />
         <PaginationProvider paginate={productsByCategory}>
-          <ProductsOnCategories />
+          <ProductsOnCategories
+            hasChangedCategory={hasChangedCategory}
+            setHasChangedCategory={setHasChangedCategory}
+          />
         </PaginationProvider>
       </div>
     </PageLayout>

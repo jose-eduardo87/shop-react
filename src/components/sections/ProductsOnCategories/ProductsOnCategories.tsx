@@ -1,21 +1,41 @@
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { ItemsFilter, Pagination, SectionLayout } from "components/common";
 import { ProductsGrid } from "components/ui";
 import { usePagination } from "store";
 
 const sectionStyles = {
   container: {
-    padding: "0 1rem 0 1rem",
+    margin: "0 auto",
+    maxWidth: "90%",
+    minHeight: "1150px",
   },
 };
 
-const ProductsOnCategories = () => {
-  const { paginated } = usePagination();
+const ProductsOnCategories: FC<{
+  hasChangedCategory: boolean;
+  setHasChangedCategory: Dispatch<SetStateAction<boolean>>;
+}> = ({ hasChangedCategory, setHasChangedCategory }) => {
+  const { paginated, pages, setCurrentPage } = usePagination();
+  const hasItems = pages.length !== 0;
+
+  useEffect(() => {
+    if (hasChangedCategory) {
+      setCurrentPage(1);
+      setHasChangedCategory(false);
+    }
+  }, [hasChangedCategory, setCurrentPage, setHasChangedCategory]);
 
   return (
     <SectionLayout CSSProps={sectionStyles}>
-      <ItemsFilter />
-      <ProductsGrid products={paginated} />
-      <Pagination />
+      {hasItems && <ItemsFilter />}
+      {paginated.length ? (
+        <ProductsGrid products={paginated} />
+      ) : (
+        <div style={{ textAlign: "center" }}>
+          <em>No product matched your criteria.</em>
+        </div>
+      )}
+      {hasItems && <Pagination />}
     </SectionLayout>
   );
 };
