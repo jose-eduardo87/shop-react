@@ -8,6 +8,7 @@ const sectionStyles = {
     margin: "0 auto",
     maxWidth: "90%",
     minHeight: "1150px",
+    // display: "flex",
   },
 };
 
@@ -18,6 +19,7 @@ const ProductsOnCategories: FC<{
   const { paginated, pages, setCurrentPage } = usePagination();
   const hasItems = pages.length !== 0;
 
+  // useEffect used for setting current page to 1 and reset hasChangeCategory to false whenever the user changes category.
   useEffect(() => {
     if (hasChangedCategory) {
       setCurrentPage(1);

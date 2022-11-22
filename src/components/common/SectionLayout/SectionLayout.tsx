@@ -8,10 +8,10 @@ interface CSSPropsInterface {
 }
 
 const SectionLayout: FC<{
-  children: ReactNode;
   id?: string;
+  children: ReactNode;
   CSSProps?: CSSPropsInterface;
-}> = ({ children, id, CSSProps }) => {
+}> = ({ id, children, CSSProps }) => {
   return (
     <section id={id ? id : ""} className={styles.root} style={CSSProps?.root}>
       <div style={CSSProps?.container}>{children}</div>

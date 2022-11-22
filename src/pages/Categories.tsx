@@ -8,12 +8,16 @@ import { ITEMS } from "helpers/constants";
 
 const Categories = () => {
   const { categoriesId } = useParams<{ categoriesId: string }>();
-  const [productsByCategory, setProductsByCategory] = useState(ITEMS);
-  const [hasChangedCategory, setHasChangedCategory] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState(ITEMS);
+  const [hasChangedCategory, setHasChangedCategory] = useState(false); // used to keep track when user changes category.
+  // const filterClothingSizingHandler = () => {};
+  // const filterShoeSizeHandler = () => {};
+  // const filterColorHandler = () => {};
+  // const filterByPriceHandler = () => {};
 
   useEffect(() => {
     setHasChangedCategory(true);
-    setProductsByCategory(
+    setFilteredProducts(
       categoriesId
         ? ITEMS.filter((item) => item.category === categoriesId)
         : ITEMS
@@ -51,7 +55,7 @@ const Categories = () => {
       <Breadcrumb breadcrumb={breadcrumb} />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <SidebarFilter category={categoriesId} />
-        <PaginationProvider paginate={productsByCategory}>
+        <PaginationProvider paginate={filteredProducts}>
           <ProductsOnCategories
             hasChangedCategory={hasChangedCategory}
             setHasChangedCategory={setHasChangedCategory}

@@ -17,7 +17,9 @@ interface PaginationProviderInterface {
   firstIdx: number;
   lastIdx: number;
   totalItems: number;
+  itemsQuantity: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
+  setItemsQuantity: Dispatch<SetStateAction<number>>;
 }
 
 const initialState = {
@@ -27,7 +29,9 @@ const initialState = {
   firstIdx: 0,
   lastIdx: 0,
   totalItems: 0,
+  itemsQuantity: 0,
   setCurrentPage: () => {},
+  setItemsQuantity: () => {},
 };
 
 const PaginationContext =
@@ -39,25 +43,27 @@ const PaginationProvider: FC<{
 }> = ({ paginate, children }) => {
   const [currentPage, setCurrentPage] = useState(1); // stores the current page
   const [paginated, setPaginated] = useState<ItemInterface[] | []>([]); // stores items corresponding to the current page
+  const [itemsQuantity, setItemsQuantity] = useState(12);
   const [itemsPerPage, setItemsPerPage] = useState([0, 0]); // stores the first and last items of the current page
   const [pages, setPages] = useState([1]); // stores all the pages available
 
   // useEffect responsible for updating the current items shown on page (paginated) and the first and last items indexes
   // for the current page (itemsPerPage).
   useEffect(() => {
-    // console.log("render 1st useEffect.");
-    const start = (currentPage - 1) * 12;
-    const end = start + 12 < paginate.length ? start + 12 : paginate.length;
-    console.log({ currentPage });
+    const start = (currentPage - 1) * itemsQuantity;
+    const end =
+      start + itemsQuantity < paginate.length
+        ? start + itemsQuantity
+        : paginate.length;
 
     setPaginated(paginate.slice(start, end));
     setItemsPerPage([start + 1, end]);
-  }, [currentPage, paginate]);
+  }, [currentPage, paginate, itemsQuantity]);
 
   // useEffect responsible for updating pages array used in the Pagination component for displaying available pages.
   useEffect(() => {
     const getPagination = (currentPage: number, totalResults: number) => {
-      const lastPage = Math.ceil(totalResults / 12);
+      const lastPage = Math.ceil(totalResults / itemsQuantity);
       const pages: number[] = [];
 
       if (currentPage > lastPage) {
@@ -89,10 +95,14 @@ const PaginationProvider: FC<{
       return [1, 2, 3, 4, 5];
     };
 
-    // console.log("render 2nd useEffect.");
     setPages(getPagination(currentPage, paginate.length));
-  }, [currentPage, paginate.length]);
-  console.log("Render.");
+  }, [currentPage, paginate.length, itemsQuantity]);
+
+  // useEffect responsible for reseting currentPage to 1 whenever there is a change in itemsQuantity (state responsible
+  // for changing the number of items).
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [itemsQuantity]);
 
   return (
     <PaginationContext.Provider
@@ -103,7 +113,9 @@ const PaginationProvider: FC<{
         firstIdx: itemsPerPage[0],
         lastIdx: itemsPerPage[1],
         totalItems: paginate.length,
+        itemsQuantity,
         setCurrentPage,
+        setItemsQuantity,
       }}
     >
       {children}

@@ -9,3 +9,18 @@
     font-size: .9rem;
     font-weight: 300;
 }
+
+.sortOptions {
+    height: 30px;
+    border: 1px solid #DADADA;
+    padding: 0.25em 0.5em;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    font-weight: 100;
+}
+
+.sortOptions:first-of-type {
+    margin-right: 1rem;
+}
