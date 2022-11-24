@@ -6,8 +6,8 @@
 .linkButton {
     margin-right: .5rem;
     background-color: transparent;
-    color: #505050;
-    border: none;
+    color: #202020;
+    border: 1px solid #F1F1F1;
     cursor: pointer;
 }
 
@@ -15,14 +15,11 @@
     cursor: auto;
 }
 
-.linkButton:hover {
-    text-decoration: underline;
-}
-
 .currentButton {
     font-size: .9rem;
     font-weight: 700;
-    color: #4682B4;
+    background-color: #202020;
+    color: white;
     cursor: auto;
 }
 

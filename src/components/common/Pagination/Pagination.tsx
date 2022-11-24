@@ -3,7 +3,7 @@ import { usePagination } from "store";
 import styles from "./Pagination.module.css";
 
 const shouldHideButton = (booleanExp: boolean) =>
-  booleanExp ? { opacity: 0 } : { opacity: 1 };
+  booleanExp ? { opacity: 0 } : { opacity: 1, border: "none" };
 
 const Pagination = () => {
   const { currentPage, setCurrentPage, pages, totalItems, itemsQuantity } =

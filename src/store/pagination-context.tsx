@@ -6,8 +6,10 @@ import {
   SetStateAction,
   useContext,
   useEffect,
+  useLayoutEffect,
   useState,
 } from "react";
+import { useCustomizeData } from "./customize-data-context";
 import { ItemInterface } from "reducers";
 
 interface PaginationProviderInterface {
@@ -19,6 +21,7 @@ interface PaginationProviderInterface {
   totalItems: number;
   itemsQuantity: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
+  setPaginated: Dispatch<SetStateAction<ItemInterface[] | []>>;
   setItemsQuantity: Dispatch<SetStateAction<number>>;
 }
 
@@ -31,6 +34,7 @@ const initialState = {
   totalItems: 0,
   itemsQuantity: 0,
   setCurrentPage: () => {},
+  setPaginated: () => {},
   setItemsQuantity: () => {},
 };
 
@@ -38,27 +42,28 @@ const PaginationContext =
   createContext<PaginationProviderInterface>(initialState);
 
 const PaginationProvider: FC<{
-  paginate: ItemInterface[];
   children: ReactNode;
-}> = ({ paginate, children }) => {
+}> = ({ children }) => {
+  const { filteredData } = useCustomizeData(); //global state storing filtered items
   const [currentPage, setCurrentPage] = useState(1); // stores the current page
   const [paginated, setPaginated] = useState<ItemInterface[] | []>([]); // stores items corresponding to the current page
-  const [itemsQuantity, setItemsQuantity] = useState(12);
+  const [itemsQuantity, setItemsQuantity] = useState(12); // stores the amount of items displayed in a page
   const [itemsPerPage, setItemsPerPage] = useState([0, 0]); // stores the first and last items of the current page
   const [pages, setPages] = useState([1]); // stores all the pages available
 
-  // useEffect responsible for updating the current items shown on page (paginated) and the first and last items indexes
-  // for the current page (itemsPerPage).
-  useEffect(() => {
+  // useLayoutEffect responsible for updating the current items shown on page (paginated) and the first and last items indexes
+  // for the current page (itemsPerPage). The reason why I used useLayoutEffect here is to prevent items when there is a change
+  // in the state.
+  useLayoutEffect(() => {
     const start = (currentPage - 1) * itemsQuantity;
     const end =
-      start + itemsQuantity < paginate.length
+      start + itemsQuantity < filteredData.length
         ? start + itemsQuantity
-        : paginate.length;
+        : filteredData.length;
 
-    setPaginated(paginate.slice(start, end));
+    setPaginated(filteredData.slice(start, end));
     setItemsPerPage([start + 1, end]);
-  }, [currentPage, paginate, itemsQuantity]);
+  }, [currentPage, itemsQuantity, filteredData]);
 
   // useEffect responsible for updating pages array used in the Pagination component for displaying available pages.
   useEffect(() => {
@@ -95,8 +100,8 @@ const PaginationProvider: FC<{
       return [1, 2, 3, 4, 5];
     };
 
-    setPages(getPagination(currentPage, paginate.length));
-  }, [currentPage, paginate.length, itemsQuantity]);
+    setPages(getPagination(currentPage, filteredData.length));
+  }, [currentPage, filteredData.length, itemsQuantity]);
 
   // useEffect responsible for reseting currentPage to 1 whenever there is a change in itemsQuantity (state responsible
   // for changing the number of items).
@@ -112,9 +117,10 @@ const PaginationProvider: FC<{
         pages,
         firstIdx: itemsPerPage[0],
         lastIdx: itemsPerPage[1],
-        totalItems: paginate.length,
+        totalItems: filteredData.length,
         itemsQuantity,
         setCurrentPage,
+        setPaginated,
         setItemsQuantity,
       }}
     >

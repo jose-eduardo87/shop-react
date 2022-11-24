@@ -1,40 +1,67 @@
+import { FormEvent } from "react";
 import { SidebarFilterInput } from "components/ui";
-import { usePagination } from "store";
+import { usePagination, useCustomizeData } from "store";
 
 import styles from "./ItemsFilter.module.css";
 
 const ItemsFIlter = () => {
-  const { firstIdx, lastIdx, totalItems, setItemsQuantity } = usePagination();
+  const { firstIdx, lastIdx, totalItems, setCurrentPage, setItemsQuantity } =
+    usePagination();
+  const { onSortItems } = useCustomizeData();
+  const onItemsPerPageChangeHandler = (e: FormEvent<HTMLSelectElement>) =>
+    setItemsQuantity(+e.currentTarget.value);
+  const onSortItemsChangeHandler = (e: FormEvent<HTMLSelectElement>) => {
+    // setting currentPage to 1 will trigger the useEffect in pagination-context for the correct recalculation of items/pages/indexes.
+    setCurrentPage(1);
+    onSortItems(e.currentTarget.value);
+  };
 
   return (
     <div className={styles.root}>
-      <button onClick={() => setItemsQuantity((prevState) => prevState + 12)}>
-        +
-      </button>
       <p>
         SHOWING {firstIdx}/{lastIdx} OF {totalItems} RESULTS
       </p>
-      <select className={styles.sortOptions}>
-        {["Items per page", 12, 24, 36, 48].map((input, i) => (
-          <SidebarFilterInput
-            key={i}
-            inputType="option"
-            value={input}
-            disabledItem="Items per page"
-          />
+      <label
+        htmlFor="items-page"
+        title="Choose how many items should be displayed in the page."
+        className={styles.label}
+      >
+        Items per page:{" "}
+      </label>
+      <select
+        id="items-page"
+        className={styles.sortOptions}
+        defaultValue={12}
+        onChange={onItemsPerPageChangeHandler}
+      >
+        {[
+          { option: "12", value: 12 },
+          { option: "24", value: 24 },
+          { option: "36", value: 36 },
+        ].map((input, i) => (
+          <SidebarFilterInput key={i} inputType="option" inputOption={input} />
         ))}
       </select>
-      <select className={styles.sortOptions}>
-        {["Sort items", "Ascending price", "Descending price"].map(
-          (input, i) => (
-            <SidebarFilterInput
-              key={i}
-              inputType="option"
-              value={input}
-              disabledItem="Sort items"
-            />
-          )
-        )}
+      <label
+        htmlFor="sort-items"
+        title="Choose an option to sort items."
+        className={styles.label}
+      >
+        Sort items:{" "}
+      </label>
+      <select
+        id="sort-items"
+        className={styles.sortOptions}
+        defaultValue=""
+        onChange={onSortItemsChangeHandler}
+      >
+        <option disabled></option>
+        {[
+          { option: "Ascending price", value: "asc" },
+          { option: "Descending price", value: "desc" },
+        ].map((input, i) => (
+          <SidebarFilterInput key={i} inputType="option" inputOption={input} />
+        ))}
       </select>
     </div>
   );

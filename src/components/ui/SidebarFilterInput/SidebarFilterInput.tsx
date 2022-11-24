@@ -4,26 +4,21 @@ import styles from "./SidebarFilterInput.module.css";
 
 const SidebarFilterInput: FC<{
   inputType: string;
-  value: string | number;
-  disabledItem?: string;
+  // value: string | number;
+  inputCheckbox?: string | number;
+  inputOption?: { option: string; value: string | number };
   onChange?: Dispatch<SetStateAction<number[]>>;
-}> = ({ inputType, value, disabledItem, onChange }) => {
-  const isInputDisabled = value === disabledItem;
-
+}> = ({ inputType, inputCheckbox, inputOption, onChange }) => {
   if (inputType === "checkbox") {
     return (
       <li className={styles.list}>
-        <input type="checkbox" disabled={isInputDisabled} />
-        <label>{value}</label>
+        <input type="checkbox" />
+        <label>{inputCheckbox}</label>
       </li>
     );
   }
   if (inputType === "option") {
-    return (
-      <option disabled={isInputDisabled} selected={isInputDisabled}>
-        {value}
-      </option>
-    );
+    return <option value={inputOption!.value}>{inputOption!.option}</option>;
   }
 
   const Slider = require("rc-slider").default;

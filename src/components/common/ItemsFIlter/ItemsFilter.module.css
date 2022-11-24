@@ -10,6 +10,11 @@
     font-weight: 300;
 }
 
+.label {
+    letter-spacing: .6px;
+    font-weight: 100;
+}
+
 .sortOptions {
     height: 30px;
     border: 1px solid #DADADA;

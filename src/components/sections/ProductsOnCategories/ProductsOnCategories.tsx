@@ -12,12 +12,17 @@ const sectionStyles = {
   },
 };
 
-const ProductsOnCategories: FC<{
+interface ProductsOnCategoriesInterface {
   hasChangedCategory: boolean;
   setHasChangedCategory: Dispatch<SetStateAction<boolean>>;
-}> = ({ hasChangedCategory, setHasChangedCategory }) => {
-  const { paginated, pages, setCurrentPage } = usePagination();
-  const hasItems = pages.length !== 0;
+}
+
+const ProductsOnCategories: FC<ProductsOnCategoriesInterface> = ({
+  hasChangedCategory,
+  setHasChangedCategory,
+}) => {
+  const { paginated, pages, setCurrentPage } = usePagination(); // remove setPaginated?
+  const hasItems = pages.length > 0;
 
   // useEffect used for setting current page to 1 and reset hasChangeCategory to false whenever the user changes category.
   useEffect(() => {
