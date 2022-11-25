@@ -5,9 +5,15 @@ import { usePagination, useCustomizeData } from "store";
 import styles from "./ItemsFilter.module.css";
 
 const ItemsFIlter = () => {
-  const { firstIdx, lastIdx, totalItems, setCurrentPage, setItemsQuantity } =
-    usePagination();
-  const { onSortItems } = useCustomizeData();
+  const {
+    firstIdx,
+    lastIdx,
+    totalItems,
+    itemsQuantity,
+    setCurrentPage,
+    setItemsQuantity,
+  } = usePagination();
+  const { sort, onSortItems } = useCustomizeData();
   const onItemsPerPageChangeHandler = (e: FormEvent<HTMLSelectElement>) =>
     setItemsQuantity(+e.currentTarget.value);
   const onSortItemsChangeHandler = (e: FormEvent<HTMLSelectElement>) => {
@@ -31,7 +37,7 @@ const ItemsFIlter = () => {
       <select
         id="items-page"
         className={styles.sortOptions}
-        defaultValue={12}
+        defaultValue={itemsQuantity}
         onChange={onItemsPerPageChangeHandler}
       >
         {[
@@ -52,10 +58,12 @@ const ItemsFIlter = () => {
       <select
         id="sort-items"
         className={styles.sortOptions}
-        defaultValue=""
+        defaultValue={"" || sort}
         onChange={onSortItemsChangeHandler}
       >
-        <option disabled></option>
+        <option value="" disabled>
+          Choose an option
+        </option>
         {[
           { option: "Ascending price", value: "asc" },
           { option: "Descending price", value: "desc" },

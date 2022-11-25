@@ -15,28 +15,13 @@ const Categories = () => {
 
   const breadcrumb = categoriesId
     ? [
-        {
-          name: "Home",
-          path: "/home",
-        },
-        {
-          name: "Categories",
-          path: "/categories",
-        },
-        {
-          name: categoriesId,
-          path: "",
-        },
+        { name: "Home", path: "/home" },
+        { name: "Categories", path: "/categories" },
+        { name: categoriesId, path: "" },
       ]
     : [
-        {
-          name: "Home",
-          path: "/home",
-        },
-        {
-          name: "Categories",
-          path: "",
-        },
+        { name: "Home", path: "/home" },
+        { name: "Categories", path: "" },
       ];
 
   return (

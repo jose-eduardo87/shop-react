@@ -35,7 +35,7 @@
 }
 
 .link {
-    width:fit-content;
+    /* width:fit-content; */
     height:fit-content;
     text-transform: capitalize;
     margin-bottom: .5rem;

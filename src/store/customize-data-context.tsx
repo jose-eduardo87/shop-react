@@ -12,11 +12,13 @@ import { ITEMS } from "helpers/constants";
 
 const initialState = {
   filteredData: [],
+  sort: "",
   onSortItems: (sortType: string) => {},
 };
 
 const CustomizeDataContext = createContext<{
   filteredData: ItemInterface[] | [];
+  sort: string;
   onSortItems: (sortType: string) => void;
 }>(initialState);
 
@@ -58,7 +60,7 @@ const CustomizeDataProvider: FC<{
   }, [category, getFilteredItems, sort]);
 
   return (
-    <CustomizeDataContext.Provider value={{ filteredData, onSortItems }}>
+    <CustomizeDataContext.Provider value={{ filteredData, sort, onSortItems }}>
       {children}
     </CustomizeDataContext.Provider>
   );

@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { SidebarFilterInput } from "components/ui/index";
 
@@ -26,7 +26,7 @@ const SidebarFilter: FC<SidebarFilterInterface> = ({ category }) => {
           style={{
             textDecoration: "none",
             color: category === categoryId ? "#4682B4" : "",
-            fontWeight: category === categoryId ? 600 : 100,
+            fontWeight: 400,
             letterSpacing: category === categoryId ? "2px" : "1px",
           }}
           to={`/categories/${categoryId}`}
