@@ -32,10 +32,13 @@ const CustomizeDataProvider: FC<{
 
     return filteredItems;
   }, []);
+
+  const [sort, setSort] = useState("");
   // useState initially set according to what's being passed as category
   const [filteredData, setFilteredData] = useState<ItemInterface[]>(
     getFilteredItems(category)
   );
+  const onSortItems = (sortType: string) => setSort(sortType);
 
   // useEffect responsible for filtering items whenever there is a change in 'category' props
   useEffect(() => {
@@ -44,15 +47,20 @@ const CustomizeDataProvider: FC<{
     setFilteredData(filteredItems);
   }, [category, getFilteredItems]);
 
-  const onSortItems = (sortType: string) => {
-    const filteredDataClone = [...filteredData];
-    const sortedItems =
-      sortType === "asc"
-        ? filteredDataClone.sort((a, b) => a.price - b.price)
-        : filteredDataClone.sort((a, b) => b.price - a.price);
+  // useEffect responsible for making the sorting option persistent when there's a change in category
+  useEffect(() => {
+    if (sort) {
+      const filteredDataClone = [...filteredData];
+      const sortedItems =
+        sort === "asc"
+          ? filteredDataClone.sort((a, b) => a.price - b.price)
+          : filteredDataClone.sort((a, b) => b.price - a.price);
 
-    setFilteredData(sortedItems);
-  };
+      setFilteredData(sortedItems);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sort]);
+
   return (
     <CustomizeDataContext.Provider value={{ filteredData, onSortItems }}>
       {children}
