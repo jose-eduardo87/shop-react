@@ -40,26 +40,22 @@ const CustomizeDataProvider: FC<{
   );
   const onSortItems = (sortType: string) => setSort(sortType);
 
-  // useEffect responsible for filtering items whenever there is a change in 'category' props
+  // useEffect responsible for filtering items whenever there is a change in 'category' props.
+  // It still takes sorting into consideration, sorting items if there is any sorting selected.
   useEffect(() => {
-    const filteredItems = getFilteredItems(category);
+    let filteredItems = getFilteredItems(category);
+
+    if (sort) {
+      const filteredItemsClone = [...filteredItems];
+      sort === "asc"
+        ? filteredItemsClone.sort((a, b) => a.price - b.price)
+        : filteredItemsClone.sort((a, b) => b.price - a.price);
+
+      filteredItems = filteredItemsClone;
+    }
 
     setFilteredData(filteredItems);
-  }, [category, getFilteredItems]);
-
-  // useEffect responsible for making the sorting option persistent when there's a change in category
-  useEffect(() => {
-    if (sort) {
-      const filteredDataClone = [...filteredData];
-      const sortedItems =
-        sort === "asc"
-          ? filteredDataClone.sort((a, b) => a.price - b.price)
-          : filteredDataClone.sort((a, b) => b.price - a.price);
-
-      setFilteredData(sortedItems);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sort]);
+  }, [category, getFilteredItems, sort]);
 
   return (
     <CustomizeDataContext.Provider value={{ filteredData, onSortItems }}>
