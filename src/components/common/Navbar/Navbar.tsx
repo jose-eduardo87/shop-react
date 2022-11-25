@@ -35,10 +35,7 @@ const Navbar = () => {
           <button onClick={clickCartHandler}>
             <Cart {...iconStyles} />
             {cart.totalItemsInCart > 0 && (
-              <div
-                key={Math.random()}
-                className={`${styles.iconBadge} ${styles.badgeCart}`}
-              >
+              <div className={`${styles.iconBadge} ${styles.badgeCart}`}>
                 <span>
                   {cart.totalItemsInCart > 99 ? "+99" : cart.totalItemsInCart}
                 </span>

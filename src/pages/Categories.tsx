@@ -7,7 +7,12 @@ import { CustomizeDataProvider, PaginationProvider } from "store";
 
 const Categories = () => {
   const { categoriesId } = useParams<{ categoriesId: string }>();
-  const [hasChangedCategory, setHasChangedCategory] = useState(false); // used to keep track when user changes category.
+  const [hasChangedCategory, setHasChangedCategory] = useState(false); // used to keep track when user changes category
+
+  // scrolls page to its top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     setHasChangedCategory(true);
