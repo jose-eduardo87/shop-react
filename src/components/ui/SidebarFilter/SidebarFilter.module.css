@@ -12,59 +12,18 @@
     text-transform: uppercase;
 }
 
-.filterBox {
-    width: 100%;
-    padding: 1rem 0;
-    border-bottom: 1px solid #E1E1E1;
+.buttonBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.filterBox:first-of-type {
-    padding-top: 0;
-}
-
-.filterBox h3:first-of-type {
-    margin-top: 0;
-}
-
-.list {
-    padding: 0;
-}
-
-.list li {
-    list-style-type: none;
-}
-
-.link {
-    /* width:fit-content; */
-    height:fit-content;
-    text-transform: capitalize;
-    margin-bottom: .5rem;
-}
-
-.link:hover,
-.link:active {
-    color: #4682B4;
-    text-decoration: underline;
-}
-
-.shoeSizes {
-    height: 30px;
-    border: 1px solid #DADADA;
-    padding: 0.25em 0.5em;
+.buttonBox button {
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #E1E1E1;
     cursor: pointer;
-    line-height: 1.1;
-    letter-spacing: 1px;
-    font-weight: 100;
-}
-
-.priceBox {
-    border-bottom: 1px solid #DADADA;
-}
-
-.priceBox p {
-    font-size: .9rem;
-}
-
-.priceRange {
-    font-weight: 600;
+    font-size: 1rem;
 }

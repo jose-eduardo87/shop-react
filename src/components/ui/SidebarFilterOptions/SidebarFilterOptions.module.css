@@ -1,0 +1,62 @@
+.filterOptions {
+    margin-top: 1rem;
+    animation: reveal-from-top 250ms alternate;
+}
+
+.list {
+    padding: 0;
+}
+
+.list li {
+    list-style-type: none;
+}
+
+.shoeSizes {
+    height: 30px;
+    border: 1px solid #DADADA;
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    font-weight: 100;
+}
+
+.priceRange {
+    font-weight: 600;
+}
+
+.filterBox {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+.filterBox:first-of-type {
+    padding-top: 0;
+}
+
+.filterBox h3:first-of-type {
+    margin-top: 0;
+}
+
+.priceBox {
+    border-bottom: 1px solid #DADADA;
+}
+
+.priceBox p {
+    font-size: .9rem;
+}
+
+@keyframes reveal-from-top {
+    0% {
+        opacity: 0;
+        transform: translateY(-200px)
+    }
+    45% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

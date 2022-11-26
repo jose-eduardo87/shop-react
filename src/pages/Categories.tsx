@@ -9,11 +9,11 @@ const Categories = () => {
   const { categoriesId } = useParams<{ categoriesId: string }>();
   const [hasChangedCategory, setHasChangedCategory] = useState(false); // used to keep track when user changes category
 
-  // scrolls page to its top
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // changes hasChangedCategory to trigger changes in ProductsOnCategories and SidebarFilter
   useEffect(() => {
     setHasChangedCategory(true);
   }, [categoriesId]);
@@ -33,7 +33,10 @@ const Categories = () => {
     <PageLayout>
       <Breadcrumb breadcrumb={breadcrumb} />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <SidebarFilter category={categoriesId} />
+        <SidebarFilter
+          category={categoriesId}
+          hasChangedCategory={hasChangedCategory}
+        />
         <CustomizeDataProvider category={categoriesId}>
           <PaginationProvider>
             <ProductsOnCategories

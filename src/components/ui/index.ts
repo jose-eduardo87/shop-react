@@ -9,4 +9,6 @@ export { default as ProductCard } from "./ProductCard/ProductCard";
 export { default as ProductsGrid } from "./ProductsGrid/ProductsGrid";
 export { default as SidebarFilter } from "./SidebarFilter/SidebarFilter";
 export { default as SidebarFilterInput } from "./SidebarFilterInput/SidebarFilterInput";
+export { default as SidebarFilterOptions } from "./SidebarFilterOptions/SidebarFilterOptions";
+export { default as SidebarSortCategories } from "./SidebarSortCategories/SidebarSortCategories";
 export { default as Tooltip, type TooltipInterface } from "./Tooltip/Tooltip";
