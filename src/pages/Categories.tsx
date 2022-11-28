@@ -33,11 +33,11 @@ const Categories = () => {
     <PageLayout>
       <Breadcrumb breadcrumb={breadcrumb} />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <SidebarFilter
-          category={categoriesId}
-          hasChangedCategory={hasChangedCategory}
-        />
         <CustomizeDataProvider category={categoriesId}>
+          <SidebarFilter
+            category={categoriesId}
+            hasChangedCategory={hasChangedCategory}
+          />
           <PaginationProvider>
             <ProductsOnCategories
               hasChangedCategory={hasChangedCategory}

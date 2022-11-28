@@ -33,9 +33,19 @@ const SidebarFilter: FC<SidebarFilterInterface> = ({
       <div className={styles.buttonBox}>
         <h3>Filter options</h3>
         {areFilterOptionsShown ? (
-          <button onClick={toggleShowFilterOptions}>&#9650;</button>
+          <button
+            className={styles.filterOpened}
+            onClick={toggleShowFilterOptions}
+          >
+            &#9650;
+          </button>
         ) : (
-          <button onClick={toggleShowFilterOptions}>&#9660;</button>
+          <button
+            className={styles.filterClosed}
+            onClick={toggleShowFilterOptions}
+          >
+            &#9660;
+          </button>
         )}
       </div>
       {areFilterOptionsShown && <SidebarFilterOptions category={category} />}

@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { ChangeEvent } from "react";
 import { SidebarFilterInput } from "components/ui";
 import { usePagination, useCustomizeData } from "store";
 
@@ -14,9 +14,9 @@ const ItemsFIlter = () => {
     setItemsQuantity,
   } = usePagination();
   const { sort, onSortItems } = useCustomizeData();
-  const onItemsPerPageChangeHandler = (e: FormEvent<HTMLSelectElement>) =>
+  const onItemsPerPageChangeHandler = (e: ChangeEvent<HTMLSelectElement>) =>
     setItemsQuantity(+e.currentTarget.value);
-  const onSortItemsChangeHandler = (e: FormEvent<HTMLSelectElement>) => {
+  const onSortItemsChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     // setting currentPage to 1 will trigger the useEffect in pagination-context for the correct recalculation of items/pages/indexes.
     setCurrentPage(1);
     onSortItems(e.currentTarget.value);

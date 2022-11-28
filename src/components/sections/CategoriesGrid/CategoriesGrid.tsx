@@ -30,23 +30,29 @@ const CategoriesGrid: FC = () => {
       <h2>Categories</h2>
       <div className={styles.root}>
         <Link id={styles.clothing} to="/categories/clothing">
-          <div style={getBackgroundStyle(clothingImage, "80%")}>
+          <div
+            id={styles.clothing}
+            style={getBackgroundStyle(clothingImage, "80%")}
+          >
             <div className={styles.textBox}>clothing</div>
           </div>
         </Link>
         <Link id={styles.accessories} to="/categories/accessories">
-          <div style={getBackgroundStyle(accessoriesImage)}>
+          <div
+            id={styles.accessories}
+            style={getBackgroundStyle(accessoriesImage)}
+          >
             {/* <img alt="Accessories" src={accessoriesImage} /> */}
             <div className={styles.textBox}>accessories</div>
           </div>
         </Link>
         <Link id={styles.shoes} to="/categories/shoes">
-          <div id={styles.shoes} style={getBackgroundStyle(shoesImage)}>
+          <div style={getBackgroundStyle(shoesImage)}>
             <div className={styles.textBox}>shoes</div>
           </div>
         </Link>
         <Link id={styles.hats} to="/categories/hats">
-          <div id={styles.hats} style={getBackgroundStyle(hatsImage)}>
+          <div style={getBackgroundStyle(hatsImage)}>
             <div className={styles.textBox}>hats</div>
           </div>
         </Link>

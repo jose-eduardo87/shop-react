@@ -35,16 +35,22 @@
     padding-top: 0;
 }
 
-.filterBox h3:first-of-type {
+.filterBox h4 {
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.filterBox h4:first-of-type {
     margin-top: 0;
 }
 
 .priceBox {
-    border-bottom: 1px solid #DADADA;
+    border-bottom: 1px solid #E1E1E1;
 }
 
-.priceBox p {
-    font-size: .9rem;
+.priceBox h4 {
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
 @keyframes reveal-from-top {

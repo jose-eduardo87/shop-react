@@ -1,18 +1,27 @@
-import { FC, Dispatch, SetStateAction } from "react";
+import { FC, ChangeEvent, Dispatch, SetStateAction } from "react";
+import { useCustomizeData } from "store";
 
 import styles from "./SidebarFilterInput.module.css";
 
 const SidebarFilterInput: FC<{
   inputType: string;
-  // value: string | number;
   inputCheckbox?: string | number;
   inputOption?: { option: string; value: string | number };
-  onChange?: Dispatch<SetStateAction<number[]>>;
-}> = ({ inputType, inputCheckbox, inputOption, onChange }) => {
+  onChangeRange?: Dispatch<SetStateAction<number[]>>;
+}> = ({ inputType, inputCheckbox, inputOption, onChangeRange }) => {
+  const { onClothingAndHatSizeChange } = useCustomizeData();
+
   if (inputType === "checkbox") {
+    const onCheckboxChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>
+      onClothingAndHatSizeChange(e.target.value, e.target.checked);
+
     return (
       <li className={styles.list}>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          value={inputCheckbox}
+          onChange={(e) => onCheckboxChangeHandler(e)}
+        />
         <label>{inputCheckbox}</label>
       </li>
     );
@@ -30,7 +39,7 @@ const SidebarFilterInput: FC<{
       min={0}
       max={999}
       defaultValue={[160, 640]}
-      onChange={(value: number[]) => onChange!(value)}
+      onChange={(value: number[]) => onChangeRange!(value)}
     />
   );
 };

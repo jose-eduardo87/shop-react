@@ -1,12 +1,15 @@
 import { FC, useState } from "react";
 import { SidebarFilterInput } from "components/ui/index";
+// import { useCustomizeData } from "store";
 
 import styles from "./SidebarFilterOptions.module.css";
 
 const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
   category,
 }) => {
+  // const { onClothingAndHatSizeChange } = useCustomizeData();
   const [inputValue, setInputValue] = useState([160, 640]);
+
   const renderClothingSizeInput = (
     <ul className={styles.list}>
       {["X-Small", "Small", "Medium", "Large", "X-Large"].map((input, i) => (
@@ -14,6 +17,7 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
           key={i}
           inputType="checkbox"
           inputCheckbox={input}
+          // onChangeCheckbox={onClothingAndHatSizeChange}
         />
       ))}
     </ul>
@@ -47,7 +51,7 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
   );
   const renderPriceRangeInput = (
     <>
-      <SidebarFilterInput inputType="range" onChange={setInputValue} />
+      <SidebarFilterInput inputType="range" onChangeRange={setInputValue} />
       <p>
         Range:{" "}
         <span className={styles.priceRange}>
@@ -61,22 +65,22 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
     <div className={styles.filterOptions}>
       {category !== "accessories" && category !== "shoes" && (
         <div className={styles.filterBox}>
-          <h3>Clothing & Hat Sizing</h3>
+          <h4>Clothing & Hat Sizing</h4>
           {renderClothingSizeInput}
         </div>
       )}
       {(!category || category === "shoes") && (
         <div className={styles.filterBox}>
-          <h3>Shoe Size</h3>
+          <h4>Shoe Size</h4>
           {renderShoeSizeInput}
         </div>
       )}
       <div className={styles.filterBox}>
-        <h3>Color</h3>
+        <h4>Color</h4>
         {renderColorInput}
       </div>
       <div className={styles.priceBox}>
-        <h3>Price Filter</h3>
+        <h4>Price Filter</h4>
         {renderPriceRangeInput}
       </div>
     </div>
