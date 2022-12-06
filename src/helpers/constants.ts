@@ -15,7 +15,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["red", "white", "black"],
-      size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -28,7 +28,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black"],
-      size: ["S", "M", "L", "XL"],
+      size: ["M", "L"],
     },
   },
   {
@@ -41,7 +41,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["red", "white", "black", "pink", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -67,7 +67,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -93,7 +93,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["White"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -106,7 +106,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -119,7 +119,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -132,7 +132,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -145,7 +145,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -158,7 +158,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -171,7 +171,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -184,7 +184,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -197,7 +197,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -210,7 +210,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      size: ["S", "M", "L"],
     },
   },
   {
@@ -223,7 +223,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      size: ["XS", "S", "M", "L"],
     },
   },
   {
@@ -236,7 +236,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -249,7 +249,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -262,7 +262,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -275,7 +275,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -288,7 +288,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -301,7 +301,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -314,7 +314,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -327,7 +327,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -340,7 +340,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -353,7 +353,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -366,7 +366,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -379,7 +379,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -392,7 +392,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -405,7 +405,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -418,7 +418,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -431,7 +431,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -444,7 +444,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -457,7 +457,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -470,7 +470,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -483,7 +483,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -496,7 +496,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -509,7 +509,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -522,7 +522,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -535,7 +535,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -548,7 +548,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -561,7 +561,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -574,7 +574,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -587,7 +587,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -600,7 +600,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -613,7 +613,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -626,7 +626,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -639,7 +639,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -652,7 +652,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -665,7 +665,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -678,7 +678,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -691,7 +691,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -704,7 +704,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -717,7 +717,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -730,7 +730,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -743,7 +743,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -756,7 +756,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -769,7 +769,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -782,7 +782,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -795,7 +795,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -808,7 +808,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -821,7 +821,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -834,7 +834,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
   {
@@ -847,7 +847,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L", "XL"],
+      // size: ["S", "M", "L"],
     },
   },
 ];

@@ -1,29 +1,40 @@
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { SidebarFilterInput } from "components/ui/index";
-// import { useCustomizeData } from "store";
+import { useCustomizeData } from "store";
 
 import styles from "./SidebarFilterOptions.module.css";
 
 const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
   category,
 }) => {
-  // const { onClothingAndHatSizeChange } = useCustomizeData();
+  const { onShoeSizeChange, onFilterItems } = useCustomizeData();
   const [inputValue, setInputValue] = useState([160, 640]);
+  const onSelectChangeHandler = (e: ChangeEvent<HTMLSelectElement>) =>
+    onShoeSizeChange(+e.target.value);
 
   const renderClothingSizeInput = (
     <ul className={styles.list}>
-      {["X-Small", "Small", "Medium", "Large", "X-Large"].map((input, i) => (
+      {[
+        { label: "X-Small", value: "XS" },
+        { label: "Small", value: "S" },
+        { label: "Medium", value: "M" },
+        { label: "Large", value: "L" },
+        { label: "X-Large", value: "XL" },
+      ].map((input, i) => (
         <SidebarFilterInput
           key={i}
           inputType="checkbox"
           inputCheckbox={input}
-          // onChangeCheckbox={onClothingAndHatSizeChange}
         />
       ))}
     </ul>
   );
   const renderShoeSizeInput = (
-    <select defaultValue="Select a size" className={styles.shoeSizes}>
+    <select
+      defaultValue="Select a size"
+      onChange={(e) => onSelectChangeHandler(e)}
+      className={styles.shoeSizes}
+    >
       <option disabled>Select a size</option>
       {[
         { option: "38", value: 38 },
@@ -39,10 +50,17 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
   const renderColorInput = (
     <>
       <ul className={styles.list}>
-        {["Green", "Red", "Blue", "White", "Black"].map((input, i) => (
+        {[
+          { label: "Green", value: "green" },
+          { label: "Red", value: "red" },
+          { label: "Blue", value: "blue" },
+          { label: "White", value: "white" },
+          { label: "Black", value: "black" },
+        ].map((input, i) => (
           <SidebarFilterInput
             key={i}
             inputType="checkbox"
+            filterType="color"
             inputCheckbox={input}
           />
         ))}
@@ -83,6 +101,7 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
         <h4>Price Filter</h4>
         {renderPriceRangeInput}
       </div>
+      <button onClick={onFilterItems}>Filter</button>
     </div>
   );
 };

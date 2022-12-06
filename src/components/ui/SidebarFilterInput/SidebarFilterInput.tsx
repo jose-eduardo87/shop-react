@@ -5,24 +5,27 @@ import styles from "./SidebarFilterInput.module.css";
 
 const SidebarFilterInput: FC<{
   inputType: string;
-  inputCheckbox?: string | number;
+  filterType?: string;
+  inputCheckbox?: { label: string; value: string };
   inputOption?: { option: string; value: string | number };
   onChangeRange?: Dispatch<SetStateAction<number[]>>;
-}> = ({ inputType, inputCheckbox, inputOption, onChangeRange }) => {
-  const { onClothingAndHatSizeChange } = useCustomizeData();
+}> = ({ inputType, filterType, inputCheckbox, inputOption, onChangeRange }) => {
+  const { onClothingAndHatSizeChange, onColorChange } = useCustomizeData();
 
   if (inputType === "checkbox") {
     const onCheckboxChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>
-      onClothingAndHatSizeChange(e.target.value, e.target.checked);
+      filterType === "color"
+        ? onColorChange(e.target.value, e.target.checked)
+        : onClothingAndHatSizeChange(e.target.value, e.target.checked);
 
     return (
       <li className={styles.list}>
         <input
           type="checkbox"
-          value={inputCheckbox}
+          value={inputCheckbox!.value}
           onChange={(e) => onCheckboxChangeHandler(e)}
         />
-        <label>{inputCheckbox}</label>
+        <label>{inputCheckbox!.label}</label>
       </li>
     );
   }

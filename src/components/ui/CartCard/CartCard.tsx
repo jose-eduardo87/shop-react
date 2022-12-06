@@ -26,7 +26,6 @@ const CartCard: FC<CartCardInterface> = ({ item }) => {
     cursor: "not-allowed",
     backgroundColor: "rgba(255,255,255,.3)",
   };
-  // console.log("Render.");
 
   return (
     <div className={styles.card}>
