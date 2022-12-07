@@ -19,7 +19,7 @@ const SidebarFilter: FC<SidebarFilterInterface> = ({
   const toggleShowFilterOptions = () =>
     setAreFilterOptionsShown((prevState) => !prevState);
 
-  // useEffect responsible for closing filter options (and thus reseting all previous marked filter items)
+  // useEffect responsible for closing filter options (and thus resetting all previous marked filter items)
   // whenever there is a change in category
   useEffect(() => {
     if (hasChangedCategory) {

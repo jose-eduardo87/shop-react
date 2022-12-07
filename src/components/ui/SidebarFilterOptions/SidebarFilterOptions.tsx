@@ -51,11 +51,12 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
     <>
       <ul className={styles.list}>
         {[
+          { label: "White", value: "white" },
+          { label: "Black", value: "black" },
           { label: "Green", value: "green" },
           { label: "Red", value: "red" },
           { label: "Blue", value: "blue" },
-          { label: "White", value: "white" },
-          { label: "Black", value: "black" },
+          { label: "Yellow", value: "yellow" },
         ].map((input, i) => (
           <SidebarFilterInput
             key={i}
@@ -101,7 +102,13 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
         <h4>Price Filter</h4>
         {renderPriceRangeInput}
       </div>
-      <button onClick={onFilterItems}>Filter</button>
+      <button
+        className={styles.button}
+        // disabled={isButtonDisabled}
+        onClick={onFilterItems}
+      >
+        Filter
+      </button>
     </div>
   );
 };

@@ -15,6 +15,7 @@ import { ITEMS } from "helpers/constants";
 const initialState = {
   filteredData: [],
   sort: "",
+  isButtonDisabled: true,
   onClothingAndHatSizeChange: (value: string, isChecked: boolean) => {},
   onColorChange: (value: string, isChecked: boolean) => {},
   onShoeSizeChange: (value: number) => {},
@@ -25,6 +26,7 @@ const initialState = {
 const CustomizeDataContext = createContext<{
   filteredData: ItemInterface[] | [];
   sort: string;
+  isButtonDisabled: boolean;
   onClothingAndHatSizeChange: (value: string, isChecked: boolean) => void;
   onColorChange: (value: string, isChecked: boolean) => void;
   onShoeSizeChange: (value: number) => void;
@@ -36,25 +38,43 @@ const CustomizeDataProvider: FC<{
   category: string | undefined;
   children: ReactNode;
 }> = ({ category, children }) => {
-  // memoized function to prevent recalculation whenever it's being used in useEffect
-  const getFilteredItems = useCallback((category: string | undefined) => {
-    const filteredItems = category
-      ? ITEMS.filter((item) => item.category === category)
-      : ITEMS;
-
-    return filteredItems;
-  }, []);
-
   // Params storing filter values => I used useRef because I needed to keep track of the values without re-rendering
   // this context. Also, these Refs hold Set values as methods like .add(), .delete() and .has() are O(1), and give
-  // better performance compared to array methods like .slice() and .indexOf(), which are O(n).
+  // better performance compared to array methods like .slice() and .indexOf() which are O(n), and I would have to use
+  // them if I chose arrays over Set instead.
   const clothingAndHatSizeParamRef = useRef(new Set<string>());
   const colorParamRef = useRef(new Set<string>());
   const shoeSizeParamRef = useRef<number>();
+  // sort holds the type of sorting selected: 'asc' => ascending / 'desc' => descending.
   const [sort, setSort] = useState("");
-  // useState initially set according to what's being passed as category
-  const [filteredData, setFilteredData] = useState<ItemInterface[]>(
-    getFilteredItems(category)
+  // not working
+  const isButtonDisabled =
+    !clothingAndHatSizeParamRef.current.size &&
+    !colorParamRef.current.size &&
+    !shoeSizeParamRef.current;
+
+  // memoized functions to prevent unnecessary recalculation whenever they are being used inside useEffect.
+  const getFilteredItems = useCallback(
+    (category: string | undefined): ItemInterface[] => {
+      const filteredItems = category
+        ? ITEMS.filter((item) => item.category === category)
+        : ITEMS;
+
+      return filteredItems;
+    },
+    []
+  );
+  const getSortedItems = useCallback(
+    (items: ItemInterface[]) => {
+      const filteredDataClone = [...items];
+
+      sort === "asc"
+        ? filteredDataClone.sort((a, b) => a.price - b.price)
+        : filteredDataClone.sort((a, b) => b.price - a.price);
+
+      return filteredDataClone;
+    },
+    [sort]
   );
   const updateCheckboxInput = (
     paramSet: MutableRefObject<Set<string>>,
@@ -63,6 +83,12 @@ const CustomizeDataProvider: FC<{
   ) => {
     isChecked ? paramSet.current!.add(value) : paramSet.current.delete(value);
   };
+
+  // useState initially set according to what's being passed as category
+  const [filteredData, setFilteredData] = useState<ItemInterface[]>(
+    getFilteredItems(category)
+  );
+
   const onClothingAndHatSizeChange = (value: string, isChecked: boolean) => {
     updateCheckboxInput(clothingAndHatSizeParamRef, value, isChecked);
   };
@@ -74,19 +100,36 @@ const CustomizeDataProvider: FC<{
   };
   const onSortItems = (sortType: string) => setSort(sortType);
   const onFilterItems = () => {
-    let itemsClone = getFilteredItems(category);
-
-    if (clothingAndHatSizeParamRef.current.size) {
-      // even though the above chain of methods may look an aberration at first sight in terms of time complexity,
-      // it actually is a very performant one as .filter and .some are 0(n), and .has is O(1).
-      itemsClone = itemsClone.filter(({ additionalInfo }) =>
-        additionalInfo.size?.some((size) =>
-          clothingAndHatSizeParamRef.current.has(size)
+    let filteredItems = getFilteredItems(category);
+    const manageFilteredItems = (
+      filterRef: MutableRefObject<Set<string | number>>,
+      property: "size" | "colors"
+    ) =>
+      filteredItems.filter(({ additionalInfo }) =>
+        additionalInfo[property]?.some((property) =>
+          filterRef.current.has(property)
         )
+      );
+
+    // should I create a recursive function to avoid this amount of if?
+    if (clothingAndHatSizeParamRef.current.size) {
+      filteredItems = manageFilteredItems(clothingAndHatSizeParamRef, "size");
+    }
+    if (colorParamRef.current.size) {
+      filteredItems = manageFilteredItems(colorParamRef, "colors");
+    }
+    if (shoeSizeParamRef.current) {
+      filteredItems = filteredItems.filter(({ additionalInfo }) =>
+        additionalInfo.size?.includes(shoeSizeParamRef.current!)
       );
     }
 
-    setFilteredData(itemsClone);
+    // this statement will make possible filtered items being sorted, if there is any sorting option selected.
+    if (sort) {
+      filteredItems = getSortedItems(filteredItems);
+    }
+
+    setFilteredData(filteredItems);
   };
 
   // useEffect responsible for filtering items whenever there is a change in 'category' props.
@@ -99,26 +142,16 @@ const CustomizeDataProvider: FC<{
   // is a change in category.
   useEffect(() => {
     if (sort) {
-      const getSortedItems = (prevState: ItemInterface[]) => {
-        // mandatory to use prevState as React guarantees it is going to be the most recent state.
-        const filteredDataClone = [...prevState];
-
-        sort === "asc"
-          ? filteredDataClone.sort((a, b) => a.price - b.price)
-          : filteredDataClone.sort((a, b) => b.price - a.price);
-
-        return filteredDataClone;
-      };
-
       setFilteredData((prevState) => getSortedItems(prevState));
     }
-  }, [category, sort, getFilteredItems]);
+  }, [category, sort, getSortedItems]);
 
   return (
     <CustomizeDataContext.Provider
       value={{
         filteredData,
         sort,
+        isButtonDisabled,
         onClothingAndHatSizeChange,
         onColorChange,
         onShoeSizeChange,

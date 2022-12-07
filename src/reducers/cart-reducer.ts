@@ -15,7 +15,7 @@ export interface ItemInterface {
   quantity: number;
   imageSrc: string;
   additionalInfo: {
-    size?: string[];
+    size?: (string | number)[];
     colors?: string[];
   };
 }

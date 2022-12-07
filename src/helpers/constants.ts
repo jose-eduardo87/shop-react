@@ -15,7 +15,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["red", "white", "black"],
-      size: ["S", "M", "L"],
+      size: ["XS"],
     },
   },
   {
@@ -28,7 +28,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black"],
-      size: ["M", "L"],
+      size: [39, 40],
     },
   },
   {
@@ -80,7 +80,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "Black"],
-      size: ["S", "M", "L", "XL"],
+      size: [38, 40, 41],
     },
   },
   {
@@ -145,7 +145,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      size: ["S", "M", "L"],
+      size: [38, 39, 40],
     },
   },
   {
@@ -197,7 +197,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      size: ["S", "M", "L"],
+      size: [38, 39, 40, 41, 42],
     },
   },
   {
@@ -236,7 +236,7 @@ export const ITEMS = [
     imageSrc: "/",
     additionalInfo: {
       colors: ["white", "black", "yellow"],
-      // size: ["S", "M", "L"],
+      size: ["S"],
     },
   },
   {
