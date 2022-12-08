@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, Dispatch, SetStateAction } from "react";
+import { FC, ChangeEvent, useEffect } from "react";
 import { useCustomizeData } from "store";
 
 import styles from "./SidebarFilterInput.module.css";
@@ -8,9 +8,17 @@ const SidebarFilterInput: FC<{
   filterType?: string;
   inputCheckbox?: { label: string; value: string };
   inputOption?: { option: string; value: string | number };
-  onChangeRange?: Dispatch<SetStateAction<number[]>>;
-}> = ({ inputType, filterType, inputCheckbox, inputOption, onChangeRange }) => {
-  const { onClothingAndHatSizeChange, onColorChange } = useCustomizeData();
+}> = ({ inputType, filterType, inputCheckbox, inputOption }) => {
+  const { onClothingAndHatSizeChange, onColorChange, setPriceRange } =
+    useCustomizeData();
+
+  useEffect(() => {
+    // in case component rendered is of inputType === 'range', this cleanup function will
+    // run to reset price values to default.
+    if (inputType === "range") {
+      return () => setPriceRange([0, 999]);
+    }
+  }, [setPriceRange, inputType]);
 
   if (inputType === "checkbox") {
     const onCheckboxChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>
@@ -41,8 +49,8 @@ const SidebarFilterInput: FC<{
       range
       min={0}
       max={999}
-      defaultValue={[160, 640]}
-      onChange={(value: number[]) => onChangeRange!(value)}
+      defaultValue={[0, 999]}
+      onChange={(value: number[]) => setPriceRange(value)}
     />
   );
 };

@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC } from "react";
 import { SidebarFilterInput } from "components/ui/index";
 import { useCustomizeData } from "store";
 
@@ -7,8 +7,7 @@ import styles from "./SidebarFilterOptions.module.css";
 const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
   category,
 }) => {
-  const { onShoeSizeChange, onFilterItems } = useCustomizeData();
-  const [inputValue, setInputValue] = useState([160, 640]);
+  const { priceRange, onShoeSizeChange, onFilterItems } = useCustomizeData();
   const onSelectChangeHandler = (e: ChangeEvent<HTMLSelectElement>) =>
     onShoeSizeChange(+e.target.value);
 
@@ -70,11 +69,11 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
   );
   const renderPriceRangeInput = (
     <>
-      <SidebarFilterInput inputType="range" onChangeRange={setInputValue} />
+      <SidebarFilterInput inputType="range" />
       <p>
         Range:{" "}
         <span className={styles.priceRange}>
-          $ {inputValue[0]} - $ {inputValue[1]}
+          $ {priceRange[0]} - $ {priceRange[1]}
         </span>
       </p>
     </>

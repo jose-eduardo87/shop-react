@@ -1,7 +1,9 @@
 import {
   createContext,
+  Dispatch,
   FC,
   MutableRefObject,
+  SetStateAction,
   ReactNode,
   useCallback,
   useContext,
@@ -15,23 +17,27 @@ import { ITEMS } from "helpers/constants";
 const initialState = {
   filteredData: [],
   sort: "",
+  priceRange: [0, 999],
   isButtonDisabled: true,
   onClothingAndHatSizeChange: (value: string, isChecked: boolean) => {},
   onColorChange: (value: string, isChecked: boolean) => {},
   onShoeSizeChange: (value: number) => {},
   onSortItems: (sortType: string) => {},
   onFilterItems: () => {},
+  setPriceRange: () => {},
 };
 
 const CustomizeDataContext = createContext<{
   filteredData: ItemInterface[] | [];
   sort: string;
+  priceRange: number[];
   isButtonDisabled: boolean;
   onClothingAndHatSizeChange: (value: string, isChecked: boolean) => void;
   onColorChange: (value: string, isChecked: boolean) => void;
   onShoeSizeChange: (value: number) => void;
   onSortItems: (sortType: string) => void;
   onFilterItems: () => void;
+  setPriceRange: Dispatch<SetStateAction<number[]>>;
 }>(initialState);
 
 const CustomizeDataProvider: FC<{
@@ -47,6 +53,7 @@ const CustomizeDataProvider: FC<{
   const shoeSizeParamRef = useRef<number>();
   // sort holds the type of sorting selected: 'asc' => ascending / 'desc' => descending.
   const [sort, setSort] = useState("");
+  const [priceRange, setPriceRange] = useState([0, 999]);
   // not working
   const isButtonDisabled =
     !clothingAndHatSizeParamRef.current.size &&
@@ -54,7 +61,7 @@ const CustomizeDataProvider: FC<{
     !shoeSizeParamRef.current;
 
   // memoized functions to prevent unnecessary recalculation whenever they are being used inside useEffect.
-  const getFilteredItems = useCallback(
+  const getFilteredItemsByCategory = useCallback(
     (category: string | undefined): ItemInterface[] => {
       const filteredItems = category
         ? ITEMS.filter((item) => item.category === category)
@@ -86,7 +93,7 @@ const CustomizeDataProvider: FC<{
 
   // useState initially set according to what's being passed as category
   const [filteredData, setFilteredData] = useState<ItemInterface[]>(
-    getFilteredItems(category)
+    getFilteredItemsByCategory(category)
   );
 
   const onClothingAndHatSizeChange = (value: string, isChecked: boolean) => {
@@ -100,8 +107,8 @@ const CustomizeDataProvider: FC<{
   };
   const onSortItems = (sortType: string) => setSort(sortType);
   const onFilterItems = () => {
-    let filteredItems = getFilteredItems(category);
-    const manageFilteredItems = (
+    let filteredItems = getFilteredItemsByCategory(category);
+    const getFilteredItemsByParams = (
       filterRef: MutableRefObject<Set<string | number>>,
       property: "size" | "colors"
     ) =>
@@ -111,18 +118,25 @@ const CustomizeDataProvider: FC<{
         )
       );
 
-    // should I create a recursive function to avoid this amount of if?
     if (clothingAndHatSizeParamRef.current.size) {
-      filteredItems = manageFilteredItems(clothingAndHatSizeParamRef, "size");
+      filteredItems = getFilteredItemsByParams(
+        clothingAndHatSizeParamRef,
+        "size"
+      );
     }
     if (colorParamRef.current.size) {
-      filteredItems = manageFilteredItems(colorParamRef, "colors");
+      filteredItems = getFilteredItemsByParams(colorParamRef, "colors");
     }
     if (shoeSizeParamRef.current) {
       filteredItems = filteredItems.filter(({ additionalInfo }) =>
         additionalInfo.size?.includes(shoeSizeParamRef.current!)
       );
     }
+
+    // filter items by price
+    filteredItems = filteredItems.filter(
+      ({ price }) => price >= priceRange[0] && price <= priceRange[1]
+    );
 
     // this statement will make possible filtered items being sorted, if there is any sorting option selected.
     if (sort) {
@@ -134,8 +148,8 @@ const CustomizeDataProvider: FC<{
 
   // useEffect responsible for filtering items whenever there is a change in 'category' props.
   useEffect(() => {
-    setFilteredData(getFilteredItems(category));
-  }, [category, getFilteredItems]);
+    setFilteredData(getFilteredItemsByCategory(category));
+  }, [category, getFilteredItemsByCategory]);
 
   // useEffect responsible for setting sorted items in filteredData whenever there is a change in 'sort'.
   // This useEffect guarantees that selected sorting option will be taken into consideration even when there
@@ -151,12 +165,14 @@ const CustomizeDataProvider: FC<{
       value={{
         filteredData,
         sort,
+        priceRange,
         isButtonDisabled,
         onClothingAndHatSizeChange,
         onColorChange,
         onShoeSizeChange,
         onSortItems,
         onFilterItems,
+        setPriceRange,
       }}
     >
       {children}
