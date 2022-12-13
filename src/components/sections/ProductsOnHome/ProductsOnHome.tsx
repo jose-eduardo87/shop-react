@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { SectionLayout } from "components/common/index";
 import { ProductsGrid } from "components/ui/index";
-import { ItemInterface } from "reducers";
+import { ItemInterface } from "helpers/index";
 
 const sectionStyles = {
   root: {

@@ -6,7 +6,7 @@ import { usePagination } from "store";
 const sectionStyles = {
   container: {
     margin: "0 auto",
-    maxWidth: "90%",
+    maxWidth: "95%",
     minHeight: "1150px",
     // display: "flex",
   },
@@ -39,7 +39,7 @@ const ProductsOnCategories: FC<ProductsOnCategoriesInterface> = ({
         <ProductsGrid products={paginated} />
       ) : (
         <div style={{ textAlign: "center" }}>
-          <em>No product matched your criteria.</em>
+          <em>No product found.</em>
         </div>
       )}
       {hasItems && <Pagination />}

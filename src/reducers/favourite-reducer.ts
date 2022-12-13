@@ -1,4 +1,5 @@
-import { ItemInterface, ActionKind, filterRemovedItem, getHash } from "./index";
+import { ActionKind, filterRemovedItem, getHash } from "./index";
+import { ItemInterface } from "helpers/index";
 
 export interface FavouriteInterface {
   items: ItemInterface[];

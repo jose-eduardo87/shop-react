@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import { useCustomizeData } from "./customize-data-context";
-import { ItemInterface } from "reducers";
+import { ItemInterface } from "helpers/index";
 
 interface PaginationProviderInterface {
   currentPage: number;

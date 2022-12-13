@@ -11,7 +11,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { ItemInterface } from "reducers";
+import { ItemInterface } from "helpers/index";
 import { ITEMS } from "helpers/constants";
 
 const initialState = {
@@ -61,7 +61,7 @@ const CustomizeDataProvider: FC<{
     !shoeSizeParamRef.current;
 
   // memoized functions to prevent unnecessary recalculation whenever they are being used inside useEffect.
-  const getFilteredItemsByCategory = useCallback(
+  const filterItemsByCategory = useCallback(
     (category: string | undefined): ItemInterface[] => {
       const filteredItems = category
         ? ITEMS.filter((item) => item.category === category)
@@ -71,7 +71,7 @@ const CustomizeDataProvider: FC<{
     },
     []
   );
-  const getSortedItems = useCallback(
+  const sortItems = useCallback(
     (items: ItemInterface[]) => {
       const filteredDataClone = [...items];
 
@@ -93,7 +93,7 @@ const CustomizeDataProvider: FC<{
 
   // useState initially set according to what's being passed as category
   const [filteredData, setFilteredData] = useState<ItemInterface[]>(
-    getFilteredItemsByCategory(category)
+    filterItemsByCategory(category)
   );
 
   const onClothingAndHatSizeChange = (value: string, isChecked: boolean) => {
@@ -107,8 +107,8 @@ const CustomizeDataProvider: FC<{
   };
   const onSortItems = (sortType: string) => setSort(sortType);
   const onFilterItems = () => {
-    let filteredItems = getFilteredItemsByCategory(category);
-    const getFilteredItemsByParams = (
+    let filteredItems = filterItemsByCategory(category);
+    const filterItemsByParams = (
       filterRef: MutableRefObject<Set<string | number>>,
       property: "size" | "colors"
     ) =>
@@ -119,18 +119,23 @@ const CustomizeDataProvider: FC<{
       );
 
     if (clothingAndHatSizeParamRef.current.size) {
-      filteredItems = getFilteredItemsByParams(
-        clothingAndHatSizeParamRef,
-        "size"
-      );
-    }
-    if (colorParamRef.current.size) {
-      filteredItems = getFilteredItemsByParams(colorParamRef, "colors");
+      filteredItems = filterItemsByParams(clothingAndHatSizeParamRef, "size");
     }
     if (shoeSizeParamRef.current) {
-      filteredItems = filteredItems.filter(({ additionalInfo }) =>
+      // filteredItems = filteredItems.filter(({ additionalInfo }) =>
+      //   additionalInfo.size?.includes(shoeSizeParamRef.current!)
+      // );
+      const filterShoesBySize = ITEMS.filter(({ additionalInfo }) =>
         additionalInfo.size?.includes(shoeSizeParamRef.current!)
       );
+      if (category || (!category && !clothingAndHatSizeParamRef.current.size)) {
+        filteredItems = filterShoesBySize;
+      } else if (!category && clothingAndHatSizeParamRef.current.size) {
+        filteredItems = filteredItems.concat(filterShoesBySize);
+      }
+    }
+    if (colorParamRef.current.size) {
+      filteredItems = filterItemsByParams(colorParamRef, "colors");
     }
 
     // filter items by price
@@ -140,7 +145,7 @@ const CustomizeDataProvider: FC<{
 
     // this statement will make possible filtered items being sorted, if there is any sorting option selected.
     if (sort) {
-      filteredItems = getSortedItems(filteredItems);
+      filteredItems = sortItems(filteredItems);
     }
 
     setFilteredData(filteredItems);
@@ -148,17 +153,17 @@ const CustomizeDataProvider: FC<{
 
   // useEffect responsible for filtering items whenever there is a change in 'category' props.
   useEffect(() => {
-    setFilteredData(getFilteredItemsByCategory(category));
-  }, [category, getFilteredItemsByCategory]);
+    setFilteredData(filterItemsByCategory(category));
+  }, [category, filterItemsByCategory]);
 
   // useEffect responsible for setting sorted items in filteredData whenever there is a change in 'sort'.
   // This useEffect guarantees that selected sorting option will be taken into consideration even when there
   // is a change in category.
   useEffect(() => {
     if (sort) {
-      setFilteredData((prevState) => getSortedItems(prevState));
+      setFilteredData((prevState) => sortItems(prevState));
     }
-  }, [category, sort, getSortedItems]);
+  }, [category, sort, sortItems]);
 
   return (
     <CustomizeDataContext.Provider

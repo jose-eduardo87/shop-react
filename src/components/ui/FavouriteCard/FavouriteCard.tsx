@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useCart, useFavourite } from "store/index";
 import { Tooltip } from "components/ui/index";
-import { ItemInterface } from "reducers/index";
+import { ItemInterface } from "helpers/index";
 import { Cart, Trash } from "components/icons/index";
 
 import styles from "./FavouriteCard.module.css";

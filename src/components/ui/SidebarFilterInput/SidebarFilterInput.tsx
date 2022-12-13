@@ -13,10 +13,9 @@ const SidebarFilterInput: FC<{
     useCustomizeData();
 
   useEffect(() => {
-    // in case component rendered is of inputType === 'range', this cleanup function will
-    // run to reset price values to default.
+    // in case component rendered is of inputType === 'range', this cleanup runs to reset price values to default.
     if (inputType === "range") {
-      return () => setPriceRange([0, 999]);
+      return setPriceRange([0, 999]);
     }
   }, [setPriceRange, inputType]);
 

@@ -1,7 +1,6 @@
 export {
   default as cartReducer,
   ActionKind,
-  type ItemInterface,
   type CartInterface,
   filterRemovedItem,
   getHash,

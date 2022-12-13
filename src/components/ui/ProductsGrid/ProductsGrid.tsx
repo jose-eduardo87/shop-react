@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ProductCard } from "components/ui/index";
 import { useCart, useFavourite } from "store/index";
-import { ItemInterface } from "reducers/index";
+import { ItemInterface } from "helpers/index";
 
 import styles from "./ProductsGrid.module.css";
 
@@ -10,10 +10,10 @@ const ProductsGrid: FC<{ products: ItemInterface[] | [] }> = ({ products }) => {
   const { onAddItemToFavourite, onRemoveItemFromFavourite, favourites } =
     useFavourite();
   const renderProducts = products.map((product) => {
-    const itemIsInFavourites = favourites.hash[product.id];
+    const itemInFavourites = favourites.hash[product.id];
     let addItemToCartHandler: () => void;
 
-    if (itemIsInFavourites) {
+    if (itemInFavourites) {
       addItemToCartHandler = () => {
         onRemoveItemFromFavourite(product.id);
 

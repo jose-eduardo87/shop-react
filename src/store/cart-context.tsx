@@ -1,10 +1,6 @@
 import { createContext, FC, ReactNode, useContext, useReducer } from "react";
-import {
-  cartReducer,
-  ActionKind,
-  ItemInterface,
-  CartInterface,
-} from "reducers/index";
+import { cartReducer, ActionKind, CartInterface } from "reducers/index";
+import { ItemInterface } from "helpers/index";
 
 interface CartProviderInterface {
   cart: CartInterface;

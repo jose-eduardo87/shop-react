@@ -1,10 +1,24 @@
+export interface ItemInterface {
+  id: string;
+  name: string;
+  price: number;
+  category: string;
+  qtyAvailable: number;
+  quantity: number;
+  imageSrc: string;
+  additionalInfo: {
+    size?: (string | number)[];
+    colors?: string[];
+  };
+}
+
 export const iconStyles = {
   width: 24,
   height: 24,
   fill: "#FEFEFE",
 };
 
-export const ITEMS = [
+export const ITEMS: ItemInterface[] = [
   {
     id: "item01",
     name: "T-shirt",

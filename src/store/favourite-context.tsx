@@ -1,10 +1,10 @@
 import { createContext, FC, ReactNode, useContext, useReducer } from "react";
 import {
   ActionKind,
-  ItemInterface,
   favouriteReducer,
   FavouriteInterface,
 } from "reducers/index";
+import { ItemInterface } from "helpers/index";
 
 interface FavouriteProviderInterface {
   favourites: FavouriteInterface;

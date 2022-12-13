@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { CloseButton } from "components/icons/index";
 import { Minus, Plus } from "components/icons/index";
-import { ItemInterface } from "reducers/index";
+import { ItemInterface } from "helpers/index";
 import { useCart } from "store/index";
 import { iconStyles } from "helpers/constants";
 

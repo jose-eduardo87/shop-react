@@ -1,23 +1,11 @@
 import { FavouriteInterface } from "./index";
+import { ItemInterface } from "helpers/index";
 
 export enum ActionKind {
   ADD = "ADD_ITEM",
   REMOVE = "REMOVE_ITEM",
   INCREMENT = "INCREMENT_ITEM",
   DECREMENT = "DECREMENT_ITEM",
-}
-
-export interface ItemInterface {
-  id: string;
-  name: string;
-  price: number;
-  qtyAvailable: number;
-  quantity: number;
-  imageSrc: string;
-  additionalInfo: {
-    size?: (string | number)[];
-    colors?: string[];
-  };
 }
 
 export interface CartInterface {

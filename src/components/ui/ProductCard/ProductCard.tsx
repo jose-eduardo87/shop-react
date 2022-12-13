@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { AddToCart, AddToFavourites } from "components/icons/index";
-import { ItemInterface } from "reducers/index";
+import { ItemInterface } from "helpers/index";
 import { TooltipInterface } from "components/ui/index";
 
 import styles from "./ProductCard.module.css";
