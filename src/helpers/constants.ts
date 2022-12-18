@@ -67,7 +67,7 @@ export const ITEMS: ItemInterface[] = [
     quantity: 1,
     imageSrc: "/",
     additionalInfo: {
-      colors: ["golden", "black"],
+      colors: ["golden", "black", "red"],
       size: ["S", "M", "L"],
     },
   },

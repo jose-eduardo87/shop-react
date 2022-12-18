@@ -5,7 +5,15 @@ import { ItemInterface } from "helpers/index";
 
 import styles from "./ProductsGrid.module.css";
 
-const ProductsGrid: FC<{ products: ItemInterface[] | [] }> = ({ products }) => {
+interface ProductsGridInterface {
+  products: ItemInterface[] | [];
+  setFixedHeight?: boolean;
+}
+
+const ProductsGrid: FC<ProductsGridInterface> = ({
+  products,
+  setFixedHeight,
+}) => {
   const { onAddItemToCart, cart } = useCart();
   const { onAddItemToFavourite, onRemoveItemFromFavourite, favourites } =
     useFavourite();
@@ -34,7 +42,14 @@ const ProductsGrid: FC<{ products: ItemInterface[] | [] }> = ({ products }) => {
     );
   });
 
-  return <div className={styles.productsGrid}>{renderProducts}</div>;
+  return (
+    <div
+      className={styles.productsGrid}
+      style={setFixedHeight ? { minHeight: "1060px" } : { minHeight: "" }}
+    >
+      {renderProducts}
+    </div>
+  );
 };
 
 export default ProductsGrid;

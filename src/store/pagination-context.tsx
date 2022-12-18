@@ -52,8 +52,8 @@ const PaginationProvider: FC<{
   const [pages, setPages] = useState([1]); // stores all the pages available
 
   // useLayoutEffect responsible for updating the current items shown on page (paginated) and the first and last items indexes
-  // for the current page (itemsPerPage). The reason why I used useLayoutEffect here is to prevent items when there is a change
-  // in the state.
+  // for the current page (itemsPerPage). The reason why I used useLayoutEffect here is to prevent items flickering when there
+  // is a change in the state.
   useLayoutEffect(() => {
     const start = (currentPage - 1) * itemsQuantity;
     const end =

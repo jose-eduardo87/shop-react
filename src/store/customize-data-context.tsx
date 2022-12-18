@@ -83,6 +83,8 @@ const CustomizeDataProvider: FC<{
     },
     [sort]
   );
+
+  // utility function to update ref's storing clothing and color filter params.
   const updateCheckboxInput = (
     paramSet: MutableRefObject<Set<string>>,
     value: string,
@@ -122,14 +124,13 @@ const CustomizeDataProvider: FC<{
       filteredItems = filterItemsByParams(clothingAndHatSizeParamRef, "size");
     }
     if (shoeSizeParamRef.current) {
-      // filteredItems = filteredItems.filter(({ additionalInfo }) =>
-      //   additionalInfo.size?.includes(shoeSizeParamRef.current!)
-      // );
       const filterShoesBySize = ITEMS.filter(({ additionalInfo }) =>
         additionalInfo.size?.includes(shoeSizeParamRef.current!)
       );
       if (category || (!category && !clothingAndHatSizeParamRef.current.size)) {
         filteredItems = filterShoesBySize;
+        // in case user is filtering items using no category, shoe filtered results must be concatenated with
+        // previous filtered results
       } else if (!category && clothingAndHatSizeParamRef.current.size) {
         filteredItems = filteredItems.concat(filterShoesBySize);
       }
@@ -138,12 +139,11 @@ const CustomizeDataProvider: FC<{
       filteredItems = filterItemsByParams(colorParamRef, "colors");
     }
 
-    // filter items by price
     filteredItems = filteredItems.filter(
       ({ price }) => price >= priceRange[0] && price <= priceRange[1]
     );
 
-    // this statement will make possible filtered items being sorted, if there is any sorting option selected.
+    // this statement makes possible filtered items being sorted, if there is any sorting option selected.
     if (sort) {
       filteredItems = sortItems(filteredItems);
     }

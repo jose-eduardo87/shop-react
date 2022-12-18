@@ -36,7 +36,7 @@ const ProductsOnCategories: FC<ProductsOnCategoriesInterface> = ({
     <SectionLayout CSSProps={sectionStyles}>
       {hasItems && <ItemsFilter />}
       {paginated.length ? (
-        <ProductsGrid products={paginated} />
+        <ProductsGrid products={paginated} setFixedHeight />
       ) : (
         <div style={{ textAlign: "center" }}>
           <em>No product found.</em>

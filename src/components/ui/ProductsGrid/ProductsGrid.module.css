@@ -1,5 +1,23 @@
 .productsGrid {
+    max-height: 1060px;
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
+    align-content: flex-start;
+    overflow: auto;
+}
+
+.productsGrid::-webkit-scrollbar-track
+{
+	background-color: white;
+}
+
+.productsGrid::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+.productsGrid::-webkit-scrollbar-thumb
+{
+	background-color: #818181;
 }
