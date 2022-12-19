@@ -3,6 +3,7 @@ import {
   SidebarSortCategories,
   SidebarFilterOptions,
 } from "components/ui/index";
+import { useCustomizeData } from "store";
 
 import styles from "./SidebarFilter.module.css";
 
@@ -15,9 +16,12 @@ const SidebarFilter: FC<SidebarFilterInterface> = ({
   category,
   hasChangedCategory,
 }) => {
+  const { setShouldResetParams } = useCustomizeData();
   const [areFilterOptionsShown, setAreFilterOptionsShown] = useState(false);
-  const toggleShowFilterOptions = () =>
+  const toggleShowFilterOptions = () => {
+    setShouldResetParams((prevState) => !prevState);
     setAreFilterOptionsShown((prevState) => !prevState);
+  };
 
   // useEffect responsible for closing filter options (and thus resetting all previous marked filter items)
   // whenever there is a change in category

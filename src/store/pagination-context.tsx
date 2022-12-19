@@ -23,6 +23,7 @@ interface PaginationProviderInterface {
   setCurrentPage: Dispatch<SetStateAction<number>>;
   setPaginated: Dispatch<SetStateAction<ItemInterface[] | []>>;
   setItemsQuantity: Dispatch<SetStateAction<number>>;
+  setResetCurrentPage: Dispatch<SetStateAction<boolean>>;
 }
 
 const initialState = {
@@ -36,6 +37,7 @@ const initialState = {
   setCurrentPage: () => {},
   setPaginated: () => {},
   setItemsQuantity: () => {},
+  setResetCurrentPage: () => {},
 };
 
 const PaginationContext =
@@ -50,6 +52,7 @@ const PaginationProvider: FC<{
   const [itemsQuantity, setItemsQuantity] = useState(12); // stores the amount of items displayed in a page
   const [itemsPerPage, setItemsPerPage] = useState([0, 0]); // stores the first and last items of the current page
   const [pages, setPages] = useState([1]); // stores all the pages available
+  const [resetCurrentPage, setResetCurrentPage] = useState(false); // state used to conditionally reset currentPage
 
   // useLayoutEffect responsible for updating the current items shown on page (paginated) and the first and last items indexes
   // for the current page (itemsPerPage). The reason why I used useLayoutEffect here is to prevent items flickering when there
@@ -109,6 +112,12 @@ const PaginationProvider: FC<{
     setCurrentPage(1);
   }, [itemsQuantity]);
 
+  // Resets currentPage to 1 whenever resetCurrentPage is set to true. This fixes the unexpected behaviour when user
+  // is filtering items and the current page is not on the first page.
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [resetCurrentPage]);
+
   return (
     <PaginationContext.Provider
       value={{
@@ -122,6 +131,7 @@ const PaginationProvider: FC<{
         setCurrentPage,
         setPaginated,
         setItemsQuantity,
+        setResetCurrentPage,
       }}
     >
       {children}

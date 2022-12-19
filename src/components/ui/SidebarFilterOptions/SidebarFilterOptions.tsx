@@ -1,6 +1,6 @@
 import { ChangeEvent, FC } from "react";
 import { SidebarFilterInput } from "components/ui/index";
-import { useCustomizeData } from "store";
+import { useCustomizeData, usePagination } from "store";
 
 import styles from "./SidebarFilterOptions.module.css";
 
@@ -8,6 +8,11 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
   category,
 }) => {
   const { priceRange, onShoeSizeChange, onFilterItems } = useCustomizeData();
+  const { setResetCurrentPage } = usePagination();
+  const onFilterItemsHandler = () => {
+    setResetCurrentPage((prevState) => !prevState);
+    onFilterItems();
+  };
   const onSelectChangeHandler = (e: ChangeEvent<HTMLSelectElement>) =>
     onShoeSizeChange(+e.target.value);
 
@@ -101,11 +106,7 @@ const SidebarFilterOptions: FC<{ category: string | undefined }> = ({
         <h4>Price Filter</h4>
         {renderPriceRangeInput}
       </div>
-      <button
-        className={styles.button}
-        // disabled={isButtonDisabled}
-        onClick={onFilterItems}
-      >
+      <button className={styles.button} onClick={onFilterItemsHandler}>
         Filter
       </button>
     </div>

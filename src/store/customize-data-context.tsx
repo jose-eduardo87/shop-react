@@ -18,10 +18,10 @@ const initialState = {
   filteredData: [],
   sort: "",
   priceRange: [0, 999],
-  isButtonDisabled: true,
   onClothingAndHatSizeChange: (value: string, isChecked: boolean) => {},
   onColorChange: (value: string, isChecked: boolean) => {},
   onShoeSizeChange: (value: number) => {},
+  setShouldResetParams: () => {},
   onSortItems: (sortType: string) => {},
   onFilterItems: () => {},
   setPriceRange: () => {},
@@ -31,10 +31,10 @@ const CustomizeDataContext = createContext<{
   filteredData: ItemInterface[] | [];
   sort: string;
   priceRange: number[];
-  isButtonDisabled: boolean;
   onClothingAndHatSizeChange: (value: string, isChecked: boolean) => void;
   onColorChange: (value: string, isChecked: boolean) => void;
   onShoeSizeChange: (value: number) => void;
+  setShouldResetParams: Dispatch<SetStateAction<boolean>>;
   onSortItems: (sortType: string) => void;
   onFilterItems: () => void;
   setPriceRange: Dispatch<SetStateAction<number[]>>;
@@ -54,11 +54,7 @@ const CustomizeDataProvider: FC<{
   // sort holds the type of sorting selected: 'asc' => ascending / 'desc' => descending.
   const [sort, setSort] = useState("");
   const [priceRange, setPriceRange] = useState([0, 999]);
-  // not working
-  const isButtonDisabled =
-    !clothingAndHatSizeParamRef.current.size &&
-    !colorParamRef.current.size &&
-    !shoeSizeParamRef.current;
+  const [shouldResetParams, setShouldResetParams] = useState(false);
 
   // memoized functions to prevent unnecessary recalculation whenever they are being used inside useEffect.
   const filterItemsByCategory = useCallback(
@@ -115,9 +111,7 @@ const CustomizeDataProvider: FC<{
       property: "size" | "colors"
     ) =>
       filteredItems.filter(({ additionalInfo }) =>
-        additionalInfo[property]?.some((property) =>
-          filterRef.current.has(property)
-        )
+        additionalInfo[property]?.some((param) => filterRef.current.has(param))
       );
 
     if (clothingAndHatSizeParamRef.current.size) {
@@ -165,16 +159,25 @@ const CustomizeDataProvider: FC<{
     }
   }, [category, sort, sortItems]);
 
+  // useEffect responsible for reseting filter parameters when Filter Options is closed in SidebarFilter.
+  useEffect(() => {
+    if (shouldResetParams) {
+      clothingAndHatSizeParamRef.current = new Set<string>();
+      colorParamRef.current = new Set<string>();
+      shoeSizeParamRef.current = undefined;
+    }
+  }, [shouldResetParams]);
+
   return (
     <CustomizeDataContext.Provider
       value={{
         filteredData,
         sort,
         priceRange,
-        isButtonDisabled,
         onClothingAndHatSizeChange,
         onColorChange,
         onShoeSizeChange,
+        setShouldResetParams,
         onSortItems,
         onFilterItems,
         setPriceRange,
