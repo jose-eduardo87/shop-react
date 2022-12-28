@@ -44,15 +44,13 @@ const CustomizeDataProvider: FC<{
   category: string | undefined;
   children: ReactNode;
 }> = ({ category, children }) => {
-  // Params storing filter values => I used useRef because I needed to keep track of the values without re-rendering
-  // this context. Also, these Refs hold Set values as methods like .add(), .delete() and .has() are O(1), and give
-  // better performance compared to array methods like .slice() and .indexOf() which are O(n), and I would have to use
-  // them if I chose arrays over Set instead.
+  // Refs storing Set filter parameters values  => I used useRef because I needed to keep track of the values without re-rendering
+  // this context. Also, these Refs hold Set values as methods like .add(), .delete() and .has() are O(1), and give better performance
+  // compared to array methods like .slice() and .indexOf() which are O(n), and I would have to use  them if I chose arrays over Set instead.
   const clothingAndHatSizeParamRef = useRef(new Set<string>());
   const colorParamRef = useRef(new Set<string>());
   const shoeSizeParamRef = useRef<number>();
-  // sort holds the type of sorting selected: 'asc' => ascending / 'desc' => descending.
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState(""); // sort holds the type of sorting selected: 'asc' => ascending / 'desc' => descending.
   const [priceRange, setPriceRange] = useState([0, 999]);
   const [shouldResetParams, setShouldResetParams] = useState(false);
 
@@ -80,7 +78,7 @@ const CustomizeDataProvider: FC<{
     [sort]
   );
 
-  // utility function to update ref's storing clothing and color filter params.
+  // utility function to update refs storing clothing size and color filter params.
   const updateCheckboxInput = (
     paramSet: MutableRefObject<Set<string>>,
     value: string,
